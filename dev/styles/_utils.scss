@@ -1,0 +1,89 @@
+//color variables
+$white: #F7FDFF;
+$neutral: #EFEFEF;
+$sky: #CAEBF2;
+$carbon: #A9A9A9;
+$watermelon: #FF383f;
+$black: #3A3A3A;
+$transparentBlack: rgba(58, 58, 58, 0.2);
+
+
+//position
+@mixin fixed (){
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+//mixins for text
+@mixin fontSizer($scale) {
+    font-size: $scale * 1px;
+    font-size: ($scale / 10) * 1rem;
+}
+
+@mixin lineHeight($scale) {
+    line-height: $scale * 1px;
+    line-height: ($scale / 10) * 1rem;
+}
+
+@mixin font($size, $wght, $wdth){
+    @include fontSizer($size);
+    font-family: "Avenir Next Variable";
+    font-variation-settings: 'wght' $wght, 'wdth' $wdth;
+    color: $black;
+}
+
+//parallax
+@mixin parallax($url, $width, $height, $z-index, $top, $left, $opacity){
+    background-image: url($url);
+    width: $width;
+    height: $height;
+    position: fixed;
+    background-repeat: no-repeat;
+    z-index: $z-index;
+    background-position: center center;
+    top: $top;
+    left: $left;
+    opacity: $opacity;
+}
+
+//animation
+@mixin animation($animationName, $delay){
+    animation-name: $animationName;
+    animation-iteration-count: infinite;
+    animation-delay: $delay;
+}
+
+//padding and margin
+@mixin spacing($padding, $margin){
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin flex($direction){
+    display: flex;
+    flex-direction: $direction; 
+    flex-wrap: wrap;
+}
+
+
+
+//grid variables
+$grid-col-5: repeat(5, 1fr);
+$grid-col-4: repeat(4, 1fr);
+$grid-col-3: repeat(3, 1fr);
+$grid-col-2: repeat(2, 1fr);
+$grid-col-1: 1fr;
+
+
+//mixins grid layout
+@mixin grid ($column){
+    display: grid;
+    grid-template-columns: $column;
+    grid-gap: 1rem;
+    grid-auto-rows: minmax(10rem auto);
+    grid-auto-columns: minmax(10rem 20rem);
+    justify-items: center;
+    align-items: center;
+}
+
