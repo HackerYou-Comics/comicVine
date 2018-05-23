@@ -16,7 +16,6 @@ const apiKey = '9ae979acd25cd191fdc36c5a39ff47c355199161';
 //     console.log(res.data);
 //   });
 
-
 class App extends React.Component {
   constructor(){
     super();
@@ -32,6 +31,36 @@ class App extends React.Component {
     //----------
     // API call
     //----------
+
+    this.state = {
+      searchInput: '',
+      enteredInput: ''
+    }
+    this.inputHandler = this.inputHandler.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
+  }
+
+  inputHandler(e){
+    this.setState({
+      searchInput: e.target.value
+    })
+  }
+
+  submitHandler(e){
+    e.preventDefault();
+    const inputClone = this.state.searchInput;
+    this.setState({
+      enteredInput: inputClone
+    }, () => {
+      console.log(this.state.enteredInput);
+      this.getApi();
+
+    })
+  }
+
+  getApi(){
+    //API call
+    console.log(this.state.enteredInput);
     axios({
       url: "http://proxy.hackeryou.com",
       method: "GET",
@@ -43,7 +72,8 @@ class App extends React.Component {
         reqUrl: `http://www.comicvine.com/api/issues`,
         params: {
           api_key: apiKey,
-          format: 'json'
+          format: 'json',
+          filter: `name:${this.state.enteredInput}`
         },
         proxyHeaders: {
           'headers_params': 'value'
@@ -121,7 +151,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-
         {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>
         }
         {this.state.loggedIn === true && 
@@ -129,16 +158,13 @@ class App extends React.Component {
             <button onClick={this.logout}>Logout</button>
             <h1>Hello {this.state.username} </h1>
           </div>}
+        <form action="" onSubmit={this.submitHandler}>
+          <input type="text" onChange={this.inputHandler} value={this.state.searchInput}/>
+          <button>Search</button>
+        </form>
       </div>
     )
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-// please put this in your git ignore
-/*
-dev/scripts/firebase/firebase-config.js
-.firebaserc
-firebase.json
-*/
