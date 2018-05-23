@@ -184,6 +184,7 @@ class App extends React.Component {
         <form action="" onSubmit={this.submitHandler}>
           <input type="text" onChange={this.inputHandler} value={this.state.searchInput}/>
           <select name="" id="">
+            <option value="comic">Search by Comic name</option>
             <option value="volume">Search by volume</option>
           </select>
           <button>Search</button>
