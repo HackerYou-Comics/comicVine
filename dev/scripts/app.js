@@ -10,13 +10,6 @@ firebase.initializeApp(firebaseConfig);
 //comicVine Api Key
 const apiKey = '9ae979acd25cd191fdc36c5a39ff47c355199161';
 
-//API call
-// axios.get(`http://www.comicvine.com/api/issues?api_key=${apiKey}`)
-//   .then((res) => {
-//     console.log(res.data);
-//   });
-
-
 class App extends React.Component {
   constructor(){
     super();
@@ -32,6 +25,12 @@ class App extends React.Component {
     //----------
     // API call
     //----------
+
+    //API call
+    // axios.get(`http://www.comicvine.com/api/issues?api_key=${apiKey}`)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   });
     axios({
       url: "http://proxy.hackeryou.com",
       method: "GET",
@@ -94,7 +93,9 @@ class App extends React.Component {
             userName: this.state.userName,
             userImg: this.state.userImg,
           }
-          firebase.database().ref('users/' + this.state.userId).push(userInfo);
+          // registers user info in firebase upon login
+          firebase.database().ref(`users/${this.state.userId}/`).set({userInfo});
+          ;
         })
       })
       .catch((err) => {
