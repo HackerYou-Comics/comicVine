@@ -7,14 +7,30 @@ import Qs from 'qs';
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+//comicVine Api Key
 const apiKey = '9ae979acd25cd191fdc36c5a39ff47c355199161';
 
-
-
+//API call
+// axios.get(`http://www.comicvine.com/api/issues?api_key=${apiKey}`)
+//   .then((res) => {
+//     console.log(res.data);
+//   });
 
 class App extends React.Component {
   constructor(){
     super();
+    this.state = {
+      loggedIn: false,
+      userId: null,
+    }
+    this.loginWithGoogle = this.loginWithGoogle.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+
+  componentWillMount(){
+    //----------
+    // API call
+    //----------
 
     this.state = {
       searchInput: '',
@@ -134,6 +150,59 @@ class App extends React.Component {
         console.log(this.state.volumeIssuesArray);
       })
     });
+
+    //----------------
+    // Authentication
+    //----------------
+    this.dbRef = firebase.database().ref('users/');
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user !== null){
+        this.dbRef.on('value', (snapshot) => {
+          console.log(snapshot.val());
+        })
+        this.setState({
+          loggedIn: true
+        })
+      }else{
+        this.setState({
+          loggedIn: false
+        })
+      }
+    })
+  }
+
+  loginWithGoogle(){
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+      .then((user) => {
+        console.log(user.user);
+        
+        const firebaseUid = user.user.uid;
+        const firebaseName = user.user.displayName;
+        const firebaseImg = user.user.photoURL;
+        this.setState({
+          userId: firebaseUid,
+          userName: firebaseName,
+          userImg: firebaseImg,
+        },() => {
+          console.log('pushing', this.state.userId);
+          const userInfo = {
+            userName: this.state.userName,
+            userImg: this.state.userImg,
+          }
+          firebase.database().ref('users/' + this.state.userId).push(userInfo);
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  logout(){
+    firebase.auth().signOut();
+    this.dbRef.off('value');
+    console.log('signed out');
   }
 
   //display the results of inital API call data
@@ -145,11 +214,7 @@ class App extends React.Component {
             <ul key={index} onClick={
                 (event) => {
                   //passes the volume's id to getVolume method
-//
-
-
-
-
+            
 //need to pass the event of the specific item clicked
                   this.getVolumes(event, result.volume.id)
                 }
@@ -161,8 +226,6 @@ class App extends React.Component {
       )
     }
   }
-
-
 
   //display all the volumes onclick of search result's issue
   displayVolumeResults(){
@@ -181,6 +244,13 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>
+        }
+        {this.state.loggedIn === true && 
+          <div>
+            <button onClick={this.logout}>Logout</button>
+            <h1>Hello {this.state.username} </h1>
+          </div>}
         <form action="" onSubmit={this.submitHandler}>
           <input type="text" onChange={this.inputHandler} value={this.state.searchInput}/>
           <select name="" id="">
