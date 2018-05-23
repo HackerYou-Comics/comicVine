@@ -9,52 +9,76 @@ import Qs from 'qs';
 firebase.initializeApp(firebaseConfig);
 const apiKey = '9ae979acd25cd191fdc36c5a39ff47c355199161';
 
-//API call
-// axios.get(`http://www.comicvine.com/api/issues?api_key=${apiKey}`)
-//   .then((res) => {
-//     console.log(res.data);
-//   });
 
-axios({
-  url: "http://proxy.hackeryou.com",
-  method: "GET",
-  dataResponse: "json",
-  paramsSerializer: function (params) {
-    return Qs.stringify(params, { arrayFormat: 'brackets' })
-  },
-  params: {
-    reqUrl: `http://www.comicvine.com/api/issues`,
-    params: {
-      api_key: apiKey,
-      format: 'json'
-    },
-    proxyHeaders: {
-      'headers_params': 'value'
-    },
-    xmlToJSON: false
-  }
-}).then((res) => {
-  console.log(res.data);
-});
+
 
 class App extends React.Component {
   constructor(){
     super();
-    
+
+    this.state = {
+      searchInput: '',
+      enteredInput: ''
+    }
+    this.inputHandler = this.inputHandler.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
+  }
+
+  inputHandler(e){
+    this.setState({
+      searchInput: e.target.value
+    })
+  }
+
+  submitHandler(e){
+    e.preventDefault();
+    const inputClone = this.state.searchInput;
+    this.setState({
+      enteredInput: inputClone
+    }, () => {
+      console.log(this.state.enteredInput);
+      this.getApi();
+
+    })
+  }
+
+  getApi(){
+    //API call
+    console.log(this.state.enteredInput);
+    axios({
+      url: "http://proxy.hackeryou.com",
+      method: "GET",
+      dataResponse: "json",
+      paramsSerializer: function (params) {
+        return Qs.stringify(params, { arrayFormat: 'brackets' })
+      },
+      params: {
+        reqUrl: `http://www.comicvine.com/api/issues`,
+        params: {
+          api_key: apiKey,
+          format: 'json',
+          filter: `name:${this.state.enteredInput}`
+        },
+        proxyHeaders: {
+          'headers_params': 'value'
+        },
+        xmlToJSON: false
+      }
+    }).then((res) => {
+      console.log(res.data);
+    });
   }
 
   render() {
     return (
-      <h1>hi</h1>
+      <div>
+        <form action="" onSubmit={this.submitHandler}>
+          <input type="text" onChange={this.inputHandler} value={this.state.searchInput}/>
+          <button>Search</button>
+        </form>
+      </div>
     )
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-// please put this in your git ignore
-/*
-dev/scripts/firebase/firebase-config.js
-.firebaserc
-firebase.json
-*/
