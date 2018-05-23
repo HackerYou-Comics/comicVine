@@ -18,10 +18,12 @@ class App extends React.Component {
 
     this.state = {
       searchInput: '',
-      enteredInput: ''
+      enteredInput: '',
+      searchResults: []
     }
     this.inputHandler = this.inputHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
+    this.displayResults = this.displayResults.bind(this);
   }
 
   inputHandler(e){
@@ -66,7 +68,30 @@ class App extends React.Component {
       }
     }).then((res) => {
       console.log(res.data);
+
+      const apiArray = res.data.results;
+
+      //clone searchResults state
+      const searchResultsClone = [...this.state.searchResults];
+      for(let i = 0; i < apiArray.length; i++){
+        searchResultsClone.push(apiArray[i].name)
+      }
+
+      this.setState({
+        searchResults: searchResultsClone
+      })
+
     });
+  }
+
+  displayResults(){
+    if(this.state.searchResults !== []){
+      return (
+        this.state.searchResults.map((result, index) => {
+          return <p key={index}>{result}</p>
+        })
+      )
+    }
   }
 
   render() {
@@ -74,8 +99,12 @@ class App extends React.Component {
       <div>
         <form action="" onSubmit={this.submitHandler}>
           <input type="text" onChange={this.inputHandler} value={this.state.searchInput}/>
+          <select name="" id="">
+            <option value="volume">Search by volume</option>
+          </select>
           <button>Search</button>
         </form>
+        {this.displayResults()}
       </div>
     )
   }
