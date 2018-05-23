@@ -20,10 +20,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-// please put this in your git ignore
-/*
-dev/scripts/firebase/firebase-config.js
-.firebaserc
-firebase.json
-*/
