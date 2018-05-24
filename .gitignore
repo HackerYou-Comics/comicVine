@@ -4,4 +4,6 @@ package-lock.json
 dev/scripts/firebase/*
 .firebaserc
 firebase.json
-
+.DS_Store
+*.psd
+*.PSD
