@@ -4,4 +4,3 @@ package-lock.json
 dev/scripts/firebase/*
 .firebaserc
 firebase.json
-

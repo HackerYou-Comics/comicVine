@@ -25,6 +25,7 @@ class App extends React.Component {
       userId: null,
       searchInput: '',
       enteredInput: '',
+      userChoice: '',
       searchResults: [],
       volumeIssuesArray: []
     }
@@ -34,6 +35,7 @@ class App extends React.Component {
     this.submitHandler = this.submitHandler.bind(this);
     this.displayResults = this.displayResults.bind(this);
     this.handleIssueClick = this.handleIssueClick.bind(this);
+    this.changeHandler = this.changeHandler.bind(this);
   }
 
   componentDidMount() {
@@ -62,7 +64,7 @@ class App extends React.Component {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
       .then((user) => {
-        console.log(user.user);
+        // console.log(user.user);
 
         const firebaseUid = user.user.uid;
         const firebaseName = user.user.displayName;
@@ -72,7 +74,7 @@ class App extends React.Component {
           userName: firebaseName,
           userImg: firebaseImg,
         }, () => {
-          console.log('pushing', this.state.userId);
+          // console.log('pushing', this.state.userId);
           const userInfo = {
             userName: this.state.userName,
             userImg: this.state.userImg,
@@ -88,7 +90,7 @@ class App extends React.Component {
   logout() {
     firebase.auth().signOut();
     this.dbRef.off('value');
-    console.log('signed out');
+    // console.log('signed out');
   }
 
   //----------------
@@ -102,12 +104,13 @@ class App extends React.Component {
 
   submitHandler(e) {
     e.preventDefault();
+
     const inputClone = this.state.searchInput;
     this.setState({
       enteredInput: inputClone,
       searchResults: []
     }, () => {
-      console.log(this.state.enteredInput);
+      // console.log(this.state.enteredInput);
       this.getApi();
 
     })
@@ -116,9 +119,9 @@ class App extends React.Component {
   //-----------
   // Api Calls
   //-----------
-  getApi() {
+  getApi(searchChoice) {
     //API call
-    console.log(this.state.enteredInput);
+    // console.log(this.state.enteredInput);
     axios({
       url: "http://proxy.hackeryou.com",
       method: "GET",
@@ -127,7 +130,7 @@ class App extends React.Component {
         return Qs.stringify(params, { arrayFormat: 'brackets' })
       },
       params: {
-        reqUrl: `http://www.comicvine.com/api/issues`,
+        reqUrl: `http://www.comicvine.com/api/${searchChoice}`,
         params: {
           api_key: apiKey,
           format: 'json',
@@ -139,7 +142,7 @@ class App extends React.Component {
         xmlToJSON: false
       }
     }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
 
       //results of the data in an array
       const apiArray = res.data.results;
@@ -161,6 +164,7 @@ class App extends React.Component {
 
   //makes the API call to get volume data based on inital api call's returned volume id
   getVolumes(volumeId) {
+   
     axios({
       url: "http://proxy.hackeryou.com",
       method: "GET",
@@ -208,9 +212,18 @@ class App extends React.Component {
       selectedIssueId: volumeId,
     }, () => {
       console.log(this.state.selectedIssueId); 
-      //call axios here
+      this.getVolumes(volumeId);
     })
   }
+
+  changeHandler(e){
+    this.setState({
+      userChoice: e.target.value
+    }, ()=>{
+      console.log(this.state.userChoice);
+    })
+  }
+
   //display the results of inital API call data
   displayResults() {
     if (this.state.searchResults !== []) {
@@ -252,8 +265,10 @@ class App extends React.Component {
             </div>}
           <form action="" onSubmit={this.submitHandler}>
             <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
-            <select name="" id="">Page
-              <option value="volume">Search by volume</option>
+            <select onChange = {this.changeHandler} name="" id="">Page
+              <option value="">Search by</option>
+              <option value="issue">Issue</option>
+              <option value="publisher">Publisher</option>
             </select>
             <button>Search</button>
           </form>
@@ -265,5 +280,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-
