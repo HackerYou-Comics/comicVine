@@ -47,12 +47,11 @@ class Form extends React.Component{
         })
     }
 
-
     handleIssueClick(volumeId) {
         this.setState({
             selectedIssueId: volumeId,
         }, () => {
-            console.log(this.state.selectedIssueId);
+            // console.log(this.state.selectedIssueId);
             this.getVolumes(volumeId);
         })
     }
@@ -165,13 +164,15 @@ class Form extends React.Component{
                 <form action="" onSubmit={this.submitHandler}>
                     <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
                     <select onChange={this.changeHandler} name="" id="">Page
-                <option value="">Search by</option>
+                        <option value="issues">Search by</option>
                         <option value="issues">Issue</option>
                         <option value="publishers">Publisher</option>
                     </select>
                     <button>Search</button>
                 </form>
-                <Results results={this.state.searchResults}/>
+                <Results 
+                    results={this.state.searchResults}
+                    handleIssueClick={this.handleIssueClick}/>
             </div>
         )
     }

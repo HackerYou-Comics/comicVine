@@ -6,9 +6,12 @@ import {
   Link,
   NavLink
 } from 'react-router-dom';
+// import pages
 import InfoPage from './components/InfoPage/InfoPage';
 import AccountPage from './components/AccountPage/AccountPage';
 import HomePage from './components/HomePage/HomePage';
+// import other components
+import Auth from './components/Auth';
 
 class App extends React.Component {
   constructor() {
@@ -24,6 +27,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
+          <Auth />
           <NavLink to="/info">Info</NavLink>
           <NavLink to="/account">Account</NavLink>
           <NavLink to="/">Home</NavLink>

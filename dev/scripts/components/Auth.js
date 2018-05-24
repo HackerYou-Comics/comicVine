@@ -10,10 +10,29 @@ class Auth extends React.Component{
         super();
         this.state = {
             loggedIn: false,
-            userId: null
+            userId: null,
+            userName:'',
+            userImg:'',
         }
         this.loginWithGoogle = this.loginWithGoogle.bind(this);
         this.logout = this.logout.bind(this); 
+    }
+
+    componentWillMount(){
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log('user logged in');
+                console.log(user);
+                this.setState({
+                    loggedIn: true,
+                    userName: user.displayName,
+                    userImg: user.photoURL,
+                    userId: user.uid,
+                });
+            } else {
+                console.log('no users logged in');
+            }
+        });
     }
 
     componentDidMount() {
@@ -79,12 +98,14 @@ class Auth extends React.Component{
                 }
                 {
                     this.state.loggedIn === true &&
-                    <div>
+                    <div className="auth-bar">
+                        <img src={this.state.userImg} alt={this.state.userName} />
                         <button onClick={this.logout}>Logout</button>
-                        <h1>Hello {this.state.username} </h1>
                     </div>
                 }
             </div>
         )
     }
 }
+
+export default Auth;
