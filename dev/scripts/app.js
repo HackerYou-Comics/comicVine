@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import { firebaseConfig } from './firebase/firebase-config';
 import axios from 'axios';
 import Qs from 'qs';
+import Issue from './Issue';
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -11,10 +12,7 @@ firebase.initializeApp(firebaseConfig);
 const apiKey = '9ae979acd25cd191fdc36c5a39ff47c355199161';
 
 //API call
-// axios.get(`http://www.comicvine.com/api/issues?api_key=${apiKey}`)
-//   .then((res) => {
-//     console.log(res.data);
-//   });
+
 
 class App extends React.Component {
   constructor() {
@@ -32,7 +30,7 @@ class App extends React.Component {
     this.inputHandler = this.inputHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
     this.displayResults = this.displayResults.bind(this);
-    this.displayVolumeResults = this.displayVolumeResults.bind(this);
+    this.getVolumeId = this.getVolumeId.bind(this);
   }
 
   componentWillMount() {
@@ -159,8 +157,7 @@ class App extends React.Component {
   }
 
   //makes the API call to get volume data based on inital api call's returned volume id
-  getVolumes(event, volumeId) {
-    console.log(event);
+  getVolumes(volumeId) {
     axios({
       url: "http://proxy.hackeryou.com",
       method: "GET",
@@ -207,36 +204,20 @@ class App extends React.Component {
   displayResults() {
     if (this.state.searchResults !== []) {
       return (
-        this.state.searchResults.map((result, index) => {
-          return (
-            <ul key={index} onClick={
-              (event) => {
-                //passes the volume's id to getVolume method
-
-                //need to pass the event of the specific item clicked
-                this.getVolumes(event, result.volume.id)
-              }
-            }>{result.name}
-              {this.displayVolumeResults()}
-            </ul>
-          )
-        })
+        <ul>
+          {this.state.searchResults.map((result, index) => {
+            return (
+                <Issue key={index} clickHandler={this.getVolumes} issueName={result.name} volumeId={result.volume.id}/>
+            )
+          })}
+        </ul>
       )
     }
   }
 
-  //display all the volumes onclick of search result's issue
-  displayVolumeResults() {
-    if (this.state.volumeIssuesArray !== []) {
-      return (
-        this.state.volumeIssuesArray.map((issues, index) => {
-          // console.log(issues);
-          return (
-            <li key={index}>{issues.issue_number}{issues.name}</li>
-          )
-        })
-      )
-    }
+
+  getVolumeId(id){
+    console.log(id);
   }
 
   render() {
