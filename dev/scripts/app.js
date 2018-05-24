@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router,
-        Route,
-        Link,
-        NavLink} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink
+} from 'react-router-dom';
 import InfoPage from './components/InfoPage/InfoPage';
 import AccountPage from './components/AccountPage/AccountPage';
 import HomePage from './components/HomePage/HomePage';
