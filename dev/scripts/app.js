@@ -4,15 +4,18 @@ import firebase from 'firebase';
 import { firebaseConfig } from './firebase/firebase-config';
 import axios from 'axios';
 import Qs from 'qs';
-import Issue from './Issue';
+import {BrowserRouter as Router,
+        Route,
+        Link,
+        NavLink} from 'react-router-dom';
+import IssuePage from './components/IssuePage';
+import AccountPage from './components/AccountPage';
+import Issue from './components/Issue';
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 //comicVine Api Key
 const apiKey = '9ae979acd25cd191fdc36c5a39ff47c355199161';
-
-//API call
-
 
 class App extends React.Component {
   constructor() {
@@ -30,10 +33,10 @@ class App extends React.Component {
     this.inputHandler = this.inputHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
     this.displayResults = this.displayResults.bind(this);
-    this.getVolumeId = this.getVolumeId.bind(this);
+    this.handleIssueClick = this.handleIssueClick.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     //----------------
     // Authentication
     //----------------
@@ -119,7 +122,7 @@ class App extends React.Component {
     axios({
       url: "http://proxy.hackeryou.com",
       method: "GET",
-      dataResponse: "json",
+      dataResponse: "jsonp",
       paramsSerializer: function (params) {
         return Qs.stringify(params, { arrayFormat: 'brackets' })
       },
@@ -200,14 +203,31 @@ class App extends React.Component {
     });
   }
 
+  handleIssueClick(volumeId){
+    this.setState({
+      selectedIssueId: volumeId,
+    }, () => {
+      console.log(this.state.selectedIssueId); 
+      //call axios here
+    })
+  }
   //display the results of inital API call data
   displayResults() {
     if (this.state.searchResults !== []) {
       return (
         <ul>
           {this.state.searchResults.map((result, index) => {
+            console.log(result);
             return (
-                <Issue key={index} clickHandler={this.getVolumes} issueName={result.name} volumeId={result.volume.id}/>
+              <Issue 
+                key={result.id}
+                issueId={result.id}
+                // issueImg={result.image.medium_url}
+                issueImg={result.image.icon_url}
+                issueName={result.name}
+                issueNumber={result.issue_number}
+                issueDescription={result.description}
+                handleIssueClick={this.handleIssueClick}/>
             )
           })}
         </ul>
@@ -215,31 +235,31 @@ class App extends React.Component {
     }
   }
 
-
-  getVolumeId(id){
-    console.log(id);
-  }
-
   render() {
     return (
-      <div>
-        {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>
-        }
-        {this.state.loggedIn === true &&
-          <div>
-            <button onClick={this.logout}>Logout</button>
-            <h1>Hello {this.state.username} </h1>
-          </div>}
-        <form action="" onSubmit={this.submitHandler}>
-          <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
-          <select name="" id="">
-            <option value="comic">Search by Comic name</option>
-            <option value="volume">Search by volume</option>
-          </select>
-          <button>Search</button>
-        </form>
-        {this.displayResults()}
-      </div>
+      <Router>
+        <div>
+          <Link to="/issue">Issue</Link>
+          <Link to="/account">Account</Link>
+          <Route path="/issue" component={IssuePage} />
+          <Route path="/account" component={AccountPage} />
+          {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>
+          }
+          {this.state.loggedIn === true &&
+            <div>
+              <button onClick={this.logout}>Logout</button>
+              <h1>Hello {this.state.username} </h1>
+            </div>}
+          <form action="" onSubmit={this.submitHandler}>
+            <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
+            <select name="" id="">Page
+              <option value="volume">Search by volume</option>
+            </select>
+            <button>Search</button>
+          </form>
+          {this.displayResults()}
+        </div>
+      </Router>
     )
   }
 }

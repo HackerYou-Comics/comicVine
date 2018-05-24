@@ -26,10 +26,12 @@
     "qs": "^6.5.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-router-dom": "^4.2.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "connect-history-api-fallback": "^1.5.0",
     "firebaseui": "^3.0.0",
     "node-sass": "^4.7.1",
     "react-fontawesome": "^1.6.1",
