@@ -34,7 +34,7 @@ class Auth extends React.Component{
             }
         });
     }
-    
+
     componentDidMount() {
         //----------------
         // Authentication
@@ -98,10 +98,9 @@ class Auth extends React.Component{
                 }
                 {
                     this.state.loggedIn === true &&
-                    <div>
+                    <div className="auth-bar">
+                        <img src={this.state.userImg} alt={this.state.userName} />
                         <button onClick={this.logout}>Logout</button>
-                        <h1>Hello {this.state.userName} </h1>
-                        <img src={this.state.userImg} alt={this.state.userName}/>
                     </div>
                 }
             </div>
