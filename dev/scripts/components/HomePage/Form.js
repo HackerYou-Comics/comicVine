@@ -134,6 +134,7 @@ class Form extends React.Component{
             }
         }).then((vol) => {
 
+            console.log(vol.data);
             //volume data and all the issues in the volume
             const volIssues = vol.data.results.issues;
             //volumeIssuesArray clone
