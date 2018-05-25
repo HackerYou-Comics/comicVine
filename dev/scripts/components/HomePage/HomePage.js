@@ -12,7 +12,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <Form />
+        <Form setVolume={this.props.setVolume}/>
       </div>
     )
   }

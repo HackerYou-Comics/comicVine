@@ -17,10 +17,17 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-
-
+      volumeIssuesArray: []
     }
+    this.getVolumesIssuesArrayfromForm = this.getVolumesIssuesArrayfromForm.bind(this);
+  }
 
+  getVolumesIssuesArrayfromForm(array){
+    this.setState({
+      volumeIssuesArray: array,
+    }, () => {
+      console.log('Array from form: ', this.state.volumeIssuesArray); 
+    })
   }
 
   render() {
@@ -31,9 +38,9 @@ class App extends React.Component {
           <NavLink to="/info">Info</NavLink>
           <NavLink to="/account">Account</NavLink>
           <NavLink to="/">Home</NavLink>
-          <Route path="/info" component={InfoPage} />
+          <Route path="/info" render={() => <InfoPage volumeIssuesArray={this.state.volumeIssuesArray}/>} />
           <Route path="/account" component={AccountPage} />
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" render={() => <HomePage setVolume={this.getVolumesIssuesArrayfromForm}/>} />
         </div>
       </Router>
     )
