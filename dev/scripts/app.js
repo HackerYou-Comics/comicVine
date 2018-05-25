@@ -17,6 +17,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+<<<<<<< HEAD
       searchResults: []
 
     }
@@ -27,6 +28,18 @@ class App extends React.Component {
     console.log('grabSearchResult');
     this.setState({
       searchResults: resultsFromForm
+=======
+      volumeIssuesArray: []
+    }
+    this.getVolumesIssuesArrayfromForm = this.getVolumesIssuesArrayfromForm.bind(this);
+  }
+
+  getVolumesIssuesArrayfromForm(array){
+    this.setState({
+      volumeIssuesArray: array,
+    }, () => {
+      console.log('Array from form: ', this.state.volumeIssuesArray); 
+>>>>>>> 71fa67c0f6835cf1896a98e02dc4bd71e8bc9462
     })
   }
 
@@ -38,9 +51,15 @@ class App extends React.Component {
           <NavLink to="/info">Info</NavLink>
           <NavLink to="/account">Account</NavLink>
           <NavLink to="/">Home</NavLink>
+<<<<<<< HEAD
           <Route path="/account" component={AccountPage} />
           <Route exact path="/" render={() => <HomePage getResult={this.grabSearchResultsFromForm}/>} />
           <Route path="/info/:result_id" component={InfoPage} />
+=======
+          <Route path="/info" render={() => <InfoPage volumeIssuesArray={this.state.volumeIssuesArray}/>} />
+          <Route path="/account" component={AccountPage} />
+          <Route exact path="/" render={() => <HomePage setVolume={this.getVolumesIssuesArrayfromForm}/>} />
+>>>>>>> 71fa67c0f6835cf1896a98e02dc4bd71e8bc9462
         </div>
       </Router>
     )
