@@ -22,7 +22,8 @@ class Results extends React.Component{
                                 issueName={result.name}
                                 issueNumber={result.issue_number}
                                 issueDescription={result.description}
-                                handleIssueClick={this.props.handleIssueClick} />
+                                handleIssueClick={this.props.handleIssueClick} 
+                                issueClicked={this.props.issueClicked}/>
                         )
                     })}
                 </ul>

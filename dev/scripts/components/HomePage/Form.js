@@ -156,9 +156,6 @@ class Form extends React.Component{
         });
     }
 
-
-
-
     render(){
         return(
             <div>
@@ -173,7 +170,8 @@ class Form extends React.Component{
                 </form>
                 <Results 
                     results={this.state.searchResults}
-                    handleIssueClick={this.handleIssueClick}/>
+                    handleIssueClick={this.handleIssueClick}
+                    issueClicked={this.props.issueClicked}/>
             </div>
         )
     }
