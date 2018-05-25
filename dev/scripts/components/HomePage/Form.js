@@ -2,6 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import Qs from 'qs';
 import Results from './Results';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    NavLink
+} from 'react-router-dom';
 
 //comicVine Api Key
 const apiKey = '9ae979acd25cd191fdc36c5a39ff47c355199161';
@@ -14,7 +20,6 @@ class Form extends React.Component{
             userChoice: '',
             searchInput: '',
             enteredInput: '',
-            userChoice: '',
             searchResults: [],
             volumeIssuesArray: []
         }
@@ -35,7 +40,6 @@ class Form extends React.Component{
 
     submitHandler(e) {
         e.preventDefault();
-
         const inputClone = this.state.searchInput;
         this.setState({
             enteredInput: inputClone,
@@ -43,7 +47,6 @@ class Form extends React.Component{
         }, () => {
             // console.log(this.state.enteredInput);
             this.getApi(this.state.userChoice);
-
         })
     }
 
@@ -90,7 +93,7 @@ class Form extends React.Component{
                 xmlToJSON: false
             }
         }).then((res) => {
-            // console.log(res.data);
+            console.log(res.data);
 
             //results of the data in an array
             const apiArray = res.data.results;
@@ -133,27 +136,27 @@ class Form extends React.Component{
                 xmlToJSON: false
             }
         }).then((vol) => {
+            if(vol.data.error === 'Object Not Found'){
+                console.log("No volume :(");
+                
+            }else{
+                //volume data and all the issues in the volume
+                const volIssues = vol.data.results.issues;
+                //volumeIssuesArray clone
+                const volumeIssuesArrayClone = [...volumeIssuesArrayClone];
+                let reducedArray = [];
+                //only returns 10. over 900 crashes browser
+                for (let i = 0; i < 10; i++) {
+                    volumeIssuesArrayClone.push(volIssues[i]);
+                }
+                //first array is undefined for some reason
+                //filter all arrays if they are undefined
+                reducedArray = volumeIssuesArrayClone.filter(issue => issue !== undefined);
 
-            console.log(vol.data);
-            //volume data and all the issues in the volume
-            const volIssues = vol.data.results.issues;
-            //volumeIssuesArray clone
-            const volumeIssuesArrayClone = [...volumeIssuesArrayClone];
-            let reducedArray = [];
-            //only returns 10. over 900 crashes browser
-            for (let i = 0; i < 10; i++) {
-                volumeIssuesArrayClone.push(volIssues[i]);
+                this.setState({
+                    volumeIssuesArray: reducedArray
+                })
             }
-            //first array is undefined for some reason
-            //filter all arrays if they are undefined
-            reducedArray = volumeIssuesArrayClone.filter(issue => issue !== undefined);
-
-            this.setState({
-                volumeIssuesArray: reducedArray
-            }, () => {
-                console.log(this.state.volumeIssuesArray);
-                this.props.setVolume(this.state.volumeIssuesArray);
-            })
         });
     }
 
@@ -169,10 +172,12 @@ class Form extends React.Component{
                     </select>
                     <button>Search</button>
                 </form>
-                <Results 
+                <Route exact path="/info" render={() => <Results
+                    userChoice={this.state.userChoice}
                     results={this.state.searchResults}
                     handleIssueClick={this.handleIssueClick}
-                    issueClicked={this.props.issueClicked}/>
+                    issueClicked={this.props.issueClicked}
+                    volumesIssueArray={this.state.volumeIssuesArray} />} />
             </div>
         )
     }
