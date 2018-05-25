@@ -1,14 +1,23 @@
 import React from 'React';
-import { NavLink } from 'react-router-dom';
+import { NavLink,
+        Redirect } from 'react-router-dom';
 
-const Issue = (props) => {
-  return(
-      <li onClick={() => props.handleIssueClick(props.issueId)}>
-          <img src={props.issueImg} alt={props.issueName} />
-          <p>{props.issueName}</p>
-          <p>{props.issueNumber}</p>
-      </li>
-  )
+class Issue extends React.Component{
+    render(){
+        if (this.props.issueClicked) {
+            return <Redirect to='/info' />
+        }
+        return(
+            <li onClick={() => this.props.handleIssueClick(this.props.issueId)}>
+                <div>
+                    <img src={this.props.issueImg} alt={this.props.issueName} />
+                    <p>{this.props.issueName}</p>
+                    <p>{this.props.issueNumber}</p>
+                </div>
+            </li>
+        )
+    }
+
 }
 
 export default Issue; 

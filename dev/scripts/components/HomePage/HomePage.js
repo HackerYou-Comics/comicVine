@@ -12,7 +12,8 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <Form setVolume={this.props.setVolume}/>
+        <Form setVolume={this.props.setVolume}
+              issueClicked={this.props.issueClicked}/>
       </div>
     )
   }

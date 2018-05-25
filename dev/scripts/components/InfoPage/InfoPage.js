@@ -13,7 +13,7 @@ class InfoPage extends React.Component{
       volumeIssuesArray: [],
     }
   }
-  componentWillMount(){
+  componentWillReceiveProps(){
     this.setState({
       volumeIssuesArray: this.props.volumeIssuesArray,
     })

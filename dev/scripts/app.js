@@ -4,7 +4,8 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  NavLink
+  NavLink,
+  Redirect
 } from 'react-router-dom';
 // import pages
 import InfoPage from './components/InfoPage/InfoPage';
@@ -17,7 +18,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      volumeIssuesArray: []
+      volumeIssuesArray: [],
+      issueSelected: false,
     }
     this.getVolumesIssuesArrayfromForm = this.getVolumesIssuesArrayfromForm.bind(this);
   }
@@ -25,9 +27,11 @@ class App extends React.Component {
   getVolumesIssuesArrayfromForm(array){
     this.setState({
       volumeIssuesArray: array,
-    }, () => {
-      console.log('Array from form: ', this.state.volumeIssuesArray); 
+      issueSelected: true,
     })
+    
+    // this.props.history.push('/info');
+    // console.log('Array from form: ', this.state.volumeIssuesArray); 
   }
 
   render() {
@@ -40,7 +44,9 @@ class App extends React.Component {
           <NavLink to="/">Home</NavLink>
           <Route path="/info" render={() => <InfoPage volumeIssuesArray={this.state.volumeIssuesArray}/>} />
           <Route path="/account" component={AccountPage} />
-          <Route exact path="/" render={() => <HomePage setVolume={this.getVolumesIssuesArrayfromForm}/>} />
+          <Route exact path="/" render={() => <HomePage 
+            setVolume={this.getVolumesIssuesArrayfromForm}
+            issueClicked={this.state.issueSelected}/>} />
         </div>
       </Router>
     )
