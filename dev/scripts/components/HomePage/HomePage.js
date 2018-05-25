@@ -12,7 +12,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <Form />
+        <Form getResult={this.props.getResult}/>
       </div>
     )
   }

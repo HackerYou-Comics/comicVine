@@ -16,7 +16,9 @@ class Form extends React.Component{
             enteredInput: '',
             userChoice: '',
             searchResults: [],
-            volumeIssuesArray: []
+            volumeIssuesArray: [],
+            selectedIssueId: ''
+
         }
 
         this.inputHandler = this.inputHandler.bind(this);
@@ -48,10 +50,11 @@ class Form extends React.Component{
     }
 
     handleIssueClick(volumeId) {
+        console.log('working?');
         this.setState({
             selectedIssueId: volumeId,
         }, () => {
-            // console.log(this.state.selectedIssueId);
+            console.log(this.state.selectedIssueId);
             this.getVolumes(volumeId);
         })
     }
@@ -105,6 +108,7 @@ class Form extends React.Component{
                 searchResults: searchResultsClone
             }, () => {
                 console.log(this.state.searchResults);
+
             })
 
         });
@@ -112,7 +116,7 @@ class Form extends React.Component{
 
     //makes the API call to get volume data based on inital api call's returned volume id
     getVolumes(volumeId) {
-
+        console.log('getvolume?');
         axios({
             url: "http://proxy.hackeryou.com",
             method: "GET",
@@ -151,6 +155,7 @@ class Form extends React.Component{
                 volumeIssuesArray: reducedArray
             }, () => {
                 console.log(this.state.volumeIssuesArray);
+                this.props.getResult(this.state.volumeIssuesArray);
             })
         });
     }
@@ -172,7 +177,8 @@ class Form extends React.Component{
                 </form>
                 <Results 
                     results={this.state.searchResults}
-                    handleIssueClick={this.handleIssueClick}/>
+                    handleIssueClick={this.handleIssueClick}
+                    />
             </div>
         )
     }

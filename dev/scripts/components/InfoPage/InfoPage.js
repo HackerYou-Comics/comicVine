@@ -10,6 +10,7 @@ class InfoPage extends React.Component{
   render(){
     return(
       <h1>This is the Info page</h1>
+      
     )
   }
 }

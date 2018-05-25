@@ -17,10 +17,17 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-
+      searchResults: []
 
     }
+    this.grabSearchResultsFromForm = this.grabSearchResultsFromForm(this);
+  }
 
+  grabSearchResultsFromForm(resultsFromForm){
+    console.log('grabSearchResult');
+    this.setState({
+      searchResults: resultsFromForm
+    })
   }
 
   render() {
@@ -31,9 +38,9 @@ class App extends React.Component {
           <NavLink to="/info">Info</NavLink>
           <NavLink to="/account">Account</NavLink>
           <NavLink to="/">Home</NavLink>
-          <Route path="/info" component={InfoPage} />
           <Route path="/account" component={AccountPage} />
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" render={() => <HomePage getResult={this.grabSearchResultsFromForm}/>} />
+          <Route path="/info/:result_id" component={InfoPage} />
         </div>
       </Router>
     )
