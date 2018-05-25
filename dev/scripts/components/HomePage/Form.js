@@ -155,11 +155,7 @@ class Form extends React.Component{
                 volumeIssuesArray: reducedArray
             }, () => {
                 console.log(this.state.volumeIssuesArray);
-<<<<<<< HEAD
-                this.props.getResult(this.state.volumeIssuesArray);
-=======
                 this.props.setVolume(this.state.volumeIssuesArray);
->>>>>>> 71fa67c0f6835cf1896a98e02dc4bd71e8bc9462
             })
         });
     }
