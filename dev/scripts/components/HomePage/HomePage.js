@@ -14,7 +14,6 @@ class HomePage extends React.Component {
     return (
       <div>
         <Form />
-        <Route path="/info/:publisherId" component={ InfoPage }/>
       </div>
     )
   }

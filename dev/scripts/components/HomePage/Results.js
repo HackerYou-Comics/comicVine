@@ -10,7 +10,6 @@ class Results extends React.Component{
     }
 
     render(){
-
         if (this.props.results !== []) {
             return (
                 <ul>
