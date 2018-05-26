@@ -14,19 +14,38 @@ class AccountPage extends React.Component {
     super();
 
     this.state = {
-      userKey: ''
+      userKey: '',
+      library: '',
+      libraryKey: ''
     }
   }
+
+
+
   componentDidMount(){
     this.setState({
-      userKey: this.props.userKey
+      userKey: this.props.userKey,
+      libraryKey: this.props.libraryKey
     }, () => {
-      const dbRef = firebase.database().ref(`users/${this.state.userKey}/`)
+      const dbRef = firebase.database().ref(`users/${this.state.userKey}/`);
       dbRef.on('value', (snapshot) => {
         const data = snapshot.val();
-        console.log(data);
+
+        //if library is empty
+        if (data.hasOwnProperty('library')){
+          return(
+              this.setState({
+              library: data.library
+            }, () => {
+              console.log(this.state.library)
+            })
+          )
+        }else{
+          return false;
+        }
       })
   })
+
 
   
     
@@ -35,7 +54,13 @@ class AccountPage extends React.Component {
     return (
       <div>
         <ul>
-          
+          {
+            // console.log(Object.keys(this.state.library))
+          //   this.state.library.map( () => {
+            
+          // })
+        }
+
         </ul>
 
         <ul>

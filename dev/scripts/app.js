@@ -53,6 +53,7 @@ class App extends React.Component {
           </Route>
           <Route path="/account" render={() => <AccountPage 
             userKey={this.state.userId} 
+            libraryId={this.state.libraryKey}
           />} />
         </div>
       </Router>
