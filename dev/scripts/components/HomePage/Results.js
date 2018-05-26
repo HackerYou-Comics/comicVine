@@ -3,51 +3,58 @@ import Issue from '../Issue';
 import { log } from 'util';
 import Publisher from '../Publisher';
 
-class Results extends React.Component{
-    constructor(){
+class Results extends React.Component {
+    constructor() {
         super();
 
     }
 
-    render(){
+    render() {
         if (this.props.results !== []) {
             return (
                 <ul>
-                    {this.props.userChoice === 'issues'? 
+                    {this.props.userChoice === 'issues' ?
                         (
                             this.props.results.map((result, index) => {
                                 {/* console.log(result); */ }
-                                return (
-                                    <Issue
-                                        userKey={this.props.userKey} 
-                                        key={index + result.id}
-                                        infoId={result.id}
-                                        // issueImg={result.image.medium_url}
-                                        issueImg={result.image.icon_url}
-                                        issueName={result.name}
-                                        issueNumber={result.issue_number}
-                                        issueDescription={result.description} 
+                                if(result.image !== null){
+                                    return (
+                                        <Issue
+                                            userKey={this.props.userKey} 
+                                            key={index + result.id}
+                                            infoId={result.id}
+                                            // issueImg={result.image.medium_url}
+                                            issueImg={result.image.icon_url}
+                                            issueName={result.name}
+                                            issueNumber={result.issue_number}
+                                            issueDescription={result.description}
+                                            libraryId={this.props.libraryId}
                                         />
-                                )
+                                    )
+                                }
                             })
-                        ):null
+                        ) : null
                     }
                     {this.props.userChoice === 'publishers' ?
                         (
                             this.props.results.map((result, index) => {
-                                { console.log(result);}
-                                return (
-                                    <Publisher
-                                        key={index + result.id}
-                                        infoId={result.id}
-                                        publisherName={result.name}
-                                        publisherDescription={result.deck}
-                                        publisherImg={result.image.icon_url}/>
-                                )
+                                { console.log(result); }
+                                if(result.image !== null){
+                                    return (
+                                        <Publisher
+                                            key={index + result.id}
+                                            infoId={result.id}
+                                            publisherName={result.name}
+                                            publisherDescription={result.deck}
+                                            publisherImg={result.image.icon_url} 
+                                            publisherUrl={result.site_detail_url}
+                                        />
+                                    )
+                                }
                             })
                         ) : null
                     }
-                    
+
                 </ul>
             )
         }

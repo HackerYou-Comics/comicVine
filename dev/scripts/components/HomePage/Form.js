@@ -15,8 +15,8 @@ import InfoPage from '../InfoPage/InfoPage';
 //comicVine Api Key
 const apiKey = '9ae979acd25cd191fdc36c5a39ff47c355199161';
 
-class Form extends React.Component{
-    constructor(){
+class Form extends React.Component {
+    constructor() {
         super();
 
         this.state = {
@@ -142,10 +142,10 @@ class Form extends React.Component{
                 xmlToJSON: false
             }
         }).then((vol) => {
-            if(vol.data.error === 'Object Not Found'){
+            if (vol.data.error === 'Object Not Found') {
                 console.log("No volume :(");
-                
-            }else{
+
+            } else {
                 //volume data and all the issues in the volume
                 const volIssues = vol.data.results.issues;
                 //volumeIssuesArray clone
@@ -186,14 +186,15 @@ class Form extends React.Component{
                     </form>
                     <Route exact path="/" render={ () =>{
                         return(
-
-                    <Results
-                        userKey={this.props.userKey}    
-                        userChoice={this.state.userChoice}
-                        results={this.state.searchResults}
-                        handleIssueClick={this.handleIssueClick}
-                        issueClicked={this.props.issueClicked}
-                        volumesIssueArray={this.state.volumeIssuesArray}/>
+                            <Results
+                                userKey={this.props.userKey}    
+                                userChoice={this.state.userChoice}
+                                results={this.state.searchResults}
+                                handleIssueClick={this.handleIssueClick}
+                                issueClicked={this.props.issueClicked}
+                                volumesIssueArray={this.state.volumeIssuesArray}
+                                libraryId={this.props.libraryId}
+                            />
                         )}
                     }/>
                     <Route exact path="/:infoId" render={() =>{
@@ -210,4 +211,3 @@ class Form extends React.Component{
 }
 
 export default Form;
-

@@ -23,6 +23,7 @@ class Issue extends React.Component{
 
     handleLibrary(e) {
         console.log(e.currentTarget.value)
+        this.props.libraryId(this.props.issueName + this.props.infoId)
         const dbRef = firebase.database().ref(`users/${this.state.userKey}/library/${this.props.issueName + this.props.infoId}`)
         if(e.currentTarget.value === 'archive') {
             this.setState({
