@@ -6,8 +6,11 @@ import {
     BrowserRouter as Router,
     Route,
     Link,
-    NavLink
+    NavLink,
+    Redirect
 } from 'react-router-dom';
+//created components
+import InfoPage from '../InfoPage/InfoPage';
 
 //comicVine Api Key
 const apiKey = '9ae979acd25cd191fdc36c5a39ff47c355199161';
@@ -21,9 +24,8 @@ class Form extends React.Component{
             searchInput: '',
             enteredInput: '',
             searchResults: [],
-            volumeIssuesArray: []
+            volumeIssuesArray: [],
         }
-
         this.inputHandler = this.inputHandler.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
         this.handleIssueClick = this.handleIssueClick.bind(this);
@@ -43,7 +45,7 @@ class Form extends React.Component{
         const inputClone = this.state.searchInput;
         this.setState({
             enteredInput: inputClone,
-            searchResults: []
+            searchResults: [],
         }, () => {
             // console.log(this.state.enteredInput);
             this.getApi(this.state.userChoice);
@@ -162,23 +164,36 @@ class Form extends React.Component{
 
     render(){
         return(
-            <div>
-                <form action="" onSubmit={this.submitHandler}>
-                    <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
-                    <select onChange={this.changeHandler} name="" id="">Page
-                        <option value="issues">Search by</option>
-                        <option value="issues">Issue</option>
-                        <option value="publishers">Publisher</option>
-                    </select>
-                    <button>Search</button>
-                </form>
-                <Route exact path="/info" render={() => <Results
-                    userChoice={this.state.userChoice}
-                    results={this.state.searchResults}
-                    handleIssueClick={this.handleIssueClick}
-                    issueClicked={this.props.issueClicked}
-                    volumesIssueArray={this.state.volumeIssuesArray} />} />
-            </div>
+            <Router>
+                <div>
+                    <form action="" onSubmit={this.submitHandler}>
+                        <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
+                        <select onChange={this.changeHandler} name="" id="">Page
+                            <option value="issues">Search by</option>
+                            <option value="issues">Issue</option>
+                            <option value="publishers">Publisher</option>
+                        </select>
+                        <button>Search</button>
+                    </form>
+                    <Route  exact path="/" render={ () =>{
+                        return(
+
+                    <Results
+                        userChoice={this.state.userChoice}
+                        results={this.state.searchResults}
+                        handleIssueClick={this.handleIssueClick}
+                        issueClicked={this.props.issueClicked}
+                        volumesIssueArray={this.state.volumeIssuesArray}/>
+                        )}
+                    }/>
+                    <Route path="info/:publisherId" render={() =>{
+                        return (
+                            <InfoPage/>
+                        )
+                    }} />
+
+                </div>
+            </Router>
         )
     }
 }

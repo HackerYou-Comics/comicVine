@@ -1,5 +1,5 @@
 import React from 'React';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Issue extends React.Component{
     render(){

@@ -1,12 +1,3 @@
-// key = { index + result.id }
-// publisherId = { result.id }
-// publisherName = { result.name }
-// publisherDescription = { result.deck }
-// publisherImg = { result.image.small_url }
-// locationAddress = { result.location_address }
-// locationCity = { result.location_city }
-// locationState = { result.location_state }
-
 
 import React from 'react';
 import { Link } from 'react-router-dom';
