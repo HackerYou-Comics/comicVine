@@ -13,7 +13,8 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <Form />
+        <Form 
+        userKey = {this.props.userKey}/>
       </div>
     )
   }
