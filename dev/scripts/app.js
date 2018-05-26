@@ -20,12 +20,21 @@ class App extends React.Component {
     this.state = {
       userId: '',
     }
+    this.getLibraryKeyFromIssue = this.getLibraryKeyFromIssue.bind(this);
     this.getUserIdFromAuth = this.getUserIdFromAuth.bind(this);
   }
 
   getUserIdFromAuth(userKey){
     this.setState({
       userId: userKey,
+    })
+  }
+
+  getLibraryKeyFromIssue(libraryId){
+    this.setState({
+      libraryKey: libraryId
+    }, () => {
+      console.log(this.state.libraryKey)
     })
   }
 
@@ -39,9 +48,12 @@ class App extends React.Component {
           <Route exact path="/" render={() => <HomePage
             userKey = {this.state.userId} 
             setVolume={this.getVolumesIssuesArrayfromForm}
-            issueClicked={this.state.issueSelected}/>}>
+            issueClicked={this.state.issueSelected}
+            libraryId={this.getLibraryKeyFromIssue}/>}>
           </Route>
-          <Route path="/account" component={AccountPage} />
+          <Route path="/account" render={() => <AccountPage 
+            userKey={this.state.userId} 
+          />} />
         </div>
       </Router>
     )

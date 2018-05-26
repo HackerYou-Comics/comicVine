@@ -186,20 +186,21 @@ class Form extends React.Component {
                     </form>
                     <Route exact path="/" render={ () =>{
                         return(
-
-                    <Results
-                        userKey={this.props.userKey}    
-                        userChoice={this.state.userChoice}
-                        results={this.state.searchResults}
-                        handleIssueClick={this.handleIssueClick}
-                        issueClicked={this.props.issueClicked}
-                        volumesIssueArray={this.state.volumeIssuesArray}/>
+                            <Results
+                                userKey={this.props.userKey}    
+                                userChoice={this.state.userChoice}
+                                results={this.state.searchResults}
+                                handleIssueClick={this.handleIssueClick}
+                                issueClicked={this.props.issueClicked}
+                                volumesIssueArray={this.state.volumeIssuesArray}
+                                libraryId={this.props.libraryId}
+                            />
                         )}
                     }/>
                     <Route exact path="/:infoId" render={() =>{
                         return (
                             <InfoPage
-                                volumeIssuesArray={this.state.volumeIssuesArray} />
+                                volumeIssuesArray={this.state.volumeIssuesArray}/>
                         )
                     }} />
 

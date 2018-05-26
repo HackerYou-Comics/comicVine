@@ -21,8 +21,8 @@ class Auth extends React.Component{
     componentWillMount(){
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log('user logged in');
-                console.log(user);
+                // console.log('user logged in');
+                // console.log(user);
                 this.setState({
                     loggedIn: true,
                     userName: user.displayName,
@@ -45,7 +45,7 @@ class Auth extends React.Component{
         firebase.auth().onAuthStateChanged((user) => {
             if (user !== null) {
                 this.dbRef.on('value', (snapshot) => {
-                    console.log(snapshot.val());
+                    // console.log(snapshot.val());
                 })
                 this.setState({
                     loggedIn: true
