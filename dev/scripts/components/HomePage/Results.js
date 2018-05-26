@@ -10,7 +10,6 @@ class Results extends React.Component{
     }
 
     render(){
-
         if (this.props.results !== []) {
             return (
                 <ul>
@@ -21,7 +20,7 @@ class Results extends React.Component{
                                 return (
                                     <Issue
                                         key={index + result.id}
-                                        issueId={result.id}
+                                        infoId={result.id}
                                         // issueImg={result.image.medium_url}
                                         issueImg={result.image.icon_url}
                                         issueName={result.name}
@@ -39,7 +38,7 @@ class Results extends React.Component{
                                 return (
                                     <Publisher
                                         key={index + result.id}
-                                        publisherId={result.id}
+                                        infoId={result.id}
                                         publisherName={result.name}
                                         publisherDescription={result.deck}
                                         publisherImg={result.image.icon_url}/>
