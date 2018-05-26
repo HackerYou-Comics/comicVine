@@ -20,7 +20,7 @@ class Form extends React.Component {
         super();
 
         this.state = {
-            userChoice: '',
+            userChoice: 'issues',
             searchInput: '',
             enteredInput: '',
             searchResults: [],
@@ -178,7 +178,6 @@ class Form extends React.Component {
                     <form action="" onSubmit={this.submitHandler}>
                         <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
                         <select onChange={this.changeHandler} name="" id="">Page
-                            <option value="issues">Search by</option>
                             <option value="issues">Issue</option>
                             <option value="publishers">Publisher</option>
                         </select>
