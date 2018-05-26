@@ -22,7 +22,7 @@ class InfoPage extends React.Component{
     return(
       <div>
         <h1>This is the Info page</h1>
-        {console.log(('from info page: ',this.props.volumeIssuesArray))}
+        {/* {console.log(('from info page: ',this.props.volumeIssuesArray))} */}
       </div>
     )
   }

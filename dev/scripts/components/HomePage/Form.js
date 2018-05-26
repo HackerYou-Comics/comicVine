@@ -25,6 +25,7 @@ class Form extends React.Component {
             enteredInput: '',
             searchResults: [],
             volumeIssuesArray: [],
+            submitted: false,
         }
         this.inputHandler = this.inputHandler.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
@@ -46,8 +47,11 @@ class Form extends React.Component {
         this.setState({
             enteredInput: inputClone,
             searchResults: [],
+            submitted: true,
         }, () => {
             // console.log(this.state.enteredInput);
+            // console.log(this.state.submitted);
+            
             this.getApi(this.state.userChoice);
         })
     }
@@ -162,8 +166,13 @@ class Form extends React.Component {
         });
     }
 
-    render() {
-        return (
+    render(){
+        //redirect for future references
+        // console.log(this.state.submitted);
+        // if (this.state.submitted) {
+        //     return <Redirect to='/' />
+        // }
+        return(
             <Router>
                 <div>
                     <form action="" onSubmit={this.submitHandler}>
@@ -175,19 +184,19 @@ class Form extends React.Component {
                         </select>
                         <button>Search</button>
                     </form>
-                    <Route exact path="/" render={() => {
-                        return (
+                    <Route exact path="/" render={ () =>{
+                        return(
 
-                            <Results
-                                userChoice={this.state.userChoice}
-                                results={this.state.searchResults}
-                                handleIssueClick={this.handleIssueClick}
-                                issueClicked={this.props.issueClicked}
-                                volumesIssueArray={this.state.volumeIssuesArray} />
-                        )
-                    }
-                    } />
-                    <Route exact path="/:infoId" render={() => {
+                    <Results
+                        userKey={this.props.userKey}    
+                        userChoice={this.state.userChoice}
+                        results={this.state.searchResults}
+                        handleIssueClick={this.handleIssueClick}
+                        issueClicked={this.props.issueClicked}
+                        volumesIssueArray={this.state.volumeIssuesArray}/>
+                        )}
+                    }/>
+                    <Route exact path="/:infoId" render={() =>{
                         return (
                             <InfoPage
                                 volumeIssuesArray={this.state.volumeIssuesArray} />
