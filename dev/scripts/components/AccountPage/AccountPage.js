@@ -74,19 +74,54 @@ class AccountPage extends React.Component {
   render() {
     return (
       <div>
+<<<<<<< HEAD
         <h1>Account page</h1>
+=======
+        <h3>Wish List</h3>
+>>>>>>> a4d8086c1ebf6dc486da92cf922ca2585ce0a52e
         <ul>
-          {
-            // console.log(Object.keys(this.state.library))
-          //   this.state.library.map( () => {
-            
-          // })
-        }
+          {Object.keys(this.state.library)
+            .filter((key) => {
+              return this.state.library[key].completed === false
+            })
+            .map((key) => {
+              console.log(key)
+              return (
 
+                <li key={key}>
+
+                  {this.state.library[key].name}
+
+                  {/*<div className="buttonDiv">
+                    <button className="completeButton" onClick={() => props.completeChore(props.userKey, key, props.chore[key].completed)}><i className="fas fa-check"></i></button>
+
+                    <button className="deleteButton" onClick={() => props.removeChore(props.userKey, key, props.chore[key].completed)}><i className="far fa-trash-alt"></i></button>
+                   </div>*/}
+                </li>)
+            })}
         </ul>
-
+        
+        <h3>Have Read</h3>
         <ul>
+          {Object.keys(this.state.library)
+            .filter((key) => {
+              return this.state.library[key].completed === true
+            })
+            .map((key) => {
+              console.log(key)
+              return (
 
+                <li key={key}>
+
+                  {this.state.library[key].name}
+
+                  {/*<div className="buttonDiv">
+                    <button className="completeButton" onClick={() => props.completeChore(props.userKey, key, props.chore[key].completed)}><i className="fas fa-check"></i></button>
+
+                    <button className="deleteButton" onClick={() => props.removeChore(props.userKey, key, props.chore[key].completed)}><i className="far fa-trash-alt"></i></button>
+              </div>*/}
+                </li>)
+            })}
         </ul>
       </div>
       
