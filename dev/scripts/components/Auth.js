@@ -29,6 +29,7 @@ class Auth extends React.Component{
                     userImg: user.photoURL,
                     userId: user.uid,
                 });
+                this.props.getUserId(this.state.userId);
             } else {
                 console.log('no users logged in');
             }

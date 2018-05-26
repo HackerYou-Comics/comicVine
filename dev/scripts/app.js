@@ -5,8 +5,6 @@ import {
   Route,
   Link,
   NavLink,
-  Redirect,
-  Switch,
   browserHistory,
 } from 'react-router-dom';
 // import pages
@@ -20,18 +18,26 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-    
+      userId: '',
     }
+    this.getUserIdFromAuth = this.getUserIdFromAuth.bind(this);
+  }
+
+  getUserIdFromAuth(userKey){
+    this.setState({
+      userId: userKey,
+    })
   }
 
   render() {
     return (
       <Router history={browserHistory}>
         <div>
-          <Auth />
+          <Auth getUserId={this.getUserIdFromAuth}/>
           <NavLink to="/account">Account</NavLink>
           <NavLink to="/">Home</NavLink>
-          <Route exact path="/" render={() => <HomePage 
+          <Route exact path="/" render={() => <HomePage
+            userKey = {this.state.userId} 
             setVolume={this.getVolumesIssuesArrayfromForm}
             issueClicked={this.state.issueSelected}/>}>
           </Route>
