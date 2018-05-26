@@ -5,7 +5,9 @@ import {
   Route,
   Link,
   NavLink,
-  Redirect
+  Redirect,
+  Switch,
+  browserHistory,
 } from 'react-router-dom';
 // import pages
 import InfoPage from './components/InfoPage/InfoPage';
@@ -24,15 +26,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
+      <Router history={browserHistory}>
         <div>
           <Auth />
           <NavLink to="/account">Account</NavLink>
           <NavLink to="/">Home</NavLink>
-          <Route path="/account" component={AccountPage} />
-          <Route path="/" render={() => <HomePage 
+          <Route exact path="/" render={() => <HomePage 
             setVolume={this.getVolumesIssuesArrayfromForm}
-            issueClicked={this.state.issueSelected}/>} />
+            issueClicked={this.state.issueSelected}/>}>
+          </Route>
+          <Route path="/account" component={AccountPage} />
         </div>
       </Router>
     )
