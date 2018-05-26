@@ -20,7 +20,7 @@ class Form extends React.Component {
         super();
 
         this.state = {
-            userChoice: '',
+            userChoice: 'issues',
             searchInput: '',
             enteredInput: '',
             searchResults: [],
@@ -51,7 +51,7 @@ class Form extends React.Component {
         }, () => {
             // console.log(this.state.enteredInput);
             // console.log(this.state.submitted);
-            
+
             this.getApi(this.state.userChoice);
         })
     }
@@ -76,7 +76,7 @@ class Form extends React.Component {
     //-----------
     // Api Calls
     //-----------
-    getApi(searchChoice = 'issues') {
+    getApi(searchChoice) {
         //API call
         // console.log(this.state.enteredInput);
         axios({
@@ -166,28 +166,27 @@ class Form extends React.Component {
         });
     }
 
-    render(){
+    render() {
         //redirect for future references
         // console.log(this.state.submitted);
         // if (this.state.submitted) {
         //     return <Redirect to='/' />
         // }
-        return(
+        return (
             <Router>
                 <div>
                     <form action="" onSubmit={this.submitHandler}>
                         <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
                         <select onChange={this.changeHandler} name="" id="">Page
-                            <option value="issues">Search by</option>
                             <option value="issues">Issue</option>
                             <option value="publishers">Publisher</option>
                         </select>
                         <button>Search</button>
                     </form>
-                    <Route exact path="/" render={ () =>{
-                        return(
+                    <Route exact path="/" render={() => {
+                        return (
                             <Results
-                                userKey={this.props.userKey}    
+                                userKey={this.props.userKey}
                                 userChoice={this.state.userChoice}
                                 results={this.state.searchResults}
                                 handleIssueClick={this.handleIssueClick}
@@ -195,12 +194,13 @@ class Form extends React.Component {
                                 volumesIssueArray={this.state.volumeIssuesArray}
                                 libraryId={this.props.libraryId}
                             />
-                        )}
-                    }/>
-                    <Route exact path="/:infoId" render={() =>{
+                        )
+                    }
+                    } />
+                    <Route exact path="/:infoId" render={() => {
                         return (
                             <InfoPage
-                                volumeIssuesArray={this.state.volumeIssuesArray}/>
+                                volumeIssuesArray={this.state.volumeIssuesArray} />
                         )
                     }} />
 
