@@ -74,11 +74,7 @@ class AccountPage extends React.Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
-        <h1>Account page</h1>
-=======
         <h3>Wish List</h3>
->>>>>>> a4d8086c1ebf6dc486da92cf922ca2585ce0a52e
         <ul>
           {Object.keys(this.state.library)
             .filter((key) => {
