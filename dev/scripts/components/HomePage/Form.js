@@ -186,9 +186,10 @@ class Form extends React.Component{
                         volumesIssueArray={this.state.volumeIssuesArray}/>
                         )}
                     }/>
-                    <Route path="info/:publisherId" render={() =>{
+                    <Route exact path="/:infoId" render={() =>{
                         return (
-                            <InfoPage/>
+                            <InfoPage
+                                volumeIssuesArray={this.state.volumeIssuesArray}/>
                         )
                     }} />
 

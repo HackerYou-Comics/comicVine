@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Issue extends React.Component{
     render(){
         return(
-            <Link to={`/info/${this.props.issueId}`}>
+            <Link to={`/${this.props.infoId}`}>
                 <li>
                     <div>
                         <img src={this.props.issueImg} alt={this.props.issueName} />
