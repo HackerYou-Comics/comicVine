@@ -25,6 +25,8 @@ class Form extends React.Component{
             enteredInput: '',
             searchResults: [],
             volumeIssuesArray: [],
+            selectedIssueId: ''
+
         }
         this.inputHandler = this.inputHandler.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
@@ -53,10 +55,11 @@ class Form extends React.Component{
     }
 
     handleIssueClick(volumeId) {
+        console.log('working?');
         this.setState({
             selectedIssueId: volumeId,
         }, () => {
-            // console.log(this.state.selectedIssueId);
+            console.log(this.state.selectedIssueId);
             this.getVolumes(volumeId);
         })
     }
@@ -110,6 +113,7 @@ class Form extends React.Component{
                 searchResults: searchResultsClone
             }, () => {
                 console.log(this.state.searchResults);
+
             })
 
         });
@@ -117,7 +121,7 @@ class Form extends React.Component{
 
     //makes the API call to get volume data based on inital api call's returned volume id
     getVolumes(volumeId) {
-
+        console.log('getvolume?');
         axios({
             url: "http://proxy.hackeryou.com",
             method: "GET",
@@ -164,37 +168,21 @@ class Form extends React.Component{
 
     render(){
         return(
-            <Router>
-                <div>
-                    <form action="" onSubmit={this.submitHandler}>
-                        <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
-                        <select onChange={this.changeHandler} name="" id="">Page
-                            <option value="issues">Search by</option>
-                            <option value="issues">Issue</option>
-                            <option value="publishers">Publisher</option>
-                        </select>
-                        <button>Search</button>
-                    </form>
-                    <Route  exact path="/" render={ () =>{
-                        return(
-
-                    <Results
-                        userChoice={this.state.userChoice}
-                        results={this.state.searchResults}
-                        handleIssueClick={this.handleIssueClick}
-                        issueClicked={this.props.issueClicked}
-                        volumesIssueArray={this.state.volumeIssuesArray}/>
-                        )}
-                    }/>
-                    <Route exact path="/:infoId" render={() =>{
-                        return (
-                            <InfoPage
-                                volumeIssuesArray={this.state.volumeIssuesArray}/>
-                        )
-                    }} />
-
-                </div>
-            </Router>
+            <div>
+                <form action="" onSubmit={this.submitHandler}>
+                    <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
+                    <select onChange={this.changeHandler} name="" id="">Page
+                        <option value="issues">Search by</option>
+                        <option value="issues">Issue</option>
+                        <option value="publishers">Publisher</option>
+                    </select>
+                    <button>Search</button>
+                </form>
+                <Results 
+                    results={this.state.searchResults}
+                    handleIssueClick={this.handleIssueClick}
+                    />
+            </div>
         )
     }
 }

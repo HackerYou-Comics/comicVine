@@ -1,7 +1,11 @@
 import React from 'react';
 import Issue from '../Issue';
-import { log } from 'util';
-import Publisher from '../Publisher';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    NavLink
+} from 'react-router-dom';
 
 class Results extends React.Component{
     constructor(){
@@ -13,40 +17,21 @@ class Results extends React.Component{
         if (this.props.results !== []) {
             return (
                 <ul>
-                    {this.props.userChoice === 'issues'? 
-                        (
-                            this.props.results.map((result, index) => {
-                                {/* console.log(result); */ }
-                                return (
-                                    <Issue
-                                        key={index + result.id}
-                                        infoId={result.id}
-                                        // issueImg={result.image.medium_url}
-                                        issueImg={result.image.icon_url}
-                                        issueName={result.name}
-                                        issueNumber={result.issue_number}
-                                        issueDescription={result.description} 
-                                        />
-                                )
-                            })
-                        ):null
-                    }
-                    {this.props.userChoice === 'publishers' ?
-                        (
-                            this.props.results.map((result, index) => {
-                                { console.log(result);}
-                                return (
-                                    <Publisher
-                                        key={index + result.id}
-                                        infoId={result.id}
-                                        publisherName={result.name}
-                                        publisherDescription={result.deck}
-                                        publisherImg={result.image.icon_url}/>
-                                )
-                            })
-                        ) : null
-                    }
-                    
+                    {this.props.results.map((result, index) => {
+                        return (
+                            <Link key={result.id} to={`info/${result.id}`}>
+                                <Issue
+                                    issueId={result.id}
+                                    // issueImg={result.image.medium_url}
+                                    issueImg={result.image.icon_url}
+                                    issueName={result.name}
+                                    issueNumber={result.issue_number}
+                                    issueDescription={result.description}
+                                    handleIssueClick={this.props.handleIssueClick} />
+                            </Link>
+
+                        )
+                    })}
                 </ul>
             )
         }
