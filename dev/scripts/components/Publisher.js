@@ -3,6 +3,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class Publisher extends React.Component {
+  constructor(){
+    super();
+
+    this.singleHandler = this.singleHandler.bind(this);
+  }
+  singleHandler(e) {
+    this.props.grabId(e.currentTarget.firstChild.id);
+    console.log(e.currentTarget)
+  }
+
   render() {
     let pubImg;
     let pubName;
@@ -20,10 +30,10 @@ class Publisher extends React.Component {
     if (this.props.publisherUrl !== null){
       pubUrl = <a href={this.props.publisherUrl}>For more information on this Publisher</a>
     }
-    console.log(this.props.publisherUrl);
+    // console.log(this.props.publisherUrl);
     return (
-      <Link to={`/${this.props.infoId}`}>
-        <li key={this.props.publisherId}>
+      <Link to={`/${this.props.infoId}`} onClick={this.singleHandler}>
+        <li id={this.props.id}>
           {pubName}
           {pubImg}
 

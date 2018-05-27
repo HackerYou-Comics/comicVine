@@ -23,11 +23,6 @@ class Issue extends React.Component{
     }
 
     singleHandler(e){
-        // this.setState({
-        //     individualId: e.currentTarget.firstChild.id
-        // }, () => {
-        //     console.log(this.state.individualId)
-        // })
         this.props.grabId(e.currentTarget.firstChild.id)
     }
 

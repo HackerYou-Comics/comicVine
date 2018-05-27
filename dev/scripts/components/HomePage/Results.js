@@ -44,12 +44,15 @@ class Results extends React.Component {
                                 if(result.image !== null){
                                     return (
                                         <Publisher
+											id={index}
                                             key={index + result.id}
                                             infoId={result.id}
                                             publisherName={result.name}
                                             publisherDescription={result.deck}
                                             publisherImg={result.image.icon_url} 
-                                            publisherUrl={result.site_detail_url}
+											publisherUrl={result.site_detail_url}
+											libraryId={this.props.libraryId}
+											grabId={this.props.grabId}
                                         />
                                     )
                                 }

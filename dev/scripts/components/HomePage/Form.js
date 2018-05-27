@@ -184,7 +184,6 @@ class Form extends React.Component {
         return (
             <Router>
                 <div>
-                    {console.log(this.state.individualId)}
                     <form action="" onSubmit={this.submitHandler}>
                         <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
                         <select onChange={this.changeHandler} name="" id="">Page
@@ -213,6 +212,9 @@ class Form extends React.Component {
                         return (
                             <InfoPage
                                 individualId={this.state.individualId} 
+                                allSearches={this.state.searchResults}
+                                // libraryId={this.props.libraryId}
+                                // grabId={this.grabIndividualIdFromIssue}
                             />
                         )
                     }} />
