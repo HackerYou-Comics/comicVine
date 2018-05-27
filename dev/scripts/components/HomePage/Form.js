@@ -26,11 +26,13 @@ class Form extends React.Component {
             searchResults: [],
             volumeIssuesArray: [],
             submitted: false,
+            individualId: ''
         }
         this.inputHandler = this.inputHandler.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
         this.handleIssueClick = this.handleIssueClick.bind(this);
         this.changeHandler = this.changeHandler.bind(this);
+        this.grabIndividualIdFromIssue = this.grabIndividualIdFromIssue.bind(this);
     }
     //----------------
     // Event handler
@@ -70,6 +72,14 @@ class Form extends React.Component {
             userChoice: e.target.value
         }, () => {
             console.log(this.state.userChoice);
+        })
+    }
+
+    grabIndividualIdFromIssue(id){
+        this.setState({
+            individualId: id
+        }, () => {
+            console.log(this.state.individualId)
         })
     }
 
@@ -175,6 +185,7 @@ class Form extends React.Component {
         return (
             <Router>
                 <div>
+                    {console.log(this.state.individualId)}
                     <form action="" onSubmit={this.submitHandler}>
                         <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
                         <select onChange={this.changeHandler} name="" id="">Page
@@ -193,14 +204,17 @@ class Form extends React.Component {
                                 issueClicked={this.props.issueClicked}
                                 volumesIssueArray={this.state.volumeIssuesArray}
                                 libraryId={this.props.libraryId}
+                                grabId={this.grabIndividualIdFromIssue}
                             />
                         )
                     }
                     } />
+                    {/* <Route exact path={`/${this.props.infoId}`} Component={InfoPage} /> */}
                     <Route exact path="/:infoId" render={() => {
                         return (
                             <InfoPage
-                                volumeIssuesArray={this.state.volumeIssuesArray} />
+                                volumeIssuesArray={this.state.individualId} 
+                            />
                         )
                     }} />
 

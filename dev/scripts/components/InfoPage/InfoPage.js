@@ -11,20 +11,21 @@ class InfoPage extends React.Component{
   constructor(){
     super();
     this.state = {
-      volumeIssuesArray: [],
+      // volumeIssuesArray: '',
     }
   }
-  componentWillReceiveProps(){
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps.volumeIssuesArray);
     this.setState({
-      volumeIssuesArray: this.props.volumeIssuesArray,
+      volumeIssuesArray: nextProps.volumeIssuesArray,
     })
   }
   render(){
     return(
       <div>
         <h1>This is the Info page</h1>
-        <Publisher />
-        {/* {console.log(('from info page: ',this.props.volumeIssuesArray))} */}
+        {/* <Publisher /> */}
+        {console.log(('from info page: ',this.props.volumeIssuesArray))}
       </div>
     )
   }

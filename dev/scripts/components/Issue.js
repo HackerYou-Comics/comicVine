@@ -11,13 +11,24 @@ class Issue extends React.Component{
         super();
         this.state = {
             userKey: '',
-            libraryInfo: {}
+            libraryInfo: {},
+            individualId: ''
         }
         this.handleLibrary = this.handleLibrary.bind(this);
+        this.singleHandler = this.singleHandler.bind(this);
     }
     componentDidMount(){
         this.setState({
             userKey: this.props.userKey,
+        })
+    }
+
+    singleHandler(e){
+        console.log(e.currentTarget.firstChild.id)
+        this.setState({
+            individualId: e.currentTarget.firstChild.id
+        }, () => {
+            this.props.grabId(this.state.individualId)
         })
     }
 
@@ -54,8 +65,8 @@ class Issue extends React.Component{
     render(){
         return(
             <div>
-                <Link to={`/${this.props.infoId}`}>
-                    <li>
+                <Link to={`/${this.props.infoId}`} onClick={this.singleHandler}>
+                    <li id={this.props.id}>
                         <div>
                             <img src={this.props.issueImg} alt={this.props.issueName} />
                             <p>{this.props.issueName}</p>

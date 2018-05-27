@@ -20,6 +20,7 @@ class Results extends React.Component {
                                 if(result.image !== null){
                                     return (
                                         <Issue
+											id={index}
                                             userKey={this.props.userKey} 
                                             key={index + result.id}
                                             infoId={result.id}
@@ -28,7 +29,8 @@ class Results extends React.Component {
                                             issueName={result.name}
                                             issueNumber={result.issue_number}
                                             issueDescription={result.description}
-                                            libraryId={this.props.libraryId}
+											libraryId={this.props.libraryId}
+											grabId={this.props.grabId}
                                         />
                                     )
                                 }
