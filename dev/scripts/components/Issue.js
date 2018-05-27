@@ -22,6 +22,7 @@ class Issue extends React.Component{
         })
     }
 
+    //grabs the firstChild's "id" of the <Link> tag. this case is the <li>
     singleHandler(e){
         this.props.grabId(e.currentTarget.firstChild.id)
     }
@@ -60,6 +61,7 @@ class Issue extends React.Component{
         return(
             <div>
                 <Link to={`/${this.props.infoId}`} onClick={this.singleHandler}>
+                    {/* adding unique id to each li */}
                     <li id={this.props.id}>
                         <div>
                             <img src={this.props.issueImg} alt={this.props.issueName} />

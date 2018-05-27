@@ -75,6 +75,7 @@ class Form extends React.Component {
         })
     }
 
+    //goes and grabs the "id" from the li element of whatever that is clicked from issue/publisher
     grabIndividualIdFromIssue(id){
         console.log(id);
         this.setState({
@@ -202,6 +203,8 @@ class Form extends React.Component {
                                 issueClicked={this.props.issueClicked}
                                 volumesIssueArray={this.state.volumeIssuesArray}
                                 libraryId={this.props.libraryId}
+
+                                //pass callback function to issue to grab the data of the individual "id" of what is clicked
                                 grabId={this.grabIndividualIdFromIssue}
                             />
                         )
@@ -213,8 +216,6 @@ class Form extends React.Component {
                             <InfoPage
                                 individualId={this.state.individualId} 
                                 allSearches={this.state.searchResults}
-                                // libraryId={this.props.libraryId}
-                                // grabId={this.grabIndividualIdFromIssue}
                             />
                         )
                     }} />

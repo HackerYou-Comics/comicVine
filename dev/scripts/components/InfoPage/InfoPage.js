@@ -16,16 +16,23 @@ class InfoPage extends React.Component{
   }
 
   render(){
+
+    //object of data for the selected issue/publisher
+    const singleSelection = this.props.allSearches[this.props.individualId];
+
+    //
+
+    
     return(
       <div>
         <h1>This is the Info page</h1>
         {/* <Publisher /> */}
         {console.log(('from info page: ', this.props.individualId))}
-        {console.log(('from info page: ', this.props.allSearches[this.props.individualId]))}
+        {console.log(('from info page: ', singleSelection))}
         <ul>
-          <li>{this.props.allSearches[this.props.individualId].name}</li>
-          <li>{this.props.allSearches[this.props.individualId].description}</li>
-
+          <li>{singleSelection.name}</li>
+          <li>{singleSelection.description}</li>
+          <img src={singleSelection.image.screen_large_url} alt={singleSelection.name}/>
         </ul>
         
       </div>

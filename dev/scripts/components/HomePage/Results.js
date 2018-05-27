@@ -20,17 +20,20 @@ class Results extends React.Component {
                                 if(result.image !== null){
                                     return (
                                         <Issue
-											id={index}
-                                            userKey={this.props.userKey} 
-                                            key={index + result.id}
-                                            infoId={result.id}
-                                            // issueImg={result.image.medium_url}
-                                            issueImg={result.image.icon_url}
-                                            issueName={result.name}
-                                            issueNumber={result.issue_number}
-                                            issueDescription={result.description}
+											userKey={this.props.userKey} 
+											key={index + result.id}
+											infoId={result.id}
+											// issueImg={result.image.medium_url}
+											issueImg={result.image.icon_url}
+											issueName={result.name}
+											issueNumber={result.issue_number}
+											issueDescription={result.description}
 											libraryId={this.props.libraryId}
+											
+											//grab id callback from form.js
 											grabId={this.props.grabId}
+											//sends the index as "id" to issue to be used on its li elements
+											id={index}
                                         />
                                     )
                                 }
@@ -44,15 +47,18 @@ class Results extends React.Component {
                                 if(result.image !== null){
                                     return (
                                         <Publisher
-											id={index}
-                                            key={index + result.id}
-                                            infoId={result.id}
-                                            publisherName={result.name}
-                                            publisherDescription={result.deck}
-                                            publisherImg={result.image.icon_url} 
+											key={index + result.id}
+											infoId={result.id}
+											publisherName={result.name}
+											publisherDescription={result.deck}
+											publisherImg={result.image.icon_url} 
 											publisherUrl={result.site_detail_url}
 											libraryId={this.props.libraryId}
+
+											//grab id callback from form.js
 											grabId={this.props.grabId}
+											//sends the index as "id" to issue to be used on its li elements
+											id={index}
                                         />
                                     )
                                 }
