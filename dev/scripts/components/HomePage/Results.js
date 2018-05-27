@@ -6,7 +6,6 @@ import Publisher from '../Publisher';
 class Results extends React.Component {
     constructor() {
         super();
-
     }
 
     render() {

@@ -18,28 +18,7 @@ class Auth extends React.Component{
         this.logout = this.logout.bind(this); 
     }
 
-    componentWillMount(){
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                // console.log('user logged in');
-                // console.log(user);
-                this.setState({
-                    loggedIn: true,
-                    userName: user.displayName,
-                    userImg: user.photoURL,
-                    userId: user.uid,
-                });
-                this.props.getUserId(this.state.userId);
-            } else {
-                console.log('no users logged in');
-            }
-        });
-    }
-
     componentDidMount() {
-        //----------------
-        // Authentication
-        //----------------
         this.dbRef = firebase.database().ref('users/');
 
         firebase.auth().onAuthStateChanged((user) => {
@@ -48,7 +27,10 @@ class Auth extends React.Component{
                     // console.log(snapshot.val());
                 })
                 this.setState({
-                    loggedIn: true
+                    loggedIn: true,
+                    userName: user.displayName,
+                    userImg: user.photoURL,
+                    userId: user.uid,
                 })
             } else {
                 this.setState({
@@ -77,7 +59,7 @@ class Auth extends React.Component{
                         userName: this.state.userName,
                         userImg: this.state.userImg,
                     }
-                    firebase.database().ref('users/' + this.state.userId).set(userInfo);
+                    firebase.database().ref(`users/${this.state.userId}`).set(userInfo);
                 })
             })
             .catch((err) => {
