@@ -76,10 +76,9 @@ class Form extends React.Component {
     }
 
     grabIndividualIdFromIssue(id){
+        console.log(id);
         this.setState({
             individualId: id
-        }, () => {
-            console.log(this.state.individualId)
         })
     }
 
@@ -213,7 +212,7 @@ class Form extends React.Component {
                     <Route exact path="/:infoId" render={() => {
                         return (
                             <InfoPage
-                                volumeIssuesArray={this.state.individualId} 
+                                individualId={this.state.individualId} 
                             />
                         )
                     }} />

@@ -12,7 +12,6 @@ class Issue extends React.Component{
         this.state = {
             userKey: '',
             libraryInfo: {},
-            individualId: ''
         }
         this.handleLibrary = this.handleLibrary.bind(this);
         this.singleHandler = this.singleHandler.bind(this);
@@ -24,12 +23,12 @@ class Issue extends React.Component{
     }
 
     singleHandler(e){
-        console.log(e.currentTarget.firstChild.id)
-        this.setState({
-            individualId: e.currentTarget.firstChild.id
-        }, () => {
-            this.props.grabId(this.state.individualId)
-        })
+        // this.setState({
+        //     individualId: e.currentTarget.firstChild.id
+        // }, () => {
+        //     console.log(this.state.individualId)
+        // })
+        this.props.grabId(e.currentTarget.firstChild.id)
     }
 
     handleLibrary(e) {
