@@ -15,19 +15,19 @@ class AccountPage extends React.Component {
 
     this.state = {
       userKey: null,
-      library: '',
-      libraryKey: '',
       issueListArchive: [],
       issueListWishList: [],
     }
+    this.deleteIssue = this.deleteIssue.bind(this);
+    this.toggleOwnage = this.toggleOwnage.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const userId = this.props.userKey;
     this.setState({
       userKey: this.props.userKey,
-      libraryKey: this.props.libraryKey
     }, () => {
+      
       const dbRef = firebase.database().ref(`users/library/${this.state.userKey}/`);
       dbRef.on('value', (snapshot) => {
         const issueList = snapshot.val();
@@ -52,6 +52,15 @@ class AccountPage extends React.Component {
     })
   }
 
+  deleteIssue(issueId){
+    firebase.database().ref(`users/library/${this.props.userKey}/${issueId}`).remove();
+  }
+
+  toggleOwnage(issueId){
+    console.log(issueId);
+  }
+
+
   render() {
     return (
       <section>
@@ -62,17 +71,20 @@ class AccountPage extends React.Component {
               <li key={issue.name + issue.key}>
               <img src={issue.image} alt={issue.name}/>
               <p>{issue.name}</p>
+              <button onClick={() => this.deleteIssue(issue.name + issue.key)}>❌</button>
+              <button onClick={() => this.toggleOwnage(issue.name + issue.key)}>💛</button>
             </li>
             )
           })}
         </ul>
         <h2>Comic Stash 🌯</h2>
         <ul>
-          {this.state.issueListArchive.map((savedIssue) => {
+          {this.state.issueListArchive.map((savedIssue, i) => {
             return(
-              <li key={savedIssue.name + savedIssue.key}>
+              <li key={savedIssue.name + savedIssue.key + i}>
                 <img src={savedIssue.image} alt={savedIssue.name} />
                 <p>{savedIssue.name}</p>
+                <button onClick={() => this.deleteIssue(issue.name + issue.key)}>❌</button>
               </li>
             )
           })}

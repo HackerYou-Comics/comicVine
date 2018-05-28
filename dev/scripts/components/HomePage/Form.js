@@ -138,7 +138,7 @@ class Form extends React.Component {
                         </select>
                         <button>Search</button>
                     </form>
-                    <Route exact path="/" render={() => {
+                    <Route exact path="/results" render={() => {
                         return (
                             <Results
                                 userChoice={this.state.userChoice}
@@ -154,7 +154,7 @@ class Form extends React.Component {
                     }
                     } />
                     {/* <Route exact path={`/${this.props.infoId}`} Component={InfoPage} /> */}
-                    <Route exact path="/:infoId" render={() => {
+                    <Route exact path="/info/:infoId" render={() => {
                         return (
                             <InfoPage
                                 individualId={this.state.individualId} 

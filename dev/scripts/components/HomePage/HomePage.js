@@ -14,10 +14,8 @@ class HomePage extends React.Component {
     return (
       <div>
         <Form 
-
           libraryId = {this.props.libraryId}
           userKey = {this.props.userKey}/>
-
       </div>
     )
   }
