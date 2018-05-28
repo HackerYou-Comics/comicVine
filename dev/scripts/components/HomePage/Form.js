@@ -130,7 +130,7 @@ class Form extends React.Component {
         // }
         return (
            
-                <div>
+                <div className='results'>
                     <form action="" onSubmit={this.submitHandler}>
                         <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
                         <select onChange={this.changeHandler} name="" id="">Page

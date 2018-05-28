@@ -49,7 +49,7 @@ class App extends React.Component {
   render() {
     return (
       <Router history={browserHistory}>
-        <div>
+        <div className="content">
           <Auth getUserId={this.getUserIdFromAuth}/>
           <NavLink to="/">Home</NavLink>
           <Route path="/" render={(props) => <HomePage
