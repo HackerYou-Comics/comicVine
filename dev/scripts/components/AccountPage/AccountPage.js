@@ -56,8 +56,10 @@ class AccountPage extends React.Component {
     firebase.database().ref(`users/library/${this.props.userKey}/${issueId}`).remove();
   }
 
-  toggleOwnage(issueId){
-    console.log(issueId);
+  toggleOwnage(issueId, completed){
+    firebase.database().ref(`users/library/${this.props.userKey}/${issueId}`).update({
+      completed: completed === true ? false : true
+    })
   }
 
 
@@ -72,19 +74,20 @@ class AccountPage extends React.Component {
               <img src={issue.image} alt={issue.name}/>
               <p>{issue.name}</p>
               <button onClick={() => this.deleteIssue(issue.name + issue.key)}>❌</button>
-              <button onClick={() => this.toggleOwnage(issue.name + issue.key)}>💛</button>
+              <button onClick={() => this.toggleOwnage(issue.name + issue.key, issue.completed)}>💛</button>
             </li>
             )
           })}
         </ul>
         <h2>Comic Stash 🌯</h2>
         <ul>
-          {this.state.issueListArchive.map((savedIssue, i) => {
+          {this.state.issueListArchive.map((savedIssue) => {
             return(
-              <li key={savedIssue.name + savedIssue.key + i}>
+              <li key={savedIssue.name + savedIssue.key}>
                 <img src={savedIssue.image} alt={savedIssue.name} />
                 <p>{savedIssue.name}</p>
-                <button onClick={() => this.deleteIssue(issue.name + issue.key)}>❌</button>
+                <button onClick={() => this.deleteIssue(savedIssue.name + savedIssue.key)}>❌</button>
+                <button onClick={() => this.toggleOwnage(savedIssue.name + savedIssue.key, savedIssue.completed)}>💛</button>
               </li>
             )
           })}
