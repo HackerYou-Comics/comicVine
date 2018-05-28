@@ -59,7 +59,7 @@ class InfoPage extends React.Component{
         const volumeIssuesArrayClone = [...volumeIssuesArrayClone];
         let reducedArray = [];
         //only returns 10. over 900 crashes browser
-        for (let i = 0; i < 10+page; i++) {
+        for (let i = 0; i < page*10; i++) {
           volumeIssuesArrayClone.push(volIssues[i]);
         }
         //first array is undefined for some reason
@@ -177,7 +177,7 @@ class InfoPage extends React.Component{
           } */}
 
           <InfiniteScroll
-            pageStart={0}
+            pageStart={1}
             loadMore={this.loadMoreFunc}
             hasMore={this.state.hasMoreItems}
             loader={loader}>
