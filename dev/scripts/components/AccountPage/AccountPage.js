@@ -59,7 +59,7 @@ class AccountPage extends React.Component {
         <ul>
           {this.state.issueListWishList.map((issue) => {
             return(
-            <li>
+              <li key={issue.name + issue.key}>
               <img src={issue.image} alt={issue.name}/>
               <p>{issue.name}</p>
             </li>
