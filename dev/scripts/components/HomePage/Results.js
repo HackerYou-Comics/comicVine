@@ -16,7 +16,6 @@ class Results extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps){
-		console.log(nextProps)
 		if(nextProps.results.length > 0){
 			this.setState({
 				hasMoreItems: true
@@ -48,27 +47,28 @@ class Results extends React.Component {
 			const items = [];
 			this.state.limitedResults.map((result, index) => {
 				items.push(
-					<Issue
-
-						userKey={this.props.userKey}
-						key={index + result.id}
-						infoId={result.id}
-						issueImg={result.image.icon_url}
-						issueName={result.name}
-						issueNumber={result.issue_number}
-						issueDescription={result.description}
-						libraryId={this.props.libraryId}
-
-						//grab id callback from form.js
-						grabId={this.props.grabId}
-						//sends the index as "id" to issue to be used on its li elements
-						id={index}
-					/>
+					<li key={index + result.id}>
+						<Issue
+	
+							userKey={this.props.userKey}
+							infoId={result.id}
+							issueImg={result.image.medium_url}
+							issueName={result.name}
+							issueNumber={result.issue_number}
+							issueDescription={result.description}
+							libraryId={this.props.libraryId}
+	
+							//grab id callback from form.js
+							grabId={this.props.grabId}
+							//sends the index as "id" to issue to be used on its li elements
+							id={index}
+						/>
+					</li>
 				)
 			})
 
             return (
-                <ul>
+                <ul className='resultList'>
 					{this.props.userChoice === 'issues' ?
 						<InfiniteScroll
 							pageStart={0}
@@ -76,7 +76,7 @@ class Results extends React.Component {
 							hasMore={this.state.hasMoreItems}
 							>
 
-							<div className="issues">
+							<div className="issues clearfix">
 								{items}
 							</div>
 						</InfiniteScroll>
@@ -93,7 +93,7 @@ class Results extends React.Component {
 											infoId={result.id}
 											publisherName={result.name}
 											publisherDescription={result.deck}
-											publisherImg={result.image.icon_url} 
+											publisherImg={result.image.medium_url} 
 											publisherUrl={result.site_detail_url}
 											libraryId={this.props.libraryId}
 
