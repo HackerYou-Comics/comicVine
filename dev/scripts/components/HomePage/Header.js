@@ -5,6 +5,7 @@ const Header = () => {
         <header>
             <div className="hero">
                 <h1>Comic Cloud</h1>
+                <img src="../../../../public/assets/comic-bubble.png" alt=""/>
             </div>
         </header>
     )
