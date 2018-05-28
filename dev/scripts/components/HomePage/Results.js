@@ -6,7 +6,6 @@ import Publisher from '../Publisher';
 class Results extends React.Component {
     constructor() {
         super();
-
     }
 
     render() {
@@ -20,7 +19,6 @@ class Results extends React.Component {
                                 if(result.image !== null){
                                     return (
                                         <Issue
-                                            userKey={this.props.userKey} 
                                             key={index + result.id}
                                             infoId={result.id}
                                             // issueImg={result.image.medium_url}

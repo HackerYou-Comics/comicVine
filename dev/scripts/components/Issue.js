@@ -15,16 +15,14 @@ class Issue extends React.Component{
         }
         this.handleLibrary = this.handleLibrary.bind(this);
     }
-    componentDidMount(){
-        this.setState({
-            userKey: this.props.userKey,
-        })
-    }
 
     handleLibrary(e) {
         console.log(e.currentTarget.value)
-        this.props.libraryId(this.props.issueName + this.props.infoId)
-        const dbRef = firebase.database().ref(`users/${this.state.userKey}/library/${this.props.issueName + this.props.infoId}`)
+        const currentUser = firebase.auth().currentUser.uid;
+
+        this.props.libraryId(this.props.issueName + this.props.infoId);
+
+        const dbRef = firebase.database().ref(`users/library/${currentUser}/${this.props.issueName + this.props.infoId}`)
         if(e.currentTarget.value === 'archive') {
             this.setState({
             libraryInfo: {
