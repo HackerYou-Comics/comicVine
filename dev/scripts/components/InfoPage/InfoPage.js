@@ -79,7 +79,9 @@ class InfoPage extends React.Component{
   }
 
   loadMoreFunc(page){
-    this.getVolumes(singleSelection.volume.id, page);
+    if (this.props.userChoice === 'issues'){
+      this.getVolumes(singleSelection.volume.id, page);
+    }
   }
 
   render(){
@@ -132,13 +134,13 @@ class InfoPage extends React.Component{
 
 
 
-    const loader = <div className="loader">Loading...</div>;
+    const loader = <div className="loader">Scroll for more</div>;
 
     const items = [];
     if(this.state.volumeIssuesArray.length !== 0){
       this.state.volumeIssuesArray.map((issue, index) => {
         items.push (
-          <div key={index}>
+          <div key={issue.name+index}>
             <p>{issue.name}</p>
             <p>Issue #{issue.issue_number}</p>
             <p></p>
@@ -155,26 +157,14 @@ class InfoPage extends React.Component{
         {/* <Publisher /> */}
         {console.log(('from info page: ', this.props.individualId))}
         {console.log(('from info page: ', singleSelection))}
-        <ul>
+        <div>
           {infoName}
           {infoImg}
           {infoDeck}
           {infoUrl}
           {infoVolumeName}
           {infoVolumeButton}
-          {/* {
-            this.state.volumeIssuesArray.length !== 0 ? (
-              this.state.volumeIssuesArray.map((issue, index) => {
-                return(
-                  <div key={index}>
-                    <p>{issue.name}</p>
-                    <p>Issue #{issue.issue_number}</p>
-                    <p></p>
-                  </div>
-                )
-              })
-            ) : null
-          } */}
+
 
           <InfiniteScroll
             pageStart={1}
@@ -187,7 +177,7 @@ class InfoPage extends React.Component{
             </div>
           </InfiniteScroll>
 
-        </ul>
+        </div>
         
       </div>
     )
