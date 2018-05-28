@@ -43,6 +43,7 @@ class Form extends React.Component {
 
     submitHandler(e) {
         e.preventDefault();
+        this.props.router.history.push("/results");
         const inputClone = this.state.searchInput;
         this.setState({
             enteredInput: inputClone,
@@ -128,7 +129,7 @@ class Form extends React.Component {
         //     return <Redirect to='/' />
         // }
         return (
-            <Router>
+           
                 <div>
                     <form action="" onSubmit={this.submitHandler}>
                         <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
@@ -165,7 +166,7 @@ class Form extends React.Component {
                     }} />
 
                 </div>
-            </Router>
+           
         )
     }
 }

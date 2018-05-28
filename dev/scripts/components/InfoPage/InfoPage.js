@@ -88,6 +88,9 @@ class InfoPage extends React.Component{
 
     //object of data for the selected issue/publisher
     singleSelection = this.props.allSearches[this.props.individualId];
+    if(singleSelection === undefined){
+      return null
+    }
 
     let infoImg;
     let infoName;

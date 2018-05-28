@@ -52,11 +52,12 @@ class App extends React.Component {
         <div>
           <Auth getUserId={this.getUserIdFromAuth}/>
           <NavLink to="/">Home</NavLink>
-          <Route exact path="/" render={() => <HomePage
+          <Route path="/" render={(props) => <HomePage
             userKey = {this.state.userId} 
             setVolume={this.getVolumesIssuesArrayfromForm}
             issueClicked={this.state.issueSelected}
-            libraryId={this.getLibraryKeyFromIssue}/>}>
+            libraryId={this.getLibraryKeyFromIssue}
+            router={props}/>}>
           </Route>
           <Route path="/account" render={() => <AccountPage 
             userKey={this.state.userId} 
