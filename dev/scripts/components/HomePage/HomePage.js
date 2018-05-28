@@ -17,7 +17,6 @@ class HomePage extends React.Component {
           router={this.props.router}
           libraryId = {this.props.libraryId}
           userKey = {this.props.userKey}/>
-
       </div>
     )
   }
