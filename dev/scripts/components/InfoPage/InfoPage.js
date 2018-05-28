@@ -136,7 +136,6 @@ class InfoPage extends React.Component{
 
 
 
-    const loader = <div className="loader" key="loader">Scroll for more</div>;
 
     const items = [];
     if(this.state.volumeIssuesArray.length !== 0){
@@ -170,7 +169,7 @@ class InfoPage extends React.Component{
             pageStart={1}
             loadMore={this.loadMoreFunc}
             hasMore={this.state.hasMoreItems}
-            loader={loader}>
+            >
 
             <div className="moreOfIssues">
               {items}
