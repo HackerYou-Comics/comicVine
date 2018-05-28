@@ -110,7 +110,7 @@ class Form extends React.Component {
             for (let i = 0; i < apiArray.length; i++) {
                 searchResultsClone.push(apiArray[i]);
             }
-
+            
             this.setState({
                 searchResults: searchResultsClone
             }, () => {

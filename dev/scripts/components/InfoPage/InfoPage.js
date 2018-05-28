@@ -97,7 +97,7 @@ class InfoPage extends React.Component{
     let infoDeck;
     let infoUrl;
     let infoVolumeName;
-    let infoVolumeButton;
+
 
     //checks what the userChoice was on Form.js set the conditional values according to render or publishers or issues
     if (this.props.userChoice === 'publishers'){
@@ -117,7 +117,6 @@ class InfoPage extends React.Component{
     } else{
       if (singleSelection.volume.name !== null){
         infoVolumeName = <p>Volume: {singleSelection.volume.name}</p>
-        // infoVolumeButton = <button onClick={() => this.getVolumes()}>Click to see more issues for this volume</button>
       }
       if (singleSelection.image.screen_large_url !== null) {
         infoImg = <img src={singleSelection.image.screen_large_url} alt={singleSelection.name} />;
@@ -166,8 +165,6 @@ class InfoPage extends React.Component{
           {infoDeck}
           {infoUrl}
           {infoVolumeName}
-          {infoVolumeButton}
-
 
           <InfiniteScroll
             pageStart={1}
