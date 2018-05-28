@@ -51,7 +51,6 @@ class App extends React.Component {
       <Router history={browserHistory}>
         <div>
           <Auth getUserId={this.getUserIdFromAuth}/>
-          <NavLink to="/">Home</NavLink>
           <Route path="/" render={(props) => <HomePage
             userKey = {this.state.userId} 
             setVolume={this.getVolumesIssuesArrayfromForm}

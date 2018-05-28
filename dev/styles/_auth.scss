@@ -1,4 +1,10 @@
 .auth-bar{
+  background: $whiteTransparent;
+  position: fixed;
+  height: 10vh;
+  width: 100%;
+  z-index: 2;
+  padding: 1px;
   img{
     height: 5rem;
     width: 5rem;
