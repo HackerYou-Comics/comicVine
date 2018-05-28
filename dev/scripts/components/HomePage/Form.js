@@ -141,7 +141,6 @@ class Form extends React.Component {
                     <Route exact path="/" render={() => {
                         return (
                             <Results
-                                userKey={this.props.userKey}
                                 userChoice={this.state.userChoice}
                                 results={this.state.searchResults}
                                 issueClicked={this.props.issueClicked}

@@ -6,7 +6,6 @@ import Publisher from '../Publisher';
 class Results extends React.Component {
     constructor() {
         super();
-
     }
 
     render() {
@@ -20,6 +19,7 @@ class Results extends React.Component {
                                 if(result.image !== null){
                                     return (
                                         <Issue
+
 											userKey={this.props.userKey} 
 											key={index + result.id}
 											infoId={result.id}
@@ -32,7 +32,7 @@ class Results extends React.Component {
 											//grab id callback from form.js
 											grabId={this.props.grabId}
 											//sends the index as "id" to issue to be used on its li elements
-											id={index}
+											id={index}  
                                         />
                                     )
                                 }
