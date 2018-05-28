@@ -24,7 +24,6 @@ class Form extends React.Component {
             searchInput: '',
             enteredInput: '',
             searchResults: [],
-            // volumeIssuesArray: [],
             submitted: false,
             individualId: ''
         }
@@ -148,7 +147,6 @@ class Form extends React.Component {
                                 issueClicked={this.props.issueClicked}
                                 libraryId={this.props.libraryId}
                                 // handleIssueClick={this.handleIssueClick}
-                                // volumesIssueArray={this.state.volumeIssuesArray}
 
                                 //pass callback function to issue to grab the data of the individual "id" of what is clicked
                                 grabId={this.grabIndividualIdFromIssue}

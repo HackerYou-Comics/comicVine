@@ -23,7 +23,6 @@ class Results extends React.Component {
 											userKey={this.props.userKey} 
 											key={index + result.id}
 											infoId={result.id}
-											// issueImg={result.image.medium_url}
 											issueImg={result.image.icon_url}
 											issueName={result.name}
 											issueNumber={result.issue_number}
