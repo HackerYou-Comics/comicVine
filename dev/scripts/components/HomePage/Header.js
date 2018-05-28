@@ -4,8 +4,7 @@ const Header = () => {
     return (
         <header>
             <div className="hero">
-                <h1>Comic Cloud</h1>
-                <img src="../../../../public/assets/comic-bubble.png" alt=""/>
+                <img src="../../../../public/assets/comic-bubble-text.png" alt=""/>
             </div>
         </header>
     )
