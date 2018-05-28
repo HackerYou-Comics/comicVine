@@ -16,7 +16,7 @@
         border: 1px solid red;
         position: relative;
 
-        .overlay{
+        .overlayContainer{
             // display: none;
             position: absolute;
             top: 0;
@@ -27,7 +27,7 @@
             p{
                 text-align: center;
             }
-            .buttonContainer{
+            .overlay{
                 margin: 0;
                 position: absolute;
                 top: 50%;

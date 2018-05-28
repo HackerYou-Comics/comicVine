@@ -78,10 +78,10 @@ class Issue extends React.Component{
                             <img src={this.props.issueImg} alt={this.props.issueName} className='issueImg'/>
                         </div>
                 </Link>
-                <div className="overlay">
-                    <p>{this.props.issueName}</p>
-                    <p>{this.props.issueNumber}</p>
-                    <div className="buttonContainer">
+                <div className="overlayContainer">
+                    <div className="overlay">
+                        <p>{this.props.issueName}</p>
+                        <p>{this.props.issueNumber}</p>
                         <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>
                         <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
                     </div>
