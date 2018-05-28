@@ -43,6 +43,7 @@ class Form extends React.Component {
 
     submitHandler(e) {
         e.preventDefault();
+        this.props.router.history.push("/results");
         const inputClone = this.state.searchInput;
         this.setState({
             enteredInput: inputClone,
@@ -128,7 +129,7 @@ class Form extends React.Component {
         //     return <Redirect to='/' />
         // }
         return (
-            <Router>
+           
                 <div>
                     <form action="" onSubmit={this.submitHandler}>
                         <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
@@ -138,7 +139,7 @@ class Form extends React.Component {
                         </select>
                         <button>Search</button>
                     </form>
-                    <Route exact path="/" render={() => {
+                    <Route exact path="/results" render={() => {
                         return (
                             <Results
                                 userChoice={this.state.userChoice}
@@ -154,7 +155,7 @@ class Form extends React.Component {
                     }
                     } />
                     {/* <Route exact path={`/${this.props.infoId}`} Component={InfoPage} /> */}
-                    <Route exact path="/:infoId" render={() => {
+                    <Route exact path="/info/:infoId" render={() => {
                         return (
                             <InfoPage
                                 individualId={this.state.individualId} 
@@ -165,7 +166,7 @@ class Form extends React.Component {
                     }} />
 
                 </div>
-            </Router>
+           
         )
     }
 }

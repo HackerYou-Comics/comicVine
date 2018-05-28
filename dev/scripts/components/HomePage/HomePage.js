@@ -14,7 +14,7 @@ class HomePage extends React.Component {
     return (
       <div>
         <Form 
-
+          router={this.props.router}
           libraryId = {this.props.libraryId}
           userKey = {this.props.userKey}/>
 
