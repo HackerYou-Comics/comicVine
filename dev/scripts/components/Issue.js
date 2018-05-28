@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import { firebaseConfig } from '../firebase/firebase-config';
 
+
 // Initialize Firebase
 // firebase.initializeApp(firebaseConfig);
 
@@ -11,9 +12,25 @@ class Issue extends React.Component{
         super();
         this.state = {
             userKey: '',
-            libraryInfo: {}
+            libraryInfo: {},
         }
         this.handleLibrary = this.handleLibrary.bind(this);
+        this.singleHandler = this.singleHandler.bind(this);
+    }
+
+
+    // handleIssueClick(volumeId) {
+    //     this.setState({
+    //         selectedIssueId: volumeId,
+    //     }, () => {
+    //         // console.log(this.state.selectedIssueId);
+    //         this.getVolumes(volumeId);
+    //     })
+    // }
+
+    //grabs the firstChild's "id" of the <Link> tag. this case is the <li>
+    singleHandler(e){
+        this.props.grabId(e.currentTarget.firstChild.id);
     }
 
     handleLibrary(e) {
@@ -49,11 +66,15 @@ class Issue extends React.Component{
             })
         }
     }
+
+   
+
     render(){
         return(
             <div>
-                <Link to={`/${this.props.infoId}`}>
-                    <li>
+                <Link to={`/${this.props.infoId}`} onClick={this.singleHandler}>
+                    {/* adding unique id to each li */}
+                    <li id={this.props.id}>
                         <div>
                             <img src={this.props.issueImg} alt={this.props.issueName} />
                             <p>{this.props.issueName}</p>
