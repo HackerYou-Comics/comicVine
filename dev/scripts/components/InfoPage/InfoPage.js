@@ -134,7 +134,7 @@ class InfoPage extends React.Component{
 
 
 
-    const loader = <div className="loader">Scroll for more</div>;
+    const loader = <div className="loader" key="loader">Scroll for more</div>;
 
     const items = [];
     if(this.state.volumeIssuesArray.length !== 0){
