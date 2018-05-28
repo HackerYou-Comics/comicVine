@@ -86,11 +86,16 @@ class Auth extends React.Component{
         return(
             <div>
                 {
-                    this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>
+                    this.state.loggedIn === false && 
+                    <div>
+                        <NavLink to="/">Home</NavLink>
+                        <button onClick={this.loginWithGoogle}>Login with Google</button>
+                    </div>
                 }
                 {
                     this.state.loggedIn === true &&
                     <div className="auth-bar">
+                        <NavLink to="/">Home</NavLink>
                         <NavLink to="/account">
                             <img src={this.state.userImg} alt={this.state.userName} />
                         </NavLink>

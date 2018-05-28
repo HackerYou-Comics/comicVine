@@ -24,7 +24,7 @@ class Issue extends React.Component{
     //         selectedIssueId: volumeId,
     //     }, () => {
     //         // console.log(this.state.selectedIssueId);
-    //         this.getVolumes(volumeId);
+    //         this.getVoluqmes(volumeId);
     //     })
     // }
 
