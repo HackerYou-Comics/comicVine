@@ -24,13 +24,12 @@ class Form extends React.Component {
             searchInput: '',
             enteredInput: '',
             searchResults: [],
-            volumeIssuesArray: [],
+            // volumeIssuesArray: [],
             submitted: false,
             individualId: ''
         }
         this.inputHandler = this.inputHandler.bind(this);
         this.submitHandler = this.submitHandler.bind(this);
-        this.handleIssueClick = this.handleIssueClick.bind(this);
         this.changeHandler = this.changeHandler.bind(this);
         this.grabIndividualIdFromIssue = this.grabIndividualIdFromIssue.bind(this);
     }
@@ -58,14 +57,6 @@ class Form extends React.Component {
         })
     }
 
-    handleIssueClick(volumeId) {
-        this.setState({
-            selectedIssueId: volumeId,
-        }, () => {
-            // console.log(this.state.selectedIssueId);
-            this.getVolumes(volumeId);
-        })
-    }
 
     changeHandler(e) {
         this.setState({
@@ -129,52 +120,7 @@ class Form extends React.Component {
         });
     }
 
-    //makes the API call to get volume data based on inital api call's returned volume id
-    getVolumes(volumeId) {
-
-        axios({
-            url: "http://proxy.hackeryou.com",
-            method: "GET",
-            dataResponse: "json",
-            paramsSerializer: function (params) {
-                return Qs.stringify(params, { arrayFormat: 'brackets' })
-            },
-            params: {
-                // "https://comicvine.gamespot.com/api/volume/4050-796/"
-                reqUrl: `https://comicvine.gamespot.com/api/volume/4050-${volumeId}`,
-                params: {
-                    api_key: apiKey,
-                    format: 'json'
-                },
-                proxyHeaders: {
-                    'headers_params': 'value'
-                },
-                xmlToJSON: false
-            }
-        }).then((vol) => {
-            if (vol.data.error === 'Object Not Found') {
-                console.log("No volume :(");
-
-            } else {
-                //volume data and all the issues in the volume
-                const volIssues = vol.data.results.issues;
-                //volumeIssuesArray clone
-                const volumeIssuesArrayClone = [...volumeIssuesArrayClone];
-                let reducedArray = [];
-                //only returns 10. over 900 crashes browser
-                for (let i = 0; i < 10; i++) {
-                    volumeIssuesArrayClone.push(volIssues[i]);
-                }
-                //first array is undefined for some reason
-                //filter all arrays if they are undefined
-                reducedArray = volumeIssuesArrayClone.filter(issue => issue !== undefined);
-
-                this.setState({
-                    volumeIssuesArray: reducedArray
-                })
-            }
-        });
-    }
+    
 
     render() {
         //redirect for future references
@@ -199,10 +145,10 @@ class Form extends React.Component {
                                 userKey={this.props.userKey}
                                 userChoice={this.state.userChoice}
                                 results={this.state.searchResults}
-                                handleIssueClick={this.handleIssueClick}
                                 issueClicked={this.props.issueClicked}
-                                volumesIssueArray={this.state.volumeIssuesArray}
                                 libraryId={this.props.libraryId}
+                                // handleIssueClick={this.handleIssueClick}
+                                // volumesIssueArray={this.state.volumeIssuesArray}
 
                                 //pass callback function to issue to grab the data of the individual "id" of what is clicked
                                 grabId={this.grabIndividualIdFromIssue}

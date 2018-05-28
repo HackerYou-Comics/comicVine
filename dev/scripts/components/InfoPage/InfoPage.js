@@ -20,7 +20,26 @@ class InfoPage extends React.Component{
     //object of data for the selected issue/publisher
     const singleSelection = this.props.allSearches[this.props.individualId];
 
-    //
+    let infoImg;
+    let infoName;
+    let infoDeck;
+    let infoUrl;
+    let infoVolumeName;
+    if (singleSelection.image.screen_large_url !== null) {
+      infoImg = <img src={singleSelection.image.screen_large_url} alt={singleSelection.name} />;
+    }
+    if (singleSelection.name !== null) {
+      infoName = <h2>{singleSelection.name}</h2>;
+    }
+    if (singleSelection.deck !== null) {
+      infoDeck = <p>{singleSelection.deck}</p>;
+    }
+    if (singleSelection.site_detail_url !== null) {
+      infoUrl = <a href={singleSelection.site_detail_url}>More information</a>
+    }
+    if (singleSelection.volume.name !== null){
+      infoVolumeName = <p>Volume: {singleSelection.volume.name}</p>
+    }
 
     
     return(
@@ -30,9 +49,11 @@ class InfoPage extends React.Component{
         {console.log(('from info page: ', this.props.individualId))}
         {console.log(('from info page: ', singleSelection))}
         <ul>
-          <li>{singleSelection.name}</li>
-          <li>{singleSelection.description}</li>
-          <img src={singleSelection.image.screen_large_url} alt={singleSelection.name}/>
+          {infoName}
+          {infoImg}
+          {infoDeck}
+          {infoUrl}
+          {infoVolumeName}
         </ul>
         
       </div>
