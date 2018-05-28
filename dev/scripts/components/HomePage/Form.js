@@ -160,6 +160,7 @@ class Form extends React.Component {
                             <InfoPage
                                 individualId={this.state.individualId} 
                                 allSearches={this.state.searchResults}
+                                userChoice={this.state.userChoice}
                             />
                         )
                     }} />

@@ -8,23 +8,26 @@ import {
 import Publisher from '../Publisher';
 import axios from 'axios';
 import Qs from 'qs';
+import InfiniteScroll from 'react-infinite-scroller';
 
 //comicVine Api Key
 const apiKey = '9ae979acd25cd191fdc36c5a39ff47c355199161';
-
+let singleSelection;
 
 class InfoPage extends React.Component{
   constructor(){
     super();
     
     this.state = {
-      volumeIssuesArray: []
+      volumeIssuesArray: [],
+      hasMoreItems: true,
     }
     this.getVolumes = this.getVolumes.bind(this);
+    this.loadMoreFunc = this.loadMoreFunc.bind(this);
   }
 
   //makes the API call to get volume data based on inital api call's returned volume id
-  getVolumes(volumeId) {
+  getVolumes(volumeId, page) {
 
     axios({
       url: "http://proxy.hackeryou.com",
@@ -56,7 +59,7 @@ class InfoPage extends React.Component{
         const volumeIssuesArrayClone = [...volumeIssuesArrayClone];
         let reducedArray = [];
         //only returns 10. over 900 crashes browser
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 10+page; i++) {
           volumeIssuesArrayClone.push(volIssues[i]);
         }
         //first array is undefined for some reason
@@ -70,15 +73,19 @@ class InfoPage extends React.Component{
         })
       }
 
-
       
+
     });
+  }
+
+  loadMoreFunc(page){
+    this.getVolumes(singleSelection.volume.id, page);
   }
 
   render(){
 
     //object of data for the selected issue/publisher
-    const singleSelection = this.props.allSearches[this.props.individualId];
+    singleSelection = this.props.allSearches[this.props.individualId];
 
     let infoImg;
     let infoName;
@@ -87,28 +94,58 @@ class InfoPage extends React.Component{
     let infoVolumeName;
     let infoVolumeButton;
 
-    if (singleSelection.image.screen_large_url !== null) {
-      infoImg = <img src={singleSelection.image.screen_large_url} alt={singleSelection.name} />;
-    }
-    if (singleSelection.name !== null) {
-      infoName = <h2>{singleSelection.name}</h2>;
-    }
-    if (singleSelection.deck !== null) {
-      infoDeck = <p>{singleSelection.deck}</p>;
-    }
-    if (singleSelection.site_detail_url !== null) {
-      infoUrl = <a href={singleSelection.site_detail_url}>More information</a>
-    }
-    if (singleSelection.volume.name !== null){
-      infoVolumeName = <p>Volume: {singleSelection.volume.name}</p>
-    }
-    if (singleSelection.volume.name !== null) {
-      infoVolumeButton = <button onClick={() => this.getVolumes(singleSelection.volume.id)}>Click to see more issues for this volume</button>
+    //checks what the userChoice was on Form.js set the conditional values according to render or publishers or issues
+    if (this.props.userChoice === 'publishers'){
+      if (singleSelection.image.screen_large_url !== null) {
+        infoImg = <img src={singleSelection.image.screen_large_url} alt={singleSelection.name} />;
+      }
+      if (singleSelection.name !== null) {
+        infoName = <h2>{singleSelection.name}</h2>;
+      }
+      if (singleSelection.deck !== null) {
+        infoDeck = <p>{singleSelection.deck}</p>;
+      }
+      if (singleSelection.site_detail_url !== null) {
+        infoUrl = <a href={singleSelection.site_detail_url}>More information</a>
+      }
+
+    } else{
+      if (singleSelection.volume.name !== null){
+        infoVolumeName = <p>Volume: {singleSelection.volume.name}</p>
+        // infoVolumeButton = <button onClick={() => this.getVolumes()}>Click to see more issues for this volume</button>
+      }
+      if (singleSelection.image.screen_large_url !== null) {
+        infoImg = <img src={singleSelection.image.screen_large_url} alt={singleSelection.name} />;
+      }
+      if (singleSelection.name !== null) {
+        infoName = <h2>{singleSelection.name}</h2>;
+      }
+      if (singleSelection.deck !== null) {
+        infoDeck = <p>{singleSelection.deck}</p>;
+      }
+      if (singleSelection.site_detail_url !== null) {
+        infoUrl = <a href={singleSelection.site_detail_url}>More information</a>
+      }
+      
     }
 
-    // if(this.state.volumeIssuesArray !== []){
-    //   console.log(this.state.volumeIssuesArray);
-    // }
+
+
+
+    const loader = <div className="loader">Loading...</div>;
+
+    const items = [];
+    if(this.state.volumeIssuesArray.length !== 0){
+      this.state.volumeIssuesArray.map((issue, index) => {
+        items.push (
+          <div key={index}>
+            <p>{issue.name}</p>
+            <p>Issue #{issue.issue_number}</p>
+            <p></p>
+          </div>
+        )
+      })
+    }
     
 
     
@@ -125,7 +162,7 @@ class InfoPage extends React.Component{
           {infoUrl}
           {infoVolumeName}
           {infoVolumeButton}
-          {
+          {/* {
             this.state.volumeIssuesArray.length !== 0 ? (
               this.state.volumeIssuesArray.map((issue, index) => {
                 return(
@@ -137,7 +174,19 @@ class InfoPage extends React.Component{
                 )
               })
             ) : null
-          }
+          } */}
+
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={this.loadMoreFunc}
+            hasMore={this.state.hasMoreItems}
+            loader={loader}>
+
+            <div className="moreOfIssues">
+              {items}
+            </div>
+          </InfiniteScroll>
+
         </ul>
         
       </div>
