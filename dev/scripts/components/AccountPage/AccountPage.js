@@ -41,51 +41,43 @@ class AccountPage extends React.Component {
             issueListWishListClone.push(issueList[issue]);
           }
         }
-        
         this.setState({
           issueListArchive: issueListArchiveClone,
           issueListWishList: issueListWishListClone,
         }, () => {
           console.log(this.state.issueListArchive);
           console.log(this.state.issueListWishList);
-        });
-        
+        });        
       })
     })
   }
 
   render() {
     return (
-      <div>
-        {this.state.userKey === null? 
-          <h2> Please login to view this page </h2>:
-          <section>
-            <h2>WishList</h2>
-            <ul>
-              {this.state.issueListWishList.map((issue) => {
-                <li key={issue.name+issue.key}>
-                  {console.log(issue)}
-                  <h1>hi</h1>
-                  <img src={issue.image} alt={issue.name}/>
-                  <p>{issue.name}</p>
-                </li>
-              })}
-            </ul>
-            <h2>Comic Stash 🌯</h2>
-            <ul>
-              {/* {this.state.issueListArchive.map((issue) => {
-                <li key={issue.name + issue.key}>
-                  {console.log(issue)}
-                  <h1>hi</h1>
-                  <img src={issue.image} alt={issue.name} />
-                  <p>{issue.name}</p>
-                </li>
-              })} */}
-            </ul>
-          </section>
-        }
-      </div>
-      
+      <section>
+        <h2>WishList</h2>
+        <ul>
+          {this.state.issueListWishList.map((issue) => {
+            return(
+            <li>
+              <img src={issue.image} alt={issue.name}/>
+              <p>{issue.name}</p>
+            </li>
+            )
+          })}
+        </ul>
+        <h2>Comic Stash 🌯</h2>
+        <ul>
+          {this.state.issueListArchive.map((savedIssue) => {
+            return(
+              <li key={savedIssue.name + savedIssue.key}>
+                <img src={savedIssue.image} alt={savedIssue.name} />
+                <p>{savedIssue.name}</p>
+              </li>
+            )
+          })}
+        </ul>
+    </section> 
     )
   }
 }
