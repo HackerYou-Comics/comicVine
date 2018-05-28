@@ -116,7 +116,7 @@ class InfoPage extends React.Component{
 
     } else{
       if (singleSelection.volume.name !== null){
-        infoVolumeName = <p>Volume: {singleSelection.volume.name}</p>
+        infoVolumeName = <h3>Volume: {singleSelection.volume.name}</h3>
         // infoVolumeButton = <button onClick={() => this.getVolumes()}>Click to see more issues for this volume</button>
       }
       if (singleSelection.image.screen_large_url !== null) {
@@ -142,11 +142,12 @@ class InfoPage extends React.Component{
     const items = [];
     if(this.state.volumeIssuesArray.length !== 0){
       this.state.volumeIssuesArray.map((issue, index) => {
+        {console.log(issue)}
         items.push (
           <div key={issue.name+index}>
             <p>{issue.name}</p>
             <p>Issue #{issue.issue_number}</p>
-            <p></p>
+            <a href={issue.site_detail_url}>See full details</a>
           </div>
         )
       })
