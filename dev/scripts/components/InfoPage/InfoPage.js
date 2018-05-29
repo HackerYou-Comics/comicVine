@@ -139,7 +139,8 @@ class InfoPage extends React.Component{
         infoName = <h2>{singleSelection.name}</h2>;
       }
       if (singleSelection.deck !== null) {
-        infoDeck = <p>{singleSelection.deck}</p>;
+        const newText = this.reduceParagraph(singleSelection.deck, 100);
+        infoDeck = <p>{newText}</p>;
       }
       if (singleSelection.site_detail_url !== null) {
         infoUrl = <a href={singleSelection.site_detail_url}>More information</a>
