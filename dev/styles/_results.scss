@@ -9,31 +9,46 @@
 
     li{
         float: left;
-        min-height: 400px;
         width: calc((100% - 90px) / 4);
         margin-right: 30px;
         margin-bottom: 30px;
         border: 1px solid red;
         position: relative;
 
-        .overlayContainer{
-            // display: none;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
+        // .overlayContainer{
+        //     position: absolute;
+        //     top: 0;
+        //     bottom: 0;
+        //     right: 0;
+        //     left: 0;
+            
+        //     &:hover{
+        //         background: linear-gradient(to right, rgba(59, 59, 59, 0.8), rgba(59, 59, 59, 0.8));
 
-            p{
-                text-align: center;
-            }
-            .overlay{
-                margin: 0;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
+        //         .overlay{
+        //             display: block;
+        //         }
+        //     }
+            
+        //     p{
+        //         text-align: center;
+        //         color: white;
+        //         font-size: 2rem;
+        //     }
+        //     .overlay{
+        //         display: none;
+        //         margin: 0;
+        //         position: absolute;
+        //         top: 50%;
+        //         left: 50%;
+        //         transform: translate(-50%, -50%);
+        //     }
+
+        // }
+
+        .imgContainer{
+            height: 350px;
+            overflow: hidden;
         }
     }
 
@@ -42,8 +57,8 @@
     }
 
     .issueImg{
-        // object-fit: cover;
-        object-fit: contain;
+        object-fit: cover;
+        // object-fit: contain;
         width: 100%;
     }
 
