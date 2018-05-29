@@ -31,14 +31,10 @@ class Issue extends React.Component{
 
     //grabs the firstChild's "id" of the <Link> tag. this case is the <li>
     singleHandler(e){
-        e.stopPropagation();
-        e.stopImmediatePropagation();
         this.props.grabId(e.currentTarget.firstChild.id);
     }
 
     handleLibrary(e) {
-        e.stopPropagation();
-        e.stopImmediatePropagation();
         const currentUser = firebase.auth().currentUser.uid;
 
         this.props.libraryId(this.props.issueName + this.props.infoId);
@@ -87,10 +83,7 @@ class Issue extends React.Component{
         const newText = this.reduceParagraph(this.props.issueName, 30);
         
         return(
-            <React.Fragment>
-               
-                    {/* adding unique id to each li */}
-                        
+            <React.Fragment>       
                 <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler}>
                     <div id={this.props.id}>
                         <img src={this.props.issueImg} alt={this.props.issueName} className='issueImg'/>
