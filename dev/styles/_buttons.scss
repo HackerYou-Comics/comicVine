@@ -8,7 +8,7 @@ form {
         border: 1px solid $teal;
     }
 
-    button:hover {
+    button:hover, button:focus {
         background: $teal;
         box-shadow: 4px 4px $black;
         color: white;
@@ -24,14 +24,11 @@ form {
         button {
             font-size: 2rem;
             border: none;
-            background: transparent; 
             padding: 1rem;
             color: $black;
             background: white;
         }
-
-        button:hover {
-            color: $green;
-        }
+    button:hover {
+        color: $green;
     }
 }
