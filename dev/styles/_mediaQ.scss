@@ -134,13 +134,14 @@
 @media (max-width: 420px){
     header {
         height: 65vh;
-        .hero{
-          background-size: 80%;
+        
+        .hero {
+          background-size: 90%;
         }
     }
 
     form {
-        height: 23vh; 
+        height: 25vh; 
 
         input[type=text] {
             width: 100%;
@@ -175,11 +176,15 @@
         }
     }
 
-    footer {        
+    footer { 
+        height: 10vh ;
+
         p, a {
             font-size: 1.2rem;
             margin: 0;
+            line-height: 10vh;
         }
-
     }
-}    
+} 
+
+
