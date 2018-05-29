@@ -15,6 +15,7 @@ class AccountPage extends React.Component {
 
     this.state = {
       userKey: null,
+      userName: '',
       issueListArchive: [],
       issueListWishList: [],
     }
@@ -29,6 +30,7 @@ class AccountPage extends React.Component {
         this.getUserInfoFromFirebase(user.uid);
         this.setState({
           userKey: user.uid,
+          userName: user.displayName,
         })
       } else {
         console.log('no user');
@@ -71,21 +73,25 @@ class AccountPage extends React.Component {
 
   render() {
     return (
-      <section>
-        <div className="accountBanner"></div>
+      <section className="accountPage">
+        <div className="accountBanner">
+          <h1 className="results">Welcome {this.state.userName}</h1>
+        </div>
         <div className="results">
           <h2>WishList</h2>
           <ul className = "resultList clearfix">
             {this.state.issueListWishList.map((issue) => {
               return(
-                <div className="issues clearfix">
-                  <li key={issue.name + issue.key}>
+                <li key={issue.name + issue.key}>
+                  <div className="imageContainer">
                     <img src={issue.image} alt={issue.name}/>
-                    <p>{issue.name}</p>
+                  </div>
+                  <p>{issue.name}</p>
+                    <div className="buttonContainer">
                       <button onClick={() => this.deleteIssue(issue.name + issue.key)}><i className="fas fa-trash-alt"></i></button>
-                    <button onClick={() => this.toggleOwnage(issue.name + issue.key, issue.completed)}>💛</button>
-                  </li>
-                </div>
+                    <button onClick={() => this.toggleOwnage(issue.name + issue.key, issue.completed)}><i className="fas fa-archive"></i></button>
+                    </div>
+                </li>
               )
             })}
           </ul>
@@ -93,11 +99,15 @@ class AccountPage extends React.Component {
           <ul className="resultList clearfix">
             {this.state.issueListArchive.map((savedIssue) => {
               return(
-                <li className="imageContainer" key={savedIssue.name + savedIssue.key}>
-                  <img className="issueImg" src={savedIssue.image} alt={savedIssue.name} />
+                <li key={savedIssue.name + savedIssue.key}>
+                  <div className="imageContainer">
+                    <img className="issueImg" src={savedIssue.image} alt={savedIssue.name} />
+                  </div>
                   <p>{savedIssue.name}</p>
-                  <button onClick={() => this.deleteIssue(savedIssue.name + savedIssue.key)}><i className="fas fa-trash-alt"></i></button>
-                  <button onClick={() => this.toggleOwnage(savedIssue.name + savedIssue.key, savedIssue.completed)}>💛</button>
+                  <div className="buttonContainer">
+                    <button onClick={() => this.deleteIssue(savedIssue.name + savedIssue.key)}><i className="fas fa-trash-alt"></i></button>
+                    <button onClick={() => this.toggleOwnage(savedIssue.name + savedIssue.key, savedIssue.completed)}><i className="fas fa-star"></i></button>
+                  </div>
                 </li>
               )
             })}

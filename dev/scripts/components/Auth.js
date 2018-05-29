@@ -102,7 +102,7 @@ class Auth extends React.Component{
                     this.state.loggedIn === false && 
                     <div ref="authBar" className="auth-bar">
                         <div className="links clearfix">
-                            <NavLink className="auth-link" activeClassName="auth-link-active" to="/">Home</NavLink>
+                            <NavLink className="auth-link results" activeClassName="auth-link-active" to="/">Home</NavLink>
                             <div className="auth-btn">
                                 <button onClick={this.loginWithGoogle}><i className="fas fa-sign-in-alt"></i></button>
                             </div>
@@ -113,7 +113,7 @@ class Auth extends React.Component{
                     this.state.loggedIn === true &&
                     <div ref="authBar" className="auth-bar">
                         <div className="links clearfix">
-                            <NavLink className="auth-link" activeClassName="auth-link-active" to="/">Home</NavLink>
+                            <NavLink className="auth-link results" activeClassName="auth-link-active" to="/">Home</NavLink>
                             <NavLink className="auth-btn" to="/">
                                 <button onClick={this.logout}><i className="fas fa-sign-out-alt"></i></button>
                             </NavLink>
