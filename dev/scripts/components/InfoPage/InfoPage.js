@@ -193,8 +193,6 @@ class InfoPage extends React.Component{
     
     return(
       <div>
-        <h1>This is the Info page</h1>
-        {/* <Publisher /> */}
         <div className='infoPageContainer'>
           <div className="issueInfoContainer clearfix">
             <div className="infoImgContainer">
