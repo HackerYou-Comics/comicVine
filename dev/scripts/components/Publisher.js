@@ -34,7 +34,7 @@ class Publisher extends React.Component {
     }
 
     return (
-      <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler} id={this.props.id}>
+        <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler} id={this.props.id}>
           {/* adding unique id to each li */}
               <div className = "publisherContainer" >
                 <div className = 'imageContainer'>

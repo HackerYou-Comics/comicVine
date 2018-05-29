@@ -75,7 +75,6 @@ class Form extends React.Component {
 
     //goes and grabs the "id" from the li element of whatever that is clicked from issue/publisher
     grabIndividualIdFromIssue(id){
-        console.log(id);
         this.setState({
             individualId: id
         })
@@ -175,8 +174,8 @@ class Form extends React.Component {
                                 individualId={this.state.individualId} 
                                 allSearches={this.state.searchResults}
                                 userChoice={this.state.userChoice}
-                            />
-                        )
+                                />
+                            )
                     }} />
 
                 </div>
