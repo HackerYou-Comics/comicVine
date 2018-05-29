@@ -65,7 +65,7 @@ class AccountPage extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className="accountPage">
         <h2>WishList</h2>
         <ul>
           {this.state.issueListWishList.map((issue) => {
@@ -73,7 +73,7 @@ class AccountPage extends React.Component {
               <li key={issue.name + issue.key}>
               <img src={issue.image} alt={issue.name}/>
               <p>{issue.name}</p>
-                <button onClick={() => this.deleteIssue(issue.name + issue.key)}><i class="fas fa-trash-alt"></i></button>
+                <button onClick={() => this.deleteIssue(issue.name + issue.key)}><i className="fas fa-trash-alt"></i></button>
               <button onClick={() => this.toggleOwnage(issue.name + issue.key, issue.completed)}>💛</button>
             </li>
             )
@@ -86,7 +86,7 @@ class AccountPage extends React.Component {
               <li key={savedIssue.name + savedIssue.key}>
                 <img src={savedIssue.image} alt={savedIssue.name} />
                 <p>{savedIssue.name}</p>
-                <button onClick={() => this.deleteIssue(savedIssue.name + savedIssue.key)}><i class="fas fa-trash-alt"></i></button>
+                <button onClick={() => this.deleteIssue(savedIssue.name + savedIssue.key)}><i className="fas fa-trash-alt"></i></button>
                 <button onClick={() => this.toggleOwnage(savedIssue.name + savedIssue.key, savedIssue.completed)}>💛</button>
               </li>
             )
