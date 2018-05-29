@@ -16,6 +16,7 @@ form {
 }
 
 .results {
+
     .buttonContainer {
         position: absolute;
         right: 0;
@@ -28,7 +29,8 @@ form {
             color: $black;
             background: white;
         }
-    button:hover {
-        color: $green;
+        button:hover {
+            color: $green;
+        }
     }
 }
