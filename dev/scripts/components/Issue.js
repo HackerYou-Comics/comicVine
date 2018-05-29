@@ -72,20 +72,22 @@ class Issue extends React.Component{
     render(){
         return(
             <React.Fragment>
-                <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler}>
+               
                     {/* adding unique id to each li */}
-                        <div id={this.props.id}>
-                            <img src={this.props.issueImg} alt={this.props.issueName} className='issueImg'/>
-                        </div>
-                </Link>
-                <div className="overlay">
-                    <p>{this.props.issueName}</p>
-                    <p>{this.props.issueNumber}</p>
-                    <div className="buttonContainer">
-                        <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>
-                        <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
-                    </div>
+                        
+                <div id={this.props.id}>
+                    <img src={this.props.issueImg} alt={this.props.issueName} className='issueImg'/>
                 </div>
+                <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler}>
+                    <div className="overlay">
+                        <p>{this.props.issueName}</p>
+                        <p>{this.props.issueNumber}</p>
+                        <div className="buttonContainer">
+                            <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>
+                            <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
+                        </div>
+                    </div>
+                </Link>
             </React.Fragment>
         )
     }
