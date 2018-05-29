@@ -5,6 +5,7 @@
   width: 100%;
   z-index: 2;
   padding: 1rem;
+  transition: all 0.5s linear;
 
   .links{
    width: 80%;
@@ -41,6 +42,10 @@
       animation: tilt 3s ease-in-out infinite;
     }
   }
+}
+
+.auth-bar.hide{
+  transform: translateY(-100%);
 }
 
 @keyframes tilt{
