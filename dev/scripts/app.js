@@ -58,7 +58,7 @@ class App extends React.Component {
             libraryId={this.getLibraryKeyFromIssue}
             router={props}/>}>
           </Route>
-          <Route path="/account" render={() => <AccountPage 
+          <Route exact path="/account" render={() => <AccountPage 
             userKey={this.state.userId} 
             libraryId={this.state.libraryKey}
           />} />
