@@ -133,7 +133,7 @@ class InfoPage extends React.Component{
     //checks what the userChoice was on Form.js set the conditional values according to render or publishers or issues
     if (this.props.userChoice === 'publishers'){
       if (singleSelection.image.screen_large_url !== null) {
-        infoImg = <img src={singleSelection.image.screen_large_url} alt={singleSelection.name} />;
+        infoImg = <img src={singleSelection.image.medium_url} alt={singleSelection.name} />;
       }
       if (singleSelection.name !== null) {
         infoName = <h2>{singleSelection.name}</h2>;
