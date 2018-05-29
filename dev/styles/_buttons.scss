@@ -8,27 +8,25 @@ form {
         border: 1px solid $teal;
     }
 
-    button:hover {
+    button:hover, button:focus {
         background: $teal;
         box-shadow: 4px 4px $black;
         color: white;
     }
 }
 
-.results {
-    .buttonContainer {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-    
-        button {
-            background: transparent; 
-            padding: 1rem;
-            color: $black;
-        }
+.buttonContainer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 
-        button:hover {
-            color: $green;
-        }
+    button {
+        background: transparent; 
+        padding: 1rem;
+        color: $black;
+    }
+
+    button:hover {
+        color: $green;
     }
 }

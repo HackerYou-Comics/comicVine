@@ -82,8 +82,10 @@ class AccountPage extends React.Component {
                   <li key={issue.name + issue.key}>
                     <img src={issue.image} alt={issue.name}/>
                     <p>{issue.name}</p>
+                    <div className = "buttonContainer">
                       <button onClick={() => this.deleteIssue(issue.name + issue.key)}><i className="fas fa-trash-alt"></i></button>
-                    <button onClick={() => this.toggleOwnage(issue.name + issue.key, issue.completed)}>💛</button>
+                      <button onClick={() => this.toggleOwnage(issue.name + issue.key, issue.completed)}>💛</button>
+                    </div>
                   </li>
                 </div>
               )
@@ -96,8 +98,10 @@ class AccountPage extends React.Component {
                 <li className="imageContainer" key={savedIssue.name + savedIssue.key}>
                   <img className="issueImg" src={savedIssue.image} alt={savedIssue.name} />
                   <p>{savedIssue.name}</p>
-                  <button onClick={() => this.deleteIssue(savedIssue.name + savedIssue.key)}><i className="fas fa-trash-alt"></i></button>
-                  <button onClick={() => this.toggleOwnage(savedIssue.name + savedIssue.key, savedIssue.completed)}>💛</button>
+                  <div className="buttonContainer">
+                    <button onClick={() => this.deleteIssue(savedIssue.name + savedIssue.key)}><i className="fas fa-trash-alt"></i></button>
+                    <button onClick={() => this.toggleOwnage(savedIssue.name + savedIssue.key, savedIssue.completed)}>💛</button>
+                  </div>
                 </li>
               )
             })}
