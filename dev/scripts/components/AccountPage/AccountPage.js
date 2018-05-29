@@ -70,7 +70,6 @@ class AccountPage extends React.Component {
     })
   }
 
-
   render() {
     return (
       <section className="accountPage">
