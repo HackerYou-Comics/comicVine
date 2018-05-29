@@ -4,10 +4,61 @@
   height: 10vh;
   width: 100%;
   z-index: 2;
-  padding: 1px;
+  padding: 1rem;
+
+  .links{
+   max-width: 1080px;
+   margin: 0 auto;
+   position: relative;
+  }
+
+  .auth-link{
+    @include fontSizer(40);
+    color: $blue;
+    text-decoration: none;
+    font-family: 'Permanent Marker', cursive;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    float: left;
+    transform: rotate(3deg);
+  }
+  
+  .auth-link-active{
+    color: $black;
+  }
+  
   img{
-    height: 5rem;
-    width: 5rem;
+    height: 5.5rem;
+    width: 5.5rem;
     border-radius: 50%;
+    float: right;
+    border: 3.5px solid $black;
+    transition: all 1s ease;
+    &:hover{
+      box-shadow: 0px 0px 10px $black;
+      transform: scale(1.05, 1.05);
+      animation: tilt 3s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes tilt{
+  0% {transform: rotate(0deg)}
+  20% {transform: rotate(3deg)}
+  50% {transform: rotate(-3deg)}
+  80% {transform: rotate(3deg)}
+}
+
+.auth-btn{
+  @include fontSizer(20);
+  font-family: 'Permanent Marker', cursive;
+  float: right;
+  color: $black;
+  position: relative;
+  button{
+    border: none;
+    background: transparent;
+    bottom: 0;
   }
 }

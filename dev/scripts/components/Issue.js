@@ -31,11 +31,14 @@ class Issue extends React.Component{
 
     //grabs the firstChild's "id" of the <Link> tag. this case is the <li>
     singleHandler(e){
+        e.stopPropagation();
+        e.stopImmediatePropagation();
         this.props.grabId(e.currentTarget.firstChild.id);
     }
 
     handleLibrary(e) {
-        console.log(e.currentTarget.value)
+        e.stopPropagation();
+        e.stopImmediatePropagation();
         const currentUser = firebase.auth().currentUser.uid;
 
         this.props.libraryId(this.props.issueName + this.props.infoId);
@@ -82,24 +85,26 @@ class Issue extends React.Component{
   
         //reduces the title character numbers
         const newText = this.reduceParagraph(this.props.issueName, 30);
-        console.log(newText);
         
         return(
             <React.Fragment>
-                <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler}>
+               
                     {/* adding unique id to each li */}
-                        <div id={this.props.id} className="imgContainer">
-                            <img src={this.props.issueImg} alt={this.props.issueName} className='issueImg'/>
-                        </div>
-                </Link>
-                <div className="overlayContainer">
+                        
+                <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler}>
+                    <div id={this.props.id}>
+                        <img src={this.props.issueImg} alt={this.props.issueName} className='issueImg'/>
+                    </div>
+                </Link>    
                     <div className="overlay">
                         <p>{newText}</p>
                         <p>{this.props.issueNumber}</p>
-                        <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>
-                        <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
+                        <div className="buttonContainer">
+                            <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>
+                            <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
+                        </div>
                     </div>
-                </div>
+                
             </React.Fragment>
         )
     }

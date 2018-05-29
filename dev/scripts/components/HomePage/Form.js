@@ -134,7 +134,6 @@ class Form extends React.Component {
         //     return <Redirect to='/' />
         // }
         return (
-           
                 <div className='results'>
                     <form action="" onSubmit={this.submitHandler}>
                         <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
@@ -144,7 +143,7 @@ class Form extends React.Component {
                         </select>
                         <button>Search</button>
                     </form>
-                    <Route exact path="/results" render={() => {
+                    <Route path="/results" render={() => {
                         return (
                             <Results
                                 userChoice={this.state.userChoice}
