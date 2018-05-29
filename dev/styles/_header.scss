@@ -2,12 +2,13 @@ header {
     position: relative;
     overflow: hidden;
     background: $teal;
+    
 
     .hero {
             background: url(../assets/comic-bubble-text.png) no-repeat center;
             background-size: 70%;
-            height: 85vh;
             position: relative;
+            height: 85vh;
             h1 {
                 font-family: $secondary-font;
                 font-size: 3.5rem;
