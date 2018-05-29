@@ -74,7 +74,9 @@ class AccountPage extends React.Component {
     return (
       <section className="accountPage">
         <div className="accountBanner">
-          <h1 className="results">Welcome {this.state.userName}</h1>
+          <div className="results">
+            <h1>Welcome {this.state.userName}</h1>
+          </div>
         </div>
         <div className="results">
           <h2>WishList</h2>

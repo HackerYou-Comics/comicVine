@@ -28,6 +28,10 @@
   .auth-link-active{
     color: $black;
   }
+
+  .auth-link:hover, .auth-bar:focus{
+    animation: tilt 3s ease-in-out infinite;
+  }
   
   img{
     height: 5.5rem;

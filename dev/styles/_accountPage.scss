@@ -1,5 +1,6 @@
 .accountPage{
   padding: 1px;
+  min-height: 100vh;
   h2{
     font-family: 'Permanent Marker', cursive;
     @include fontSizer(40);
@@ -19,6 +20,6 @@
     font-family: 'Permanent Marker', cursive;
     position: absolute;
     bottom: 0px;
-    margin: 1.5rem;
+    margin: 1.5rem 0;
   }
 }
