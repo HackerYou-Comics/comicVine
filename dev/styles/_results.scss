@@ -17,7 +17,7 @@
         position: relative;
 
         .overlay{
-            // display: none;
+            display: none;
             position: absolute;
             top: 0;
             bottom: 0;
@@ -39,6 +39,12 @@
 
     li:nth-child(4n){
         margin-right: 0;
+    }
+
+    li:hover {
+        .overlay {
+            display: block;
+        }
     }
 
     .issueImg{
