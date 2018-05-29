@@ -14,11 +14,15 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <Header />
-        <Form 
-          router={this.props.router}
-          libraryId = {this.props.libraryId}
-          userKey = {this.props.userKey}/>
+        {this.props.router.location.pathname === "/account" ? null :
+          (
+            <div>
+              <Header />
+              <Form
+                router={this.props.router}
+                libraryId={this.props.libraryId}
+                userKey={this.props.userKey} />
+            </div>)}     
       </div>
     )
   }

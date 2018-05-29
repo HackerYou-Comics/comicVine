@@ -20,12 +20,16 @@ class Auth extends React.Component{
             userId: null,
             userName:'',
             userImg:'',
+            zero: 0,
         }
         this.loginWithGoogle = this.loginWithGoogle.bind(this);
         this.logout = this.logout.bind(this); 
+        this.navScroll = this.navScroll.bind(this);
+        this.handleNavScroll = this.handleNavScroll.bind(this);
     }
 
     componentDidMount() {
+        this.navScroll();
         this.dbRef = firebase.database().ref('users/');
 
         firebase.auth().onAuthStateChanged((user) => {
@@ -82,6 +86,17 @@ class Auth extends React.Component{
         // console.log('signed out');
     }
 
+    navScroll() {
+        window.addEventListener('scroll', this.handleNavScroll);
+    };
+
+    handleNavScroll(e){ 
+        this.refs.authBar.classList.toggle('hide', window.pageYOffset > this.state.zero);
+        this.setState({
+            zero: window.pageYOffset
+        });
+    };
+
     render(){
         return(
             <div>
@@ -94,7 +109,7 @@ class Auth extends React.Component{
                 }
                 {
                     this.state.loggedIn === true &&
-                    <div className="auth-bar">
+                    <div ref="authBar" className="auth-bar">
                         <div className="links clearfix">
                             <NavLink className="auth-link" activeClassName="auth-link-active" to="/">Home</NavLink>
                             <NavLink className="auth-btn" to="/">

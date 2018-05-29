@@ -83,10 +83,7 @@ class Issue extends React.Component{
         const newText = this.reduceParagraph(this.props.issueName, 30);
         
         return(
-            <React.Fragment>
-               
-                    {/* adding unique id to each li */}
-                        
+            <React.Fragment>       
                 <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler}>
                     <div id={this.props.id}>
                         <img src={this.props.issueImg} alt={this.props.issueName} className='issueImg'/>
