@@ -65,7 +65,8 @@ class Form extends React.Component {
     // }
     changeHandler(e) {
         this.setState({
-            userChoice: e.target.value
+            userChoice: e.target.value,
+            searchResults: []
         }, () => {
             console.log(this.state.userChoice);
         })
@@ -159,7 +160,7 @@ class Form extends React.Component {
                     }
                     } />
                     {/* <Route exact path={`/${this.props.infoId}`} Component={InfoPage} /> */}
-                    <Route exact path="/info/:infoId" render={() => {
+                    <Route path="/info/:infoId" render={() => {
                         return (
                             <InfoPage
                                 individualId={this.state.individualId} 

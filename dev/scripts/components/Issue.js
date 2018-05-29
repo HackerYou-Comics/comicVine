@@ -31,14 +31,10 @@ class Issue extends React.Component{
 
     //grabs the firstChild's "id" of the <Link> tag. this case is the <li>
     singleHandler(e){
-        e.stopPropagation();
-        e.stopImmediatePropagation();
         this.props.grabId(e.currentTarget.firstChild.id);
     }
 
     handleLibrary(e) {
-        e.stopPropagation();
-        e.stopImmediatePropagation();
         const currentUser = firebase.auth().currentUser.uid;
 
         this.props.libraryId(this.props.issueName + this.props.infoId);
