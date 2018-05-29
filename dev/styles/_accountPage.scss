@@ -1,12 +1,24 @@
 .accountPage{
-  
+  padding: 1px;
   h2{
     font-family: 'Permanent Marker', cursive;
+    @include fontSizer(40);
   }
 }
 
 .accountBanner{
   background: url(../assets/banner.jpg);
-  height: 20vh;
+  min-height: 20rem;
   width: 100%;
+  margin-top: 0px;
+  padding: 1px;
+  position: relative;
+  
+  h1{
+    @include fontSizer(60);
+    font-family: 'Permanent Marker', cursive;
+    position: absolute;
+    bottom: 0px;
+    margin: 1.5rem;
+  }
 }

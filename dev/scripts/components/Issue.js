@@ -18,18 +18,6 @@ class Issue extends React.Component{
         this.singleHandler = this.singleHandler.bind(this);
         this.reduceParagraph = this.reduceParagraph.bind(this);
     }
-
-
-    // handleIssueClick(volumeId) {
-    //     this.setState({
-    //         selectedIssueId: volumeId,
-    //     }, () => {
-    //         // console.log(this.state.selectedIssueId);
-    //         this.getVoluqmes(volumeId);
-    //     })
-    // }
-
-    //grabs the firstChild's "id" of the <Link> tag. this case is the <li>
     singleHandler(e){
         this.props.grabId(e.currentTarget.firstChild.id);
     }
@@ -96,10 +84,7 @@ class Issue extends React.Component{
                 <div className="buttonContainer">
                     <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>
                     <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
-                </div>
-                    
-                    
-                
+                </div>  
             </React.Fragment>
         )
     }
