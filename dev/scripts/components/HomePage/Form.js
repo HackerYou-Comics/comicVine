@@ -57,7 +57,12 @@ class Form extends React.Component {
         })
     }
 
-
+    // shouldComponentUpdate(nextProps, nextState){
+    //     if(this.state.userChoice){
+    //         return false;
+    //     }
+    //     return true;
+    // }
     changeHandler(e) {
         this.setState({
             userChoice: e.target.value

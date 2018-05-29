@@ -20,14 +20,15 @@ class InfoPage extends React.Component{
     
     this.state = {
       volumeIssuesArray: [],
-      hasMoreItems: true,
+      limitedResults: [],
+      hasMoreItems: false,
     }
     this.getVolumes = this.getVolumes.bind(this);
     this.loadMoreFunc = this.loadMoreFunc.bind(this);
   }
 
   //makes the API call to get volume data based on inital api call's returned volume id
-  getVolumes(volumeId, page) {
+  getVolumes(volumeId) {
 
     axios({
       url: "http://proxy.hackeryou.com",
@@ -59,7 +60,7 @@ class InfoPage extends React.Component{
         const volumeIssuesArrayClone = [...volumeIssuesArrayClone];
         let reducedArray = [];
         //only returns 10. over 900 crashes browser
-        for (let i = 0; i < page*10; i++) {
+        for (let i = 0; i < 100; i++) {
           volumeIssuesArrayClone.push(volIssues[i]);
         }
         //first array is undefined for some reason
@@ -67,7 +68,8 @@ class InfoPage extends React.Component{
         reducedArray = volumeIssuesArrayClone.filter(issue => issue !== undefined);
 
         this.setState({
-            volumeIssuesArray: reducedArray
+            volumeIssuesArray: reducedArray,
+            hasMoreItems: true
         }, () => {
             console.log(this.state.volumeIssuesArray);
         })
@@ -77,17 +79,36 @@ class InfoPage extends React.Component{
 
     });
   }
+  componentWillMount(){
+    if(this.props.userChoice === 'issues'){
+      this.getVolumes(this.props.allSearches[this.props.individualId].volume.id);
+
+    }
+
+  }
 
   loadMoreFunc(page){
-    if (this.props.userChoice === 'issues'){
-      this.getVolumes(singleSelection.volume.id, page);
+    let newArray = [];
+
+    for (let i = 0; i < page * 10; i++) {
+      if (i < this.state.volumeIssuesArray.length) {
+        newArray.push(this.state.volumeIssuesArray[i]);
+      } else {
+        this.setState({
+          hasMoreItems: false
+        })
+      }
     }
+    this.setState({
+      limitedResults: newArray,
+    })
   }
 
   render(){
 
     //object of data for the selected issue/publisher
     singleSelection = this.props.allSearches[this.props.individualId];
+    console.log(singleSelection);
     if(singleSelection === undefined){
       return null
     }
@@ -139,7 +160,7 @@ class InfoPage extends React.Component{
 
     const items = [];
     if(this.state.volumeIssuesArray.length !== 0){
-      this.state.volumeIssuesArray.map((issue, index) => {
+      this.state.limitedResults.map((issue, index) => {
         {console.log(issue)}
         items.push (
           <div key={issue.name+index}>
@@ -157,8 +178,6 @@ class InfoPage extends React.Component{
       <div>
         <h1>This is the Info page</h1>
         {/* <Publisher /> */}
-        {console.log(('from info page: ', this.props.individualId))}
-        {console.log(('from info page: ', singleSelection))}
         <div>
           {infoName}
           {infoImg}

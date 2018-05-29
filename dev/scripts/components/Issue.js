@@ -16,6 +16,7 @@ class Issue extends React.Component{
         }
         this.handleLibrary = this.handleLibrary.bind(this);
         this.singleHandler = this.singleHandler.bind(this);
+        this.reduceParagraph = this.reduceParagraph.bind(this);
     }
 
 
@@ -70,9 +71,21 @@ class Issue extends React.Component{
         }
     }
 
-   
+    //reduces the number of characters in the name of the issues
+    //takes the "text" to reduce. and "charNum" for how many characters in total in the end
+    reduceParagraph(text, charNum){
+        let paragraphArray = text.split('');
+        if(paragraphArray.length >= charNum){
+            paragraphArray.splice(charNum, paragraphArray.length - charNum, '...');
+        }
+        return paragraphArray.join('');
+    }
 
     render(){
+  
+        //reduces the title character numbers
+        const newText = this.reduceParagraph(this.props.issueName, 30);
+        
         return(
             <React.Fragment>
                
@@ -84,7 +97,7 @@ class Issue extends React.Component{
                     </div>
                 </Link>    
                     <div className="overlay">
-                        <p>{this.props.issueName}</p>
+                        <p>{newText}</p>
                         <p>{this.props.issueNumber}</p>
                         <div className="buttonContainer">
                             <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>

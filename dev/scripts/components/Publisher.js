@@ -34,7 +34,7 @@ class Publisher extends React.Component {
     }
     // console.log(this.props.publisherUrl);
     return (
-      <Link to={`/${this.props.infoId}`} onClick={this.singleHandler}>
+      <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler}>
         {/* adding unique id to each li */}
         <li id={this.props.id}>
           {pubName}
