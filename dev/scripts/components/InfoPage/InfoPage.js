@@ -108,7 +108,6 @@ class InfoPage extends React.Component{
 
     //object of data for the selected issue/publisher
     singleSelection = this.props.allSearches[this.props.individualId];
-    console.log(singleSelection);
     if(singleSelection === undefined){
       return null
     }
@@ -161,7 +160,6 @@ class InfoPage extends React.Component{
     const items = [];
     if(this.state.volumeIssuesArray.length !== 0){
       this.state.limitedResults.map((issue, index) => {
-        {console.log(issue)}
         items.push (
           <div key={issue.name+index}>
             <p>{issue.name}</p>
