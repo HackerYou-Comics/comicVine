@@ -4,8 +4,8 @@ const Footer = () => {
     return(
         <footer>
             <p>Made by
-                <a href="sandytian.ca"> Sandy Tian, </a> <a href="melodyyun.com">Melody Yun Chen, </a> and <a href="naomiceppetelli.com">Naomi Ceppetelli </a> with the
-                <a href="comicvine.com"> Comic Vine API </a> and Google Firebase ©2018.
+                <a href="sandytian.ca"> Sandy, </a> <a href="melodyyun.com">Melody, </a> and <a href="naomiceppetelli.com">Naomi </a> with the
+                <a href="comicvine.com"> Comic Vine API </a> ©2018
             </p>
         </footer>
     )
