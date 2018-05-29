@@ -20,44 +20,50 @@ class AccountPage extends React.Component {
     }
     this.deleteIssue = this.deleteIssue.bind(this);
     this.toggleOwnage = this.toggleOwnage.bind(this);
+    this.getUserInfoFromFirebase = this.getUserInfoFromFirebase.bind(this);
   }
 
   componentDidMount() {
-    const userId = this.props.userKey;
-    this.setState({
-      userKey: this.props.userKey,
-    }, () => {
-      
-      const dbRef = firebase.database().ref(`users/library/${this.state.userKey}/`);
-      dbRef.on('value', (snapshot) => {
-        const issueList = snapshot.val();
-        const issueListArchiveClone = [];
-        const issueListWishListClone = [];
-
-        for(let issue in issueList){
-          if(issueList[issue].completed === true){
-            issueListArchiveClone.push(issueList[issue]);
-          }else{
-            issueListWishListClone.push(issueList[issue]);
-          }
-        }
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.getUserInfoFromFirebase(user.uid);
         this.setState({
-          issueListArchive: issueListArchiveClone,
-          issueListWishList: issueListWishListClone,
-        }, () => {
-          console.log(this.state.issueListArchive);
-          console.log(this.state.issueListWishList);
-        });        
-      })
-    })
+          userKey: user.uid,
+        })
+      } else {
+        console.log('no user');
+      }
+    });
+  }
+
+  getUserInfoFromFirebase(userKey){
+    const dbRef = firebase.database().ref(`users/library/${userKey}/`);
+    dbRef.on('value', (snapshot) => {
+
+      const issueList = snapshot.val();
+      const issueListArchiveClone = [];
+      const issueListWishListClone = [];
+
+      for (let issue in issueList) {
+        if (issueList[issue].completed === true) {
+          issueListArchiveClone.push(issueList[issue]);
+        } else {
+          issueListWishListClone.push(issueList[issue]);
+        }
+      }
+      this.setState({
+        issueListArchive: issueListArchiveClone,
+        issueListWishList: issueListWishListClone,
+      });
+    });
   }
 
   deleteIssue(issueId){
-    firebase.database().ref(`users/library/${this.props.userKey}/${issueId}`).remove();
+    firebase.database().ref(`users/library/${this.state.userKey}/${issueId}`).remove();
   }
 
   toggleOwnage(issueId, completed){
-    firebase.database().ref(`users/library/${this.props.userKey}/${issueId}`).update({
+    firebase.database().ref(`users/library/${this.state.userKey}/${issueId}`).update({
       completed: completed === true ? false : true
     })
   }
@@ -66,6 +72,7 @@ class AccountPage extends React.Component {
   render() {
     return (
       <section className="accountPage">
+        <div className="accountBanner"></div>
         <h2>WishList</h2>
         <ul className = "accountList wishList">
           {this.state.issueListWishList.map((issue) => {
