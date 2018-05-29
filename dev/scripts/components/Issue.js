@@ -30,11 +30,14 @@ class Issue extends React.Component{
 
     //grabs the firstChild's "id" of the <Link> tag. this case is the <li>
     singleHandler(e){
+        e.stopPropagation();
+        e.stopImmediatePropagation();
         this.props.grabId(e.currentTarget.firstChild.id);
     }
 
     handleLibrary(e) {
-        console.log(e.currentTarget.value)
+        e.stopPropagation();
+        e.stopImmediatePropagation();
         const currentUser = firebase.auth().currentUser.uid;
 
         this.props.libraryId(this.props.issueName + this.props.infoId);
@@ -75,10 +78,11 @@ class Issue extends React.Component{
                
                     {/* adding unique id to each li */}
                         
-                <div id={this.props.id}>
-                    <img src={this.props.issueImg} alt={this.props.issueName} className='issueImg'/>
-                </div>
                 <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler}>
+                    <div id={this.props.id}>
+                        <img src={this.props.issueImg} alt={this.props.issueName} className='issueImg'/>
+                    </div>
+                </Link>    
                     <div className="overlay">
                         <p>{this.props.issueName}</p>
                         <p>{this.props.issueNumber}</p>
@@ -87,7 +91,7 @@ class Issue extends React.Component{
                             <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
                         </div>
                     </div>
-                </Link>
+                
             </React.Fragment>
         )
     }

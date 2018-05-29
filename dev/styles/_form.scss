@@ -1,6 +1,10 @@
 form {
+    position: relative; 
+    z-index: 2;
     width: 100%;
-    margin: 15px auto;
+    height: 10vh;
+    margin: 0 auto;
+    padding: 2rem 1rem;
     font-family: $primary-font;
 
     input[type=text] {
@@ -33,5 +37,9 @@ form {
         font-size: 1.2rem;
         background: transparent;
         border: 1px solid $teal;
+    }
+
+    button:hover {
+
     }
 }

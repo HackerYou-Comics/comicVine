@@ -11,7 +11,6 @@ import {
 } from 'react-router-dom';
 //created components
 import InfoPage from '../InfoPage/InfoPage';
-import Header from './Header'
 
 //comicVine Api Key
 const apiKey = '9ae979acd25cd191fdc36c5a39ff47c355199161';
@@ -130,7 +129,6 @@ class Form extends React.Component {
         //     return <Redirect to='/' />
         // }
         return (
-                <Header />
                 <div className='results'>
                     <form action="" onSubmit={this.submitHandler}>
                         <input type="text" onChange={this.inputHandler} value={this.state.searchInput} />
@@ -140,7 +138,7 @@ class Form extends React.Component {
                         </select>
                         <button>Search</button>
                     </form>
-                    <Route exact path="/results" render={() => {
+                    <Route path="/results" render={() => {
                         return (
                             <Results
                                 userChoice={this.state.userChoice}

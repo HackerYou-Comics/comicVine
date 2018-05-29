@@ -96,7 +96,7 @@ class Auth extends React.Component{
                     this.state.loggedIn === true &&
                     <div className="auth-bar">
                         <div className="links clearfix">
-                            <NavLink className="auth-link" activeClassName="auth-link-active" to="/">C Cloud</NavLink>
+                            <NavLink className="auth-link" activeClassName="auth-link-active" to="/">Home</NavLink>
                             <NavLink className="auth-btn" to="/">
                                 <button onClick={this.logout}>Logout</button>
                             </NavLink>
