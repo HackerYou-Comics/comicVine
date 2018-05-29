@@ -4,11 +4,12 @@ form {
     margin: 0 auto;
     padding: 2rem 1rem;
     font-family: $primary-font;
+    font-size: 1.4rem;
 
     input[type=text] {
         width: 50%;
         height: 30px;
-        font-size: 1.2rem;
+        // font-size: 1.2rem;
     }
 
     input[type=text]:active {
@@ -19,7 +20,7 @@ form {
         text-align: center;
         height: 30px;
         text-align: center;
-        font-size: 1.2rem;
+        // font-size: 1.2rem;
         width: 15%;
         margin-left: 10%;
         border: 0 !important;  

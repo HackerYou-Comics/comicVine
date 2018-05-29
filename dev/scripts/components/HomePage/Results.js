@@ -68,7 +68,7 @@ class Results extends React.Component {
 			})
 
             return (
-                <ul className='resultList'>
+                <ul className='resultList clearfix'>
 					{this.props.userChoice === 'issues' ?
 						<InfiniteScroll
 							pageStart={0}

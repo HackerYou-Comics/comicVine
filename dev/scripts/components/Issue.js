@@ -89,12 +89,14 @@ class Issue extends React.Component{
                         <img src={this.props.issueImg} alt={this.props.issueName} className='issueImg'/>
                     </div>
                     <p>{newText}</p>
-                    <p>{this.props.issueNumber}</p>
-                    <div className="buttonContainer">
-                        <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>
-                        <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
+                    <div className = "banner">
+                        <p className = "issueNumber">Issue No. {this.props.issueNumber}</p>
                     </div>
                 </Link>    
+                <div className="buttonContainer">
+                    <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>
+                    <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
+                </div>
                     
                     
                 
