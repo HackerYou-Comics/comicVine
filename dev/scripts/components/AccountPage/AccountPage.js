@@ -71,35 +71,39 @@ class AccountPage extends React.Component {
 
   render() {
     return (
-      <section className="accountPage">
+      <section>
         <div className="accountBanner"></div>
-        <h2>WishList</h2>
-        <ul className = "accountList wishList">
-          {this.state.issueListWishList.map((issue) => {
-            return(
-              <li key={issue.name + issue.key}>
-              <img src={issue.image} alt={issue.name}/>
-              <p>{issue.name}</p>
-                <button onClick={() => this.deleteIssue(issue.name + issue.key)}><i className="fas fa-trash-alt"></i></button>
-              <button onClick={() => this.toggleOwnage(issue.name + issue.key, issue.completed)}>💛</button>
-            </li>
-            )
-          })}
-        </ul>
-        <h2>Comic Stash 🌯</h2>
-        <ul className="accountList archiveList">
-          {this.state.issueListArchive.map((savedIssue) => {
-            return(
-              <li key={savedIssue.name + savedIssue.key}>
-                <img src={savedIssue.image} alt={savedIssue.name} />
-                <p>{savedIssue.name}</p>
-                <button onClick={() => this.deleteIssue(savedIssue.name + savedIssue.key)}><i className="fas fa-trash-alt"></i></button>
-                <button onClick={() => this.toggleOwnage(savedIssue.name + savedIssue.key, savedIssue.completed)}>💛</button>
-              </li>
-            )
-          })}
-        </ul>
-    </section> 
+        <div className="results">
+          <h2>WishList</h2>
+          <ul className = "resultList clearfix">
+            {this.state.issueListWishList.map((issue) => {
+              return(
+                <div className="issues clearfix">
+                  <li key={issue.name + issue.key}>
+                    <img src={issue.image} alt={issue.name}/>
+                    <p>{issue.name}</p>
+                      <button onClick={() => this.deleteIssue(issue.name + issue.key)}><i className="fas fa-trash-alt"></i></button>
+                    <button onClick={() => this.toggleOwnage(issue.name + issue.key, issue.completed)}>💛</button>
+                  </li>
+                </div>
+              )
+            })}
+          </ul>
+          <h2>Comic Stash 🌯</h2>
+          <ul className="resultList clearfix">
+            {this.state.issueListArchive.map((savedIssue) => {
+              return(
+                <li className="imageContainer" key={savedIssue.name + savedIssue.key}>
+                  <img className="issueImg" src={savedIssue.image} alt={savedIssue.name} />
+                  <p>{savedIssue.name}</p>
+                  <button onClick={() => this.deleteIssue(savedIssue.name + savedIssue.key)}><i className="fas fa-trash-alt"></i></button>
+                  <button onClick={() => this.toggleOwnage(savedIssue.name + savedIssue.key, savedIssue.completed)}>💛</button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </section> 
     )
   }
 }

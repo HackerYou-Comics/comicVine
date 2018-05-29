@@ -49,7 +49,6 @@ class Results extends React.Component {
 				items.push(
 					<li key={index + result.id}>
 						<Issue
-	
 							userKey={this.props.userKey}
 							infoId={result.id}
 							issueImg={result.image.medium_url}
