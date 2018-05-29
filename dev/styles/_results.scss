@@ -48,7 +48,6 @@
             color: $black;
             font-size: 1.6rem;
             text-align: center;
-            overflow: hidden;
         }
 
         .banner {
@@ -102,7 +101,7 @@
 
    
 
-@media (max-width: 1044){
+@media (max-width: 1044px){
     .resultList {
 
     li {
