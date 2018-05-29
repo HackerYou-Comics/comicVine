@@ -96,6 +96,23 @@
 }
 
 @media (max-width: 490px){
+    .hero {
+        height: 75vh;
+    }
+
+    form {
+        height: 20vh; 
+
+        input[type=text] {
+            width: 100%;
+        }
+
+        select, button {
+            width: 40%;
+            margin: 30px 5%;
+        }
+    }
+
     .resultList {
     li {
         width: 90%;
@@ -114,3 +131,54 @@
     }
 }
 
+@media (max-width: 420px){
+    header {
+        height: 65vh;
+    }
+
+    form {
+        height: 23vh; 
+
+        input[type=text] {
+            width: 100%;
+        }
+
+        select, button {
+            width: 40%;
+            margin: 30px 5%;
+        }
+    }
+
+    .resultList {
+    li {
+        min-height: 375px;
+        .imageContainer{
+                max-height: 325px;
+            }
+        .banner {
+            right: -31%;
+            }
+        }
+    
+    }
+
+    .accountPage {
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+    }
+
+    footer {
+        height: 12vh;
+        
+        p, a {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+    }
+}    

@@ -44,6 +44,7 @@
             a{
                 text-decoration: none;
                 font-family: $primary-font;
+                color: $black;
 
                 &:hover{
                     color: $green;
@@ -53,11 +54,18 @@
     }
 
     .infoVolumeContainer{
-
         h3{
             font-size: 4rem;
             font-family: $secondary-font;
             color: $blue;
+        }
+
+        h3::after{
+            content: '';
+            display: block;
+            width: 200px;
+            height: 3px;
+            background-color: $blue;
         }
     }
 
