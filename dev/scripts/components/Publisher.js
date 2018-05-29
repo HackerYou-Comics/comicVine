@@ -11,7 +11,7 @@ class Publisher extends React.Component {
 
   //grabs the firstChild's "id" of the <Link> tag. this case is the <li>
   singleHandler(e) {
-    this.props.grabId(e.currentTarget.firstChild.id);
+    this.props.grabId(e.currentTarget.id);
     console.log(e.currentTarget)
   }
 
@@ -34,7 +34,7 @@ class Publisher extends React.Component {
     }
     // console.log(this.props.publisherUrl);
     return (
-        <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler}>
+        <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler} id={this.props.id}>
           {/* adding unique id to each li */}
               <div className = "publisherContainer">
                 <div className = 'imageContainer'>

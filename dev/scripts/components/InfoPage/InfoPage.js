@@ -104,11 +104,20 @@ class InfoPage extends React.Component{
     })
   }
 
+  //reduces the number of characters in the name of the issues
+  //takes the "text" to reduce. and "charNum" for how many characters in total in the end
+  reduceParagraph(text, charNum) {
+    let paragraphArray = text.split('');
+    if (paragraphArray.length >= charNum) {
+      paragraphArray.splice(charNum, paragraphArray.length - charNum, '...');
+    }
+    return paragraphArray.join('');
+  }
+
   render(){
 
     //object of data for the selected issue/publisher
     singleSelection = this.props.allSearches[this.props.individualId];
-    console.log(singleSelection);
     if(singleSelection === undefined){
       return null
     }
@@ -166,10 +175,14 @@ class InfoPage extends React.Component{
     if(this.state.volumeIssuesArray.length !== 0){
       this.state.limitedResults.map((issue, index) => {
         {console.log(issue)}
+        //reduces the title character numbers
+        const newText = this.reduceParagraph(issue.name, 40);
         items.push (
-          <div key={issue.name+index}>
-            <p>{issue.name}</p>
-            <p>Issue #{issue.issue_number}</p>
+          <div key={issue.name+index} className='issuesVolume'>
+            <div className="issueTitle">
+              <p>{newText}</p>
+            </div>
+            <p className='issueNumber'>Issue #{issue.issue_number}</p>
             <a href={issue.site_detail_url}>See full details</a>
           </div>
         )
@@ -189,10 +202,12 @@ class InfoPage extends React.Component{
             </div>
 
             <div className="infoTextsContainer">
-              {infoName}
-              {infoNumber}
-              {infoDeck}
-              {infoUrl}
+              <div className="infoText">
+                {infoName}
+                {infoNumber}
+                {infoDeck}
+                {infoUrl}
+              </div>
             </div>
           </div>
 
@@ -204,10 +219,11 @@ class InfoPage extends React.Component{
               hasMore={this.state.hasMoreItems}
               >
 
-              <div className="moreOfIssues">
+              <div className="moreOfIssues clearfix">
                 {items}
               </div>
             </InfiniteScroll>
+            <p className='loading'>Loading...</p>
           </div>
 
         </div>
