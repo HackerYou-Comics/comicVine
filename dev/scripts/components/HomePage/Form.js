@@ -31,6 +31,7 @@ class Form extends React.Component {
         this.submitHandler = this.submitHandler.bind(this);
         this.changeHandler = this.changeHandler.bind(this);
         this.grabIndividualIdFromIssue = this.grabIndividualIdFromIssue.bind(this);
+        this.emptySearchAlert = this.emptySearchAlert.bind(this);
     }
     //----------------
     // Event handler
@@ -111,6 +112,11 @@ class Form extends React.Component {
             //results of the data in an array
             const apiArray = res.data.results;
 
+            if(apiArray.length === 0){
+                this.emptySearchAlert();
+            }
+
+
             //clone searchResults state
             const searchResultsClone = [...this.state.searchResults];
             for (let i = 0; i < apiArray.length; i++) {
@@ -126,6 +132,9 @@ class Form extends React.Component {
         });
     }
 
+    emptySearchAlert(){
+        alert('No results. Please search again.')
+    }
     
 
     render() {
