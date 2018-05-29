@@ -42,8 +42,6 @@ class Auth extends React.Component{
                     userName: user.displayName,
                     userImg: user.photoURL,
                     userId: user.uid,
-                }, () => {
-                    this.props.getUserId(this.state.userId);
                 })
             } else {
                 this.setState({
