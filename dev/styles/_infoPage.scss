@@ -1,0 +1,21 @@
+.infoPageContainer{
+    max-width: 1080px;
+    margin: 0 auto;
+
+    .infoImgContainer{
+        overflow: hidden;
+        margin-right: 10px;
+        width: calc(50% - 10px);
+        float: left;
+
+        img {
+            object-fit: contain;
+            width: 100%;
+        }
+
+    }
+    .infoTextsContainer{
+        width: 50%;
+        float: left;
+    }
+}

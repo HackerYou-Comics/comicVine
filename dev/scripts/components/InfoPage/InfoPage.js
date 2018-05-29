@@ -116,6 +116,7 @@ class InfoPage extends React.Component{
     let infoImg;
     let infoName;
     let infoDeck;
+    let infoNumber
     let infoUrl;
     let infoVolumeName;
 
@@ -140,13 +141,16 @@ class InfoPage extends React.Component{
         infoVolumeName = <h3>Volume: {singleSelection.volume.name}</h3>
       }
       if (singleSelection.image.screen_large_url !== null) {
-        infoImg = <img src={singleSelection.image.screen_large_url} alt={singleSelection.name} />;
+        infoImg = <img src={singleSelection.image.medium_url} alt={singleSelection.name} />;
       }
       if (singleSelection.name !== null) {
         infoName = <h2>{singleSelection.name}</h2>;
       }
       if (singleSelection.deck !== null) {
         infoDeck = <p>{singleSelection.deck}</p>;
+      } 
+      if (singleSelection.issue_number !== null) {
+        infoNumber = <h2>Issue: #{singleSelection.issue_number}</h2>
       }
       if (singleSelection.site_detail_url !== null) {
         infoUrl = <a href={singleSelection.site_detail_url}>More information</a>
@@ -178,23 +182,33 @@ class InfoPage extends React.Component{
       <div>
         <h1>This is the Info page</h1>
         {/* <Publisher /> */}
-        <div>
-          {infoName}
-          {infoImg}
-          {infoDeck}
-          {infoUrl}
-          {infoVolumeName}
-
-          <InfiniteScroll
-            pageStart={1}
-            loadMore={this.loadMoreFunc}
-            hasMore={this.state.hasMoreItems}
-            >
-
-            <div className="moreOfIssues">
-              {items}
+        <div className='infoPageContainer'>
+          <div className="issueInfoContainer clearfix">
+            <div className="infoImgContainer">
+              {infoImg}
             </div>
-          </InfiniteScroll>
+
+            <div className="infoTextsContainer">
+              {infoName}
+              {infoNumber}
+              {infoDeck}
+              {infoUrl}
+            </div>
+          </div>
+
+          <div className="infoVolumeContainer">
+            {infoVolumeName}
+            <InfiniteScroll
+              pageStart={1}
+              loadMore={this.loadMoreFunc}
+              hasMore={this.state.hasMoreItems}
+              >
+
+              <div className="moreOfIssues">
+                {items}
+              </div>
+            </InfiniteScroll>
+          </div>
 
         </div>
         
