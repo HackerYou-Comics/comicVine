@@ -19,15 +19,16 @@ form {
 
     .buttonContainer {
         position: absolute;
-        right: 0;
-        bottom: 0;
+        right: 10%;
+        bottom: 100px;
     
         button {
             font-size: 2rem;
             border: none;
             padding: 1rem;
             color: $black;
-            background: white;
+            background: $whiteTransparent;
+            margin: 3px;
         }
         button:hover {
             color: $green;
