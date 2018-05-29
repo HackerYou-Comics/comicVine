@@ -134,6 +134,9 @@
 @media (max-width: 420px){
     header {
         height: 65vh;
+        .hero{
+          background-size: 80%;
+        }
     }
 
     form {
@@ -172,9 +175,7 @@
         }
     }
 
-    footer {
-        height: 12vh;
-        
+    footer {        
         p, a {
             font-size: 1.2rem;
             margin: 0;
