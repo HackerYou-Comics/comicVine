@@ -8,7 +8,6 @@
   transition: all 0.5s linear;
 
   .links{
-   max-width: 1080px;
    margin: 0 auto;
    position: relative;
    min-height: 55px;
@@ -39,7 +38,6 @@
     transition: all 1s ease;
     &:hover{
       box-shadow: 0px 0px 10px $black;
-      transform: scale(1.05, 1.05);
       animation: tilt 3s ease-in-out infinite;
     }
   }
@@ -52,7 +50,7 @@
 @keyframes tilt{
   0% {transform: rotate(0deg)}
   20% {transform: rotate(3deg)}
-  50% {transform: rotate(-3deg)}
+  50% {transform: rotate(-3deg) scale(1.05, 1.05)}
   80% {transform: rotate(3deg)}
 }
 

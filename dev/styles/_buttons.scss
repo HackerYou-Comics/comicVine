@@ -15,17 +15,19 @@ form {
     }
 }
 
-.buttonContainer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-
-    button {
-        background: transparent; 
-        padding: 1rem;
-        color: $black;
-    }
-
+.results {
+    .buttonContainer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    
+        button {
+            font-size: 2rem;
+            border: none;
+            padding: 1rem;
+            color: $black;
+            background: white;
+        }
     button:hover {
         color: $green;
     }

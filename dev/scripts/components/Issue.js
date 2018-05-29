@@ -96,10 +96,7 @@ class Issue extends React.Component{
                 <div className="buttonContainer">
                     <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>
                     <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
-                </div>
-                    
-                    
-                
+                </div>  
             </React.Fragment>
         )
     }
