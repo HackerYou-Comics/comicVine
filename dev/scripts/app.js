@@ -16,6 +16,7 @@ import Auth from './components/Auth';
 //firebase imports
 import firebase from 'firebase';
 import { firebaseConfig } from './firebase/firebase-config';
+import Footer from './components/HomePage/Footer';
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -27,15 +28,6 @@ class App extends React.Component {
       userId: '',
     }
     this.getLibraryKeyFromIssue = this.getLibraryKeyFromIssue.bind(this);
-    this.getUserIdFromAuth = this.getUserIdFromAuth.bind(this);
-  }
-
-  getUserIdFromAuth(userKey){
-    this.setState({
-      userId: userKey,
-    }, () => {
-      //console.log('userkey from app:', this.state.userId);
-    })
   }
 
   getLibraryKeyFromIssue(libraryId){
@@ -50,7 +42,7 @@ class App extends React.Component {
     return (
       <Router history={browserHistory}>
         <div className="content">
-          <Auth getUserId={this.getUserIdFromAuth}/>
+          <Auth />
           <Route path="/" render={(props) => <HomePage
             userKey = {this.state.userId} 
             setVolume={this.getVolumesIssuesArrayfromForm}
@@ -62,6 +54,7 @@ class App extends React.Component {
             userKey={this.state.userId} 
             libraryId={this.state.libraryKey}
           />} />
+          <Footer /> 
         </div>
       </Router>
     )

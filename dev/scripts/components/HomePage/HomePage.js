@@ -7,8 +7,7 @@ import {
 } from 'react-router-dom';
 import Form from './Form';
 import InfoPage from '../InfoPage/InfoPage';
-import Header from '../HomePage/Header'
-
+import Header from '../HomePage/Header';
 
 class HomePage extends React.Component {
   render() {
@@ -22,7 +21,7 @@ class HomePage extends React.Component {
                 router={this.props.router}
                 libraryId={this.props.libraryId}
                 userKey={this.props.userKey} />
-            </div>)}     
+            </div>)}    
       </div>
     )
   }

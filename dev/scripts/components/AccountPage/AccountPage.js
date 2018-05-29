@@ -20,44 +20,50 @@ class AccountPage extends React.Component {
     }
     this.deleteIssue = this.deleteIssue.bind(this);
     this.toggleOwnage = this.toggleOwnage.bind(this);
+    this.getUserInfoFromFirebase = this.getUserInfoFromFirebase.bind(this);
   }
 
   componentDidMount() {
-    const userId = this.props.userKey;
-    this.setState({
-      userKey: this.props.userKey,
-    }, () => {
-      
-      const dbRef = firebase.database().ref(`users/library/${this.state.userKey}/`);
-      dbRef.on('value', (snapshot) => {
-        const issueList = snapshot.val();
-        const issueListArchiveClone = [];
-        const issueListWishListClone = [];
-
-        for(let issue in issueList){
-          if(issueList[issue].completed === true){
-            issueListArchiveClone.push(issueList[issue]);
-          }else{
-            issueListWishListClone.push(issueList[issue]);
-          }
-        }
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.getUserInfoFromFirebase(user.uid);
         this.setState({
-          issueListArchive: issueListArchiveClone,
-          issueListWishList: issueListWishListClone,
-        }, () => {
-          console.log(this.state.issueListArchive);
-          console.log(this.state.issueListWishList);
-        });        
-      })
-    })
+          userKey: user.uid,
+        })
+      } else {
+        console.log('no user');
+      }
+    });
+  }
+
+  getUserInfoFromFirebase(userKey){
+    const dbRef = firebase.database().ref(`users/library/${userKey}/`);
+    dbRef.on('value', (snapshot) => {
+
+      const issueList = snapshot.val();
+      const issueListArchiveClone = [];
+      const issueListWishListClone = [];
+
+      for (let issue in issueList) {
+        if (issueList[issue].completed === true) {
+          issueListArchiveClone.push(issueList[issue]);
+        } else {
+          issueListWishListClone.push(issueList[issue]);
+        }
+      }
+      this.setState({
+        issueListArchive: issueListArchiveClone,
+        issueListWishList: issueListWishListClone,
+      });
+    });
   }
 
   deleteIssue(issueId){
-    firebase.database().ref(`users/library/${this.props.userKey}/${issueId}`).remove();
+    firebase.database().ref(`users/library/${this.state.userKey}/${issueId}`).remove();
   }
 
   toggleOwnage(issueId, completed){
-    firebase.database().ref(`users/library/${this.props.userKey}/${issueId}`).update({
+    firebase.database().ref(`users/library/${this.state.userKey}/${issueId}`).update({
       completed: completed === true ? false : true
     })
   }
@@ -65,34 +71,39 @@ class AccountPage extends React.Component {
 
   render() {
     return (
-      <section className="accountPage">
-        <h2>WishList</h2>
-        <ul className = "accountList wishList">
-          {this.state.issueListWishList.map((issue) => {
-            return(
-              <li key={issue.name + issue.key}>
-              <img src={issue.image} alt={issue.name}/>
-              <p>{issue.name}</p>
-                <button onClick={() => this.deleteIssue(issue.name + issue.key)}><i className="fas fa-trash-alt"></i></button>
-              <button onClick={() => this.toggleOwnage(issue.name + issue.key, issue.completed)}>💛</button>
-            </li>
-            )
-          })}
-        </ul>
-        <h2>Comic Stash 🌯</h2>
-        <ul className="accountList archiveList">
-          {this.state.issueListArchive.map((savedIssue) => {
-            return(
-              <li key={savedIssue.name + savedIssue.key}>
-                <img src={savedIssue.image} alt={savedIssue.name} />
-                <p>{savedIssue.name}</p>
-                <button onClick={() => this.deleteIssue(savedIssue.name + savedIssue.key)}><i className="fas fa-trash-alt"></i></button>
-                <button onClick={() => this.toggleOwnage(savedIssue.name + savedIssue.key, savedIssue.completed)}>💛</button>
-              </li>
-            )
-          })}
-        </ul>
-    </section> 
+      <section>
+        <div className="accountBanner"></div>
+        <div className="results">
+          <h2>WishList</h2>
+          <ul className = "resultList clearfix">
+            {this.state.issueListWishList.map((issue) => {
+              return(
+                <div className="issues clearfix">
+                  <li key={issue.name + issue.key}>
+                    <img src={issue.image} alt={issue.name}/>
+                    <p>{issue.name}</p>
+                      <button onClick={() => this.deleteIssue(issue.name + issue.key)}><i className="fas fa-trash-alt"></i></button>
+                    <button onClick={() => this.toggleOwnage(issue.name + issue.key, issue.completed)}>💛</button>
+                  </li>
+                </div>
+              )
+            })}
+          </ul>
+          <h2>Comic Stash 🌯</h2>
+          <ul className="resultList clearfix">
+            {this.state.issueListArchive.map((savedIssue) => {
+              return(
+                <li className="imageContainer" key={savedIssue.name + savedIssue.key}>
+                  <img className="issueImg" src={savedIssue.image} alt={savedIssue.name} />
+                  <p>{savedIssue.name}</p>
+                  <button onClick={() => this.deleteIssue(savedIssue.name + savedIssue.key)}><i className="fas fa-trash-alt"></i></button>
+                  <button onClick={() => this.toggleOwnage(savedIssue.name + savedIssue.key, savedIssue.completed)}>💛</button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </section> 
     )
   }
 }
