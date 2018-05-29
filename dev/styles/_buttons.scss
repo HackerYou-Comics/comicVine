@@ -1,0 +1,34 @@
+form {
+    button {
+        height: 30px;
+        margin-left: 10%;
+        width: 15%;
+        font-size: 1.2rem;
+        background: transparent;
+        border: 1px solid $teal;
+    }
+
+    button:hover {
+        background: $teal;
+        box-shadow: 4px 4px $black;
+        color: white;
+    }
+}
+
+.results {
+    .buttonContainer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    
+        button {
+            background: transparent; 
+            padding: 1rem;
+            color: $black;
+        }
+
+        button:hover {
+            color: $green;
+        }
+    }
+}

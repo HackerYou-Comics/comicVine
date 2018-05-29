@@ -85,18 +85,18 @@ class Issue extends React.Component{
         return(
             <React.Fragment>       
                 <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler}>
-                    <div id={this.props.id}>
+                    <div id={this.props.id} className = "imageContainer">
                         <img src={this.props.issueImg} alt={this.props.issueName} className='issueImg'/>
                     </div>
-                </Link>    
-                    <div className="overlay">
-                        <p>{newText}</p>
-                        <p>{this.props.issueNumber}</p>
-                        <div className="buttonContainer">
-                            <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>
-                            <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
-                        </div>
+                    <p>{newText}</p>
+                    <p>{this.props.issueNumber}</p>
+                    <div className="buttonContainer">
+                        <button value="wishList" onClick={this.handleLibrary}><i className="fas fa-star"></i></button>
+                        <button value="archive" onClick={this.handleLibrary}><i className="fas fa-archive"></i></button>
                     </div>
+                </Link>    
+                    
+                    
                 
             </React.Fragment>
         )

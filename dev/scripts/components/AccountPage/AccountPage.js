@@ -67,7 +67,7 @@ class AccountPage extends React.Component {
     return (
       <section className="accountPage">
         <h2>WishList</h2>
-        <ul>
+        <ul className = "accountList wishList">
           {this.state.issueListWishList.map((issue) => {
             return(
               <li key={issue.name + issue.key}>
@@ -80,7 +80,7 @@ class AccountPage extends React.Component {
           })}
         </ul>
         <h2>Comic Stash 🌯</h2>
-        <ul>
+        <ul className="accountList archiveList">
           {this.state.issueListArchive.map((savedIssue) => {
             return(
               <li key={savedIssue.name + savedIssue.key}>
