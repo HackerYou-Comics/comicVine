@@ -23,7 +23,17 @@
             background: white;
             width: 100%;
         }
+
+        .imageContainer {
+            background: $black;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
     }
+
     
     li {
         float: left;
@@ -68,12 +78,7 @@
         .imageContainer{
             max-height: 325px;
             overflow: hidden;
-            background: $black;
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
+            
 
             img {
                 object-fit: cover;
@@ -93,9 +98,10 @@
                 color: $green;
             }
 
-            h2 {
+            h3 {
                 color: $green;
             }
+
         }
     }
 

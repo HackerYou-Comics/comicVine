@@ -16,6 +16,7 @@ form {
 }
 
 .results {
+
     .buttonContainer {
         position: absolute;
         right: 0;
@@ -29,7 +30,7 @@ form {
             background: white;
         }
         button:hover {
-        color: $green;
+            color: $green;
         }
     }
 }
