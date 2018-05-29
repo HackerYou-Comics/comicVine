@@ -221,7 +221,6 @@ class InfoPage extends React.Component{
                 {items}
               </div>
             </InfiniteScroll>
-            <p className='loading'>Loading...</p>
           </div>
 
         </div>
