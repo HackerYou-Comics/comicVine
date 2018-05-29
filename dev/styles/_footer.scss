@@ -1,0 +1,17 @@
+footer {
+    background: $teal;
+    height: 5vh;
+    text-align: center;
+    font-family: $primary-font;
+    clear: both;
+
+    p, a {
+        font-size: 1.4rem;
+        color: $black;
+        padding: 10px 0;
+    }
+
+    a {
+        text-decoration: none;
+    }
+}

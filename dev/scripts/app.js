@@ -16,6 +16,7 @@ import Auth from './components/Auth';
 //firebase imports
 import firebase from 'firebase';
 import { firebaseConfig } from './firebase/firebase-config';
+import Footer from './components/HomePage/Footer';
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -49,7 +50,11 @@ class App extends React.Component {
             libraryId={this.getLibraryKeyFromIssue}
             router={props}/>}>
           </Route>
-          <Route exact path="/account" render={() => <AccountPage />} />
+          <Route exact path="/account" render={() => <AccountPage 
+            userKey={this.state.userId} 
+            libraryId={this.state.libraryKey}
+          />} />
+          <Footer /> 
         </div>
       </Router>
     )
