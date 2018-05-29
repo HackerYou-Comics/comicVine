@@ -4,14 +4,17 @@ form {
         margin-left: 10%;
         width: 15%;
         font-size: 1.2rem;
-        background: transparent;
+        background: $teal;
         border: 1px solid $teal;
+        box-shadow: 4px 4px $black;
+        color: white;
     }
 
     button:hover, button:focus {
-        background: $teal;
-        box-shadow: 4px 4px $black;
-        color: white;
+        background: transparent;
+        border: 1px solid $teal;
+        color: $black;
+        box-shadow: none;
     }
 }
 
