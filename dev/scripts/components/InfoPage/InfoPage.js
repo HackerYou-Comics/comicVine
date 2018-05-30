@@ -31,7 +31,7 @@ class InfoPage extends React.Component{
   getVolumes(volumeId) {
 
     axios({
-      url: "http://proxy.hackeryou.com",
+      url: "https://proxy.hackeryou.com",
       method: "GET",
       dataResponse: "json",
       paramsSerializer: function (params) {
