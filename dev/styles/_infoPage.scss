@@ -66,6 +66,7 @@
             width: 200px;
             height: 3px;
             background-color: $blue;
+            margin: 0 auto;
         }
     }
 
@@ -77,8 +78,6 @@
                 font-size: 3.5rem;
                 text-align: center;
                 font-family: $secondary-font;
-
-                
             }
 
             p, a {
@@ -91,7 +90,6 @@
             a:hover {
                 color: $green;
             }
-      
         }
 
     }

@@ -51,9 +51,6 @@ class Form extends React.Component {
             searchResults: [],
             submitted: true,
         }, () => {
-            // console.log(this.state.enteredInput);
-            // console.log(this.state.submitted);
-
             this.getApi(this.state.userChoice);
         })
     }
@@ -68,8 +65,6 @@ class Form extends React.Component {
         this.setState({
             userChoice: e.target.value,
             searchResults: []
-        }, () => {
-            console.log(this.state.userChoice);
         })
     }
 
@@ -85,7 +80,6 @@ class Form extends React.Component {
     //-----------
     getApi(searchChoice) {
         //API call
-        // console.log(this.state.enteredInput);
         axios({
             url: "https://proxy.hackeryou.com",
             method: "GET",
@@ -106,7 +100,6 @@ class Form extends React.Component {
                 xmlToJSON: false
             }
         }).then((res) => {
-            console.log(res.data);
 
             //results of the data in an array
             const apiArray = res.data.results;
@@ -124,8 +117,6 @@ class Form extends React.Component {
             
             this.setState({
                 searchResults: searchResultsClone
-            }, () => {
-                console.log(this.state.searchResults);
             })
 
         });
@@ -138,7 +129,6 @@ class Form extends React.Component {
 
     render() {
         //redirect for future references
-        // console.log(this.state.submitted);
         // if (this.state.submitted) {
         //     return <Redirect to='/' />
         // }
