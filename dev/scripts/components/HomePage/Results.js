@@ -18,9 +18,18 @@ class Results extends React.Component {
 	componentWillReceiveProps(nextProps){
 		if(nextProps.results.length > 0){
 			this.setState({
-				hasMoreItems: true
+				hasMoreItems: true,
+				limitedResults: this.props.results
 			})
 		}
+	}
+	
+
+	componentWillMount(){
+		this.setState({
+			limitedResults: []
+		})
+		this.loadMoreFunc(1);
 	}
 
 	loadMoreFunc(page){
