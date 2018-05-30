@@ -11,7 +11,6 @@ class Publisher extends React.Component {
   //grabs the firstChild's "id" of the <Link> tag. this case is the <li>
   singleHandler(e) {
     this.props.grabId(e.currentTarget.id);
-    console.log(e.currentTarget)
   }
 
   render() {

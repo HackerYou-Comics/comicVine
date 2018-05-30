@@ -24,7 +24,6 @@ class Results extends React.Component {
 	}
 
 	loadMoreFunc(page){
-		console.log(this.props);
 		let newArray = [];
 
 		for(let i = 0; i < page*10; i++){
@@ -84,7 +83,6 @@ class Results extends React.Component {
                     {this.props.userChoice === 'publishers' ?
                         (
                             this.props.results.map((result, index) => {
-                                { console.log(result); }
                                 if(result.image !== null){
                                     return (
 										<li className = "publisherListItem" key={index + result.id}>

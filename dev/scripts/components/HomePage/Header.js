@@ -13,5 +13,3 @@ const Header = () => {
 }
 
 export default Header 
-
-    // < img src = "../../../../public/assets/comic-bubble-text.png" alt = "" />

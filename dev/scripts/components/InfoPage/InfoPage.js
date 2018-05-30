@@ -51,8 +51,7 @@ class InfoPage extends React.Component{
       }
     }).then((vol) => {
       if (vol.data.error === 'Object Not Found') {
-        console.log("No volume :(");
-
+        //no volume
       } else {
         //volume data and all the issues in the volume
         const volIssues = vol.data.results.issues;
@@ -70,8 +69,6 @@ class InfoPage extends React.Component{
         this.setState({
             volumeIssuesArray: reducedArray,
             hasMoreItems: true
-        }, () => {
-            console.log(this.state.volumeIssuesArray);
         })
       }
 
@@ -175,7 +172,6 @@ class InfoPage extends React.Component{
     const items = [];
     if(this.state.volumeIssuesArray.length !== 0){
       this.state.limitedResults.map((issue, index) => {
-        {console.log(issue)}
         //reduces the title character numbers
         const newText = this.reduceParagraph(issue.name, 40);
         items.push (

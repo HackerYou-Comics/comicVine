@@ -33,7 +33,7 @@ class AccountPage extends React.Component {
           userName: user.displayName,
         })
       } else {
-        console.log('no user');
+        //no user
       }
     });
   }
