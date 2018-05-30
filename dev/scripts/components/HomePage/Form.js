@@ -81,14 +81,14 @@ class Form extends React.Component {
     getApi(searchChoice) {
         //API call
         axios({
-            url: "http://proxy.hackeryou.com",
+            url: "https://proxy.hackeryou.com",
             method: "GET",
             dataResponse: "jsonp",
             paramsSerializer: function (params) {
                 return Qs.stringify(params, { arrayFormat: 'brackets' })
             },
             params: {
-                reqUrl: `http://www.comicvine.com/api/${searchChoice}`,
+                reqUrl: `https://www.comicvine.com/api/${searchChoice}`,
                 params: {
                     api_key: apiKey,
                     format: 'json',
