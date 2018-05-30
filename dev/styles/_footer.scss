@@ -1,20 +1,14 @@
 footer {
     background: $teal;
-    height: 5vh;
+    height: 7vh;
     text-align: center;
     font-family: $primary-font;
     clear: both;
     padding: 1px;
-    
-
-    p {
-        //padding-top: 30px;
-    }
 
     p, a {
         font-size: 1.4rem;
-        color: $black;
-        
+        color: $black;  
     }
 
     a {
