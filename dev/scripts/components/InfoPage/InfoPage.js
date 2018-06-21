@@ -71,17 +71,13 @@ class InfoPage extends React.Component{
             hasMoreItems: true
         })
       }
-
-      
-
     });
   }
+
   componentWillMount(){
     if(this.props.userChoice === 'issues'){
       this.getVolumes(this.props.allSearches[this.props.individualId].volume.id);
-
     }
-
   }
 
   loadMoreFunc(page){
@@ -126,7 +122,6 @@ class InfoPage extends React.Component{
     let infoUrl;
     let infoVolumeName;
 
-
     //checks what the userChoice was on Form.js set the conditional values according to render or publishers or issues
     if (this.props.userChoice === 'publishers'){
       if (singleSelection.image.screen_large_url !== null) {
@@ -140,7 +135,7 @@ class InfoPage extends React.Component{
         infoDeck = <p>{newText}</p>;
       }
       if (singleSelection.site_detail_url !== null) {
-        infoUrl = <a href={singleSelection.site_detail_url}>More information</a>
+        infoUrl = <a href={singleSelection.site_detail_url} target="_blank">More information</a>
       }
 
     } else{
@@ -160,14 +155,9 @@ class InfoPage extends React.Component{
         infoNumber = <h2>Issue: #{singleSelection.issue_number}</h2>
       }
       if (singleSelection.site_detail_url !== null) {
-        infoUrl = <a href={singleSelection.site_detail_url}>More information</a>
+        infoUrl = <a href={singleSelection.site_detail_url} target="_blank">More information</a>
       }
-      
     }
-
-
-
-
 
     const items = [];
     if(this.state.volumeIssuesArray.length !== 0){
@@ -180,14 +170,12 @@ class InfoPage extends React.Component{
               <p>{newText}</p>
             </div>
             <p className='issueNumber'>Issue #{issue.issue_number}</p>
-            <a href={issue.site_detail_url}>See full details</a>
+            <a href={issue.site_detail_url} target="_blank">See full details</a>
           </div>
         )
       })
     }
-    
 
-    
     return(
       <div>
         <div className='infoPageContainer'>
@@ -221,7 +209,7 @@ class InfoPage extends React.Component{
           </div>
 
         </div>
-        
+      
       </div>
     )
   }
