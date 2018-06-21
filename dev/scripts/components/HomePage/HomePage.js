@@ -20,7 +20,8 @@ class HomePage extends React.Component {
               <Form
                 router={this.props.router}
                 libraryId={this.props.libraryId}
-                userKey={this.props.userKey} />
+                userKey={this.props.userKey} 
+              />
             </div>)}    
       </div>
     )

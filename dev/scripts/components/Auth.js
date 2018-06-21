@@ -48,7 +48,7 @@ class Auth extends React.Component{
                     loggedIn: false
                 })
             }
-        })
+        });
     }
 
     loginWithGoogle() {

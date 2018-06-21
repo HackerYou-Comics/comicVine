@@ -18,40 +18,47 @@ class Issue extends React.Component{
         this.singleHandler = this.singleHandler.bind(this);
         this.reduceParagraph = this.reduceParagraph.bind(this);
     }
+
     singleHandler(e){
         this.props.grabId(e.currentTarget.firstChild.id);
     }
 
     handleLibrary(e) {
-        const currentUser = firebase.auth().currentUser.uid;
+        const loggedIn = firebase.auth().currentUser;
+        if(loggedIn === null){
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider);
+        }else{
+            const currentUser = firebase.auth().currentUser.uid;
 
-        this.props.libraryId(this.props.issueName + this.props.infoId);
+            this.props.libraryId(this.props.issueName + this.props.infoId);
 
-        const dbRef = firebase.database().ref(`users/library/${currentUser}/${this.props.issueName + this.props.infoId}`)
-        if(e.currentTarget.value === 'archive') {
-            this.setState({
-            libraryInfo: {
-                name: this.props.issueName,
-                image: this.props.issueImg,
-                issueNumber: this.props.issueNumber,
-                key: this.props.infoId,
-                completed: true
-                }
-            }, ()=>{
-                dbRef.set(this.state.libraryInfo);
-            }) 
-        } else {
-            this.setState({
-                libraryInfo: {
-                    name: this.props.issueName,
-                    image: this.props.issueImg,
-                    issueNumber: this.props.issueNumber,
-                    key: this.props.infoId,
-                    completed: false
-                }
-            }, ()=> {
-                dbRef.set(this.state.libraryInfo)
-            })
+            const dbRef = firebase.database().ref(`users/library/${currentUser}/${this.props.issueName + this.props.infoId}`)
+            if (e.currentTarget.value === 'archive') {
+                this.setState({
+                    libraryInfo: {
+                        name: this.props.issueName,
+                        image: this.props.issueImg,
+                        issueNumber: this.props.issueNumber,
+                        key: this.props.infoId,
+                        completed: true
+                    }
+                }, () => {
+                    dbRef.set(this.state.libraryInfo);
+                })
+            } else {
+                this.setState({
+                    libraryInfo: {
+                        name: this.props.issueName,
+                        image: this.props.issueImg,
+                        issueNumber: this.props.issueNumber,
+                        key: this.props.infoId,
+                        completed: false
+                    }
+                }, () => {
+                    dbRef.set(this.state.libraryInfo)
+                })
+            }
         }
     }
 
@@ -69,7 +76,6 @@ class Issue extends React.Component{
   
         //reduces the title character numbers
         const newText = this.reduceParagraph(this.props.issueName, 30);
-        
         return(
             <React.Fragment>       
                 <Link to={`/info/${this.props.infoId}`} onClick={this.singleHandler}>

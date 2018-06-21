@@ -60,14 +60,14 @@
             color: $blue;
         }
 
-        h3::after{
-            content: '';
-            display: block;
-            width: 200px;
-            height: 3px;
-            background-color: $blue;
-            margin: 0 auto;
-        }
+        // h3::after{
+        //     content: '';
+        //     display: block;
+        //     width: 200px;
+        //     height: 3px;
+        //     background-color: $blue;
+        //     margin: 0 auto;
+        // }
     }
 
     .moreOfIssues{

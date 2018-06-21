@@ -25,9 +25,11 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      userId: '',
+      userId: null,
+      loginStatus: null,
     }
     this.getLibraryKeyFromIssue = this.getLibraryKeyFromIssue.bind(this);
+    this.getUserIdandLogin = this.getUserIdandLogin.bind(this);
   }
 
   getLibraryKeyFromIssue(libraryId){
@@ -38,16 +40,27 @@ class App extends React.Component {
     })
   }
 
+  getUserIdandLogin (userId, loginStatus){
+    this.setState({
+      userId: userId,
+      loginStatus: loginStatus
+    },()=> {
+      console.log(this.state.userId, this.state.loginStatus);
+    });
+  }
+
   render() {
     return (
       <Router history={browserHistory}>
         <div className="content">
-          <Auth />
+          <Auth 
+            getUserIdandLogin={this.getUserIdandLogin}/>
           <Route path="/" render={(props) => <HomePage
             userKey = {this.state.userId} 
             setVolume={this.getVolumesIssuesArrayfromForm}
             issueClicked={this.state.issueSelected}
             libraryId={this.getLibraryKeyFromIssue}
+            getUserIdandLogin={this.getUserIdandLogin}
             router={props}/>}>
           </Route>
           <Route exact path="/account" render={() => <AccountPage 
